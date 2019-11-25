@@ -5,6 +5,9 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom';
 import createStore from './createStore';
 import * as serviceWorker from './serviceWorker';
+import './assets/css/normalize.css';
+import './assets/css/fonts.css';
+import './assets/css/main.css';
 
 const initStore ={};
 const store = createStore();

@@ -1,10 +1,15 @@
-import React, { PureComponent } from 'react'
+import React, { useState, useEffect } from 'react'
+import CssBaseline from '@material-ui/core/CssBaseline'
+
 // import PropTypes from 'prop-types'
 
-class App extends PureComponent {
-  render () {
-    return <div />
-  }
+function App () {
+  return (
+    <>
+      <CssBaseline />
+      {/* ... bottom place your components */}
+    </>
+  )
 }
 
 export default App
