@@ -1,10 +1,13 @@
-import React, { PureComponent } from 'react'
+import React, { useEffect, useState } from 'react';
 // import PropTypes from 'prop-types'
 
-class App extends PureComponent {
-  render () {
-    return <div />
-  }
+function App() {
+  return (
+    <>
+      <CSSBaseline />
+      {/* ...  bottom place your components */}
+    </>
+  );
 }
 
-export default App
+export default App;
