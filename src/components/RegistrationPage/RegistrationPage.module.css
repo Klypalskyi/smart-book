@@ -1,0 +1,16 @@
+.container {
+  background: linear-gradient(rgba(9, 30, 63, 0.8), rgba(9, 30, 63, 0.8)),
+    url('../../assets/images/signupBg.png');
+  /* background-blend-mode: overlay; */
+  width: 375px;
+  height: 605px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .container {
+    background: linear-gradient(rgba(9, 30, 63, 0.8), rgba(9, 30, 63, 0.8)),
+      url('../../assets/images/signupBg@2x.png');
+    /* background-blend-mode: overlay; */
+    background-size: 375px 605px;
+  }
+}
