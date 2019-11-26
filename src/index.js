@@ -1,3 +1,4 @@
+/* eslint-disable react/no-render-return-value */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -6,7 +7,7 @@ import App from './Containers/App/App';
 import createStore from './createStore';
 import * as serviceWorker from './serviceWorker';
 import './assets/css/normalize.css';
-// import './assets/css/fonts.css';
+import './assets/css/fonts.css';
 import './assets/css/main.css';
 
 // const initStore = {};
@@ -14,7 +15,6 @@ const store = createStore;
 
 // eslint-disable-next-line no-unused-vars
 const render = Component => {
-  // eslint-disable-next-line react/no-render-return-value
   return ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
@@ -28,7 +28,7 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./Containers/App/App.jsx', () => {
+  module.hot.accept('./Containers/App/App', () => {
     // eslint-disable-next-line global-require
     const NextApp = require('./Containers/App/App').default;
     render(NextApp);
