@@ -1,35 +1,38 @@
+/* eslint-disable react/no-render-return-value */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './containers/App/App';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import App from './Containers/App/App';
 import createStore from './createStore';
 import * as serviceWorker from './serviceWorker';
 import './assets/css/normalize.css';
 import './assets/css/fonts.css';
 import './assets/css/main.css';
 
-const initStore ={};
-const store = createStore();
+// const initStore = {};
+const store = createStore;
 
+// eslint-disable-next-line no-unused-vars
 const render = Component => {
- return ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>
-  , document.getElementById('root')
- );
+  return ReactDOM.render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>{' '}
+    </Provider>,
+    document.getElementById('root'),
+  );
 };
 
 render(App);
 
 if (module.hot) {
- module.hot.accept("./containers/App/App", () => {
-  const NextApp = require("./containers/App/App").default;
-  render(NextApp);
- });
+  module.hot.accept('./Containers/App/App', () => {
+    // eslint-disable-next-line global-require
+    const NextApp = require('./Containers/App/App').default;
+    render(NextApp);
+  });
 }
 
 // If you want your app to work offline and load faster, you can change
