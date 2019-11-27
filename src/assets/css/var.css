@@ -22,3 +22,9 @@
   --almost-black-30: rgba(2, 2, 1, 0.3);
   --dark-indigo-15: rgba(9, 30, 63, 0.15);
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --rusty-orange: #76411d;
+  }
+}
