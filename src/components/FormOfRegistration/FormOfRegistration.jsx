@@ -4,29 +4,39 @@ import css from './FormOfRegistration.module.css';
 
 const FormOfRegistration = () => (
   <form className={css.form}>
-    <label>
+    <label htmlFor="name">
       <h2>
         Ім'я <span>*</span>
       </h2>
-      <input type="input" placeholder="..." />
+      <input type="input" id="name" name="name" placeholder="..." />
     </label>
-    <label>
+    <label htmlFor="email">
       <h2>
         Електронна адреса <span>*</span>
       </h2>
-      <input type="input" placeholder="your@email.com" />
+      <input
+        type="input"
+        id="email"
+        name="email"
+        placeholder="your@email.com"
+      />
     </label>
-    <label>
+    <label htmlFor="password">
       <h2>
         Пароль <span>*</span>
       </h2>
-      <input type="input" placeholder="..." />
+      <input type="input" id="password" name="password" placeholder="..." />
     </label>
-    <label>
-      <h2 className={css.tytle}>
+    <label htmlFor="passwordRepeat">
+      <h2>
         Підтвердити пароль <span>*</span>
       </h2>
-      <input type="input" placeholder="..." />
+      <input
+        type="input"
+        id="passwordRepeat"
+        name="passwordRepeat"
+        placeholder="..."
+      />
     </label>
     <button type="submit">Зареєструватися</button>
     <p>
