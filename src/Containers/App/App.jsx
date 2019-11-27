@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import LoginPage from '../LoginPage/LoginPage';
+import LoginPage from '../../components/LoginPage/LoginPage';
 
 // import PropTypes from 'prop-types'
 
