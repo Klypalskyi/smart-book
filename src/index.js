@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+// import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import App from './containers/App/App';
 import createStore from './createStore';
 import * as serviceWorker from './serviceWorker';
@@ -10,7 +11,17 @@ import './assets/css/normalize.css';
 import './assets/css/fonts.css';
 import './assets/css/main.css';
 import './assets/css/var.css';
+// import { green, orange } from '@material-ui/core/colors';
+// import themeFile from './assets/theme/theme.json';
 
+// const { palette } = themeFile;
+// console.log(palette);
+
+// const styles = createMuiTheme({
+//   palette: {
+//     primary: colors.orange,
+//   },
+// });
 // const initStore = {};
 const store = createStore;
 
@@ -18,9 +29,11 @@ const store = createStore;
 const render = Component => {
   return ReactDOM.render(
     <Provider store={store}>
+      {/* <ThemeProvider theme={styles}> */}
       <BrowserRouter>
         <App />
-      </BrowserRouter>{' '}
+      </BrowserRouter>
+      {/* </ThemeProvider> */}
     </Provider>,
     document.getElementById('root'),
   );
