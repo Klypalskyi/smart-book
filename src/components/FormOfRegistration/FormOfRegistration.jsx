@@ -6,25 +6,25 @@ const FormOfRegistration = () => (
   <form className={css.form}>
     <label>
       <h2>
-        Ім'я<span>*</span>
+        Ім'я <span>*</span>
       </h2>
       <input type="input" placeholder="..." />
     </label>
     <label>
       <h2>
-        Електронна адреса<span>*</span>
+        Електронна адреса <span>*</span>
       </h2>
       <input type="input" placeholder="your@email.com" />
     </label>
     <label>
       <h2>
-        Пароль<span>*</span>
+        Пароль <span>*</span>
       </h2>
       <input type="input" placeholder="..." />
     </label>
     <label>
       <h2 className={css.tytle}>
-        Підтвердити пароль<span>*</span>
+        Підтвердити пароль <span>*</span>
       </h2>
       <input type="input" placeholder="..." />
     </label>
