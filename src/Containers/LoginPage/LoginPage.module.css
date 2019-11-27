@@ -1,4 +1,3 @@
-/* your css code */
 * {
   margin: 0;
   padding: 0;
@@ -18,10 +17,9 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
-  background-color: #091e3f;
-  background-image: url('./images/pic.jpg');
+  background-color: var(--dark-indigo);
+  background-image: url('./images/bg-320.jpg');
   background-size: 100% 100%;
-  padding: 10px;
   padding-top: 28px;
   background-blend-mode: overlay, multiply;
 }
@@ -36,8 +34,9 @@
   width: 152px;
   height: 42px;
   margin-bottom: 18px;
-  background-color: #f5f7fa;
-  box-shadow: 0px 2px 2px 0 rgba(9, 30, 63, 0.15);
+  background-color: var(--pale-grey);
+  box-shadow: 0px 2px 2px 0 var(--dark-indigo-15);
+  cursor: pointer;
 }
 
 .googleButton::before {
@@ -53,7 +52,6 @@
 }
 
 input::placeholder {
-  /* color: #a6abb9; */
   font-family: 'Montserrat';
   letter-spacing: 0.42px;
   font-size: 13px;
@@ -71,11 +69,11 @@ input[type='password'] {
   height: 40px;
   padding-left: 9px;
   box-shadow: 0px -2px 2px 0 rgba(29, 29, 27, 0.1);
-  color: #242a37;
+  color: var(--dark);
   font-family: 'Montserrat';
   font-size: 14px;
   font-weight: 600;
-  background-color: #f5f7fa;
+  background-color: var(--pale-grey);
   letter-spacing: 0.5px;
 }
 
@@ -94,14 +92,14 @@ input[type='password'] {
   font-size: 14px;
   line-height: 3;
   letter-spacing: 0.42px;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .emailText::after,
 .passwordText::after {
   content: '*';
   display: inline-block;
-  color: #f25137;
+  color: var(--orangey-red);
   margin-left: 3px;
   font-family: 'Montserrat';
 }
@@ -111,20 +109,24 @@ input[type='password'] {
   font-family: 'Montserrat';
   width: 270px;
   height: 55px;
-  background-color: #ff6b08;
+  background-color: var(--orange);
   cursor: pointer;
   margin-bottom: 22px;
   font-family: 'Montserrat';
   font-weight: 600;
   font-size: 16px;
-  color: #ffffff;
+  color: var(--white);
+}
+
+.singInLink:hover {
+  color: var(--orangey-red);
 }
 
 .singInLink {
-  color: #ffffff;
+  color: var(--white);
   text-decoration: none;
   margin-bottom: 18px;
-  border-bottom: 0.1px #ffffff solid;
+  border-bottom: 0.1px var(--white) solid;
   font-family: 'Montserrat';
   font-size: 13px;
   font-weight: 600;
@@ -134,7 +136,7 @@ input[type='password'] {
   padding: 35px 70px 0;
   width: 100%;
   text-align: center;
-  color: #242a37;
+  color: var(--dark);
 }
 
 .quote {
@@ -145,7 +147,7 @@ input[type='password'] {
   line-height: 1.25;
   letter-spacing: 0.39px;
   margin-bottom: 22px;
-  color: #242a37;
+  color: var(--dark);
 }
 
 .quote::before {
@@ -155,7 +157,7 @@ input[type='password'] {
   padding-top: 10px;
   font-size: 45px;
   line-height: 0;
-  color: #ff6b08;
+  color: var(--orange);
   margin-bottom: 10px;
   font-weight: bold;
 }
@@ -174,7 +176,7 @@ input[type='password'] {
 
 .quoteAuthor {
   margin-bottom: 31px;
-  color: #898f9f;
+  color: var(--blue-grey);
   font-family: 'Montserrat';
   font-size: 13px;
   font-weight: 600;
@@ -182,7 +184,7 @@ input[type='password'] {
 
 @media (min-width: 768px) {
   .mainWrapper {
-    background-color: #091e3f;
+    background-color: var(--dark-indigo);
     background-image: url('./images/bg-768.jpg');
     background-size: 100% 100%;
     padding-top: 71px;
@@ -199,7 +201,7 @@ input[type='password'] {
   .emailText,
   .passwordText {
     font-weight: 600;
-    color: #898f9f;
+    color: var(--blue-grey);
   }
 
   .emailInput,
@@ -209,8 +211,8 @@ input[type='password'] {
   }
 
   .singInLink {
-    color: #ff6b08;
-    border-bottom: 0.1px #ff6b08 solid;
+    color: var(--orange);
+    border-bottom: 0.1px var(--orange) solid;
   }
 
   .wrapperQuote {
@@ -252,36 +254,27 @@ input[type='password'] {
 }
 
 @media (min-width: 1024px) {
-  .generalWrapper {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    width: 100%;
-    background-color: #091e3f;
-    background-image: url('./images/bg-1024.jpg');
-    background-size: 100% 100%;
-    padding-top: 71px;
-    background-blend-mode: overlay, multiply;
-  }
-
   .mainWrapper {
     display: flex;
+    justify-content: space-between;
     flex-wrap: nowrap;
     flex-direction: row;
-    background-color: #fff;
+    align-items: center;
+    background-image: url('./images/bg-1024.jpg');
+    background-size: 50% 100%;
     padding-top: 0;
   }
 
-  /* .wrapper {
-    width: 42%;
-    background-color: #091e3f;
-    background-image: url('./images/bg-1024.jpg');
-    background-size: 100% 100%;
-    padding-top: 71px;
-    background-blend-mode: overlay, multiply;
+  .wrapper {
+    margin: 180px 60px 183px 5%;
   }
 
   .wrapperQuote {
-    width: 58%;
-  } */
+    align-self: start;
+    padding-top: 200px;
+    width: 55%;
+    height: 791px;
+    background-color: #fff;
+    margin: 0;
+  }
 }

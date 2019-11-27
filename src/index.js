@@ -9,6 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import './assets/css/normalize.css';
 import './assets/css/fonts.css';
 import './assets/css/main.css';
+import './assets/css/var.css';
 
 // const initStore = {};
 const store = createStore;
