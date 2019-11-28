@@ -54,7 +54,7 @@ class Results extends Component {
                 <td className={styles.table_date}>26.11.2019</td>
                 <td className={styles.table_time}>19:52:48</td>
                 <td className={styles.table_pages}>
-                  123 <span className={styles.table_pages_grey}>стор.</span>
+                  12 <span className={styles.table_pages_grey}>стор.</span>
                 </td>
               </tr>
             </tbody>
