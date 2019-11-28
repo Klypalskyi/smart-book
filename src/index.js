@@ -29,7 +29,7 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./containers/App/App', () => {
+  module.hot.accept('./containers/App/App.jsx', () => {
     // eslint-disable-next-line global-require
     const NextApp = require('./containers/App/App').default;
     render(NextApp);

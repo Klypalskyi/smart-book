@@ -1,0 +1,9 @@
+.logo {
+  font-family: AbrilFatface;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 2;
+  color: var(--dark);
+  text-decoration: none;
+  outline: none;
+}
