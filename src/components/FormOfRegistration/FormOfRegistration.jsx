@@ -6,7 +6,7 @@ const FormOfRegistration = () => (
   <form className={css.form}>
     <label htmlFor="name">
       <h2>
-        Ім'я <span>*</span>
+        Ім&apos;я <span>*</span>
       </h2>
       <input type="input" id="name" name="name" placeholder="..." />
     </label>
