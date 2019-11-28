@@ -1,5 +1,6 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import TrainingPage from '../../pages/TrainingPage/TrainingPage';
 // import PropTypes from 'prop-types'
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <>
       <CssBaseline />
       {/* ... bottom place your components */}
+      <TrainingPage />
     </>
   );
 }
