@@ -20,3 +20,9 @@
 .App-link {
   color: #09d3ac;
 }
+
+.icon {
+  width: 70px;
+  height: 70px;
+  color: blue;
+}
