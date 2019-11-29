@@ -1,0 +1,31 @@
+.header {
+  height: 60px;
+  border: 1px solid red;
+}
+
+.container {
+  min-width: 376px;
+  height: calc(100vh - 60px); /*60px is height of header*/
+  margin: 10 auto;
+  padding: 28px 25px 0;
+  /* overflow: scroll; */
+  background-color: var(--pale-grey);
+}
+
+.inside {
+  width: 326px;
+  margin: 0 auto;
+  border: 1px solid #000;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 18px 45px 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 22px 40px 0;
+  }
+}
