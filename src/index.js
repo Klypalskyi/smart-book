@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createMuiTheme } from '@material-ui/core/styles';
-// eslint-disable-next-line no-unused-vars
 import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter } from 'react-router-dom';
 import App from './сontainers/App/App';
@@ -17,7 +16,6 @@ import './assets/css/var.css';
 // const initStore = {};
 const store = createStore;
 
-// eslint-disable-next-line no-unused-vars
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -57,9 +55,11 @@ const theme = createMuiTheme({
 const render = Component => {
   return ReactDOM.render(
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
     </Provider>,
     document.getElementById('root'),
   );
