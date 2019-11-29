@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './LibraryPage.module.css';
 
-const libraryPage = () => {
-  return <div className={styles.libraryPage__styles} />;
+const LibraryPage = () => {
+  return <div className={styles.libraryPage__wrapper}> </div>;
 };
 
-export default libraryPage;
+export default LibraryPage;
