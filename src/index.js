@@ -3,9 +3,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createMuiTheme } from '@material-ui/core/styles';
+// eslint-disable-next-line no-unused-vars
 import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter } from 'react-router-dom';
-import App from './containers/App/App';
+import App from './сontainers/App/App';
 import createStore from './createStore';
 import * as serviceWorker from './serviceWorker';
 import './assets/css/normalize.css';
@@ -16,6 +17,7 @@ import './assets/css/var.css';
 // const initStore = {};
 const store = createStore;
 
+// eslint-disable-next-line no-unused-vars
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -55,11 +57,9 @@ const theme = createMuiTheme({
 const render = Component => {
   return ReactDOM.render(
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ThemeProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>,
     document.getElementById('root'),
   );
@@ -68,9 +68,9 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./containers/App/App', () => {
+  module.hot.accept('./сontainers/App/App', () => {
     // eslint-disable-next-line global-require
-    const NextApp = require('./containers/App/App').default;
+    const NextApp = require('./сontainers/App/App').default;
     render(NextApp);
   });
 }
