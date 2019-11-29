@@ -4,7 +4,7 @@
 }
 
 .form {
-  max-width: 320px;
+  min-width: 320px;
   padding: 10px;
   display: flex;
   justify-content: center;
@@ -17,6 +17,7 @@
 }
 
 .label {
+  position: relative;
   width: 100%;
 }
 
@@ -44,6 +45,24 @@ input[type='password'] {
   font-weight: 600;
   background-color: var(--pale-grey);
   letter-spacing: 0.5px;
+}
+
+.passwordError,
+.emailError {
+  display: block;
+  color: var(--orangey-red);
+  position: absolute;
+  font-weight: 600;
+}
+
+.emailError {
+  top: 94px;
+  left: 10px;
+}
+
+.passwordError {
+  top: 188px;
+  left: 10px;
 }
 
 .emailInput {
@@ -118,5 +137,15 @@ input[type='password'] {
   .singInLink {
     color: var(--orange);
     border-bottom: 0.1px var(--orange) solid;
+  }
+
+  .emailError {
+    top: 102px;
+    left: 20px;
+  }
+
+  .passwordError {
+    top: 196px;
+    left: 20px;
   }
 }
