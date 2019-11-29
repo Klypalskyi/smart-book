@@ -47,7 +47,6 @@
   border: none;
   background-color: transparent;
   border-bottom: 1px solid;
-  /* position: relative; */
 }
 .nav::after {
   content: '';

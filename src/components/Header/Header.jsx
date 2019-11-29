@@ -4,7 +4,6 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import Logo from '../Logo/Logo';
-// import PropTypes from 'prop-types';
 import styles from './Header.module.css';
 
 const Header = () => {
@@ -15,10 +14,6 @@ const Header = () => {
   return (
     <div className={styles.container}>
       <Logo />
-      {/* <Link className={styles.logo} to="/">
-        BR
-      </Link> */}
-
       <div className={styles.nav}>
         <Link to="/training">
           <IconButton>
@@ -47,12 +42,8 @@ const Header = () => {
   );
 };
 
-Header.propTypes = {
-  // bla: PropTypes.string,
-};
+Header.propTypes = {};
 
-Header.defaultProps = {
-  // bla: 'test',
-};
+Header.defaultProps = {};
 
 export default Header;

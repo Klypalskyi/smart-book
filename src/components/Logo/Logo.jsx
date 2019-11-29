@@ -8,12 +8,8 @@ const Logo = () => (
   </Link>
 );
 
-Logo.propTypes = {
-  // bla: PropTypes.string,
-};
+Logo.propTypes = {};
 
-Logo.defaultProps = {
-  // bla: 'test',
-};
+Logo.defaultProps = {};
 
 export default Logo;
