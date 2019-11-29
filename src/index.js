@@ -2,6 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { createMuiTheme } from '@material-ui/core/styles';
+// eslint-disable-next-line no-unused-vars
+import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter } from 'react-router-dom';
 import App from './Containers/App/App';
 import createStore from './createStore';
@@ -9,9 +12,46 @@ import * as serviceWorker from './serviceWorker';
 import './assets/css/normalize.css';
 import './assets/css/fonts.css';
 import './assets/css/main.css';
+import './assets/css/var.css';
 
 // const initStore = {};
 const store = createStore;
+
+// eslint-disable-next-line no-unused-vars
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#ffffff',
+      main: '#242a37',
+      dark: '#0066ff',
+      // contrastText: will be calculated to contrast with palette.primary.main
+    },
+    secondary: {
+      light: '#0066ff',
+      main: '#ff6b08',
+      // dark: will be calculated from palette.secondary.main,
+      contrastText: '#ffcc00',
+    },
+    background: {
+      default: '#f5f7fa',
+    },
+    // error: will use the default color
+  },
+  typography: {
+    button: {
+      fontFamily: 'Montserrat',
+      fontSize: '13px',
+      fontWeight: 500,
+      fontStretch: 'normal',
+      fontStyle: 'normal',
+      lineHeight: 1.23,
+      letterSpacing: '0.39px',
+      textAlign: 'center',
+      color: 'var(--dark)',
+      textTransform: 'initial',
+    },
+  },
+});
 
 // eslint-disable-next-line no-unused-vars
 const render = Component => {
