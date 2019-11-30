@@ -10,8 +10,6 @@ function App() {
       <CssBaseline />
 
       {/* ... bottom place your components */}
-      <Results />
-      {/* <BasicDateTimePicker /> */}
     </>
   );
 }
