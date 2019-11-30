@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-// import DatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css';
 
-// import 'date-fns';
+import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DateTimePicker } from '@material-ui/pickers';
 
@@ -35,19 +33,29 @@ const testResults = [
   },
 ];
 
-const handleSubmit = e => {
-  e.preventDefault();
-};
-
 const Results = () => {
-  // const [startDate, setStartDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedPages, setSelectedPages] = useState('');
 
-  const handleDateChange = date => {
+  const handleDateInput = date => {
     setSelectedDate(date);
   };
 
-  console.dir(DateFnsUtils);
+  const handlePagesInput = ({ target }) => {
+    setSelectedPages(target.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    if (selectedPages.length === 0 || Number(selectedPages) <= 0) {
+      // error handler
+    } else {
+      // clear inputs
+      setSelectedDate(new Date());
+      setSelectedPages('');
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -60,22 +68,24 @@ const Results = () => {
               <p className={styles.input_title}>Дата</p>
               <DateTimePicker
                 value={selectedDate}
-                onChange={handleDateChange}
+                onChange={handleDateInput}
                 showTodayButton
                 ampm={false}
                 disableFuture
-                format="dd/MM/yyyy hh:mm"
-                InputProps={{ className: styles.input }}
-                // InputProps={{ classes: { root: styles.input } }}
-                // classes={{ root: styles.input }}
-                // TextFieldComponent
-                // className={styles.input}
+                format="dd/MM/yyyy HH:mm"
+                InputProps={{ className: styles.picker }}
               />
             </MuiPickersUtilsProvider>
           </label>
           <label className={styles.label}>
             <p className={styles.input_title}>Кількість сторінок</p>
-            <input type="text" name="pages" className={styles.input} />
+            <input
+              type="number"
+              name="pages"
+              className={styles.input}
+              value={selectedPages}
+              onChange={handlePagesInput}
+            />
           </label>
           <input
             type="submit"
