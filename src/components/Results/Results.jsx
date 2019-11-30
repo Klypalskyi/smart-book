@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
+// import DatePicker from 'react-datepicker';
+// import 'react-datepicker/dist/react-datepicker.css';
 
-import 'react-datepicker/dist/react-datepicker.css';
+// import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, DateTimePicker } from '@material-ui/pickers';
+
 import styles from './Results.module.css';
 
-//
 const testResults = [
   {
     id: 1,
@@ -15,19 +18,19 @@ const testResults = [
   {
     id: 2,
     date: '26.11.2019',
-    time: '18:52:48',
+    time: '18:52:32',
     pages: 234,
   },
   {
     id: 3,
     date: '27.11.2019',
-    time: '19:32:48',
+    time: '19:32:41',
     pages: 345,
   },
   {
     id: 4,
     date: '28.11.2019',
-    time: '09:23:44',
+    time: '09:23:18',
     pages: 45,
   },
 ];
@@ -37,7 +40,14 @@ const handleSubmit = e => {
 };
 
 const Results = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  // const [startDate, setStartDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = date => {
+    setSelectedDate(date);
+  };
+
+  console.dir(DateFnsUtils);
 
   return (
     <div className={styles.container}>
@@ -46,16 +56,22 @@ const Results = () => {
 
         <form className={styles.form} onSubmit={handleSubmit}>
           <label className={styles.label}>
-            <p className={styles.input_title}>Дата</p>
-            <DatePicker
-              className={styles.input}
-              selected={startDate}
-              onChange={date => setStartDate(date)}
-              timeInputLabel="Time:"
-              dateFormat="dd.MM.yyyy"
-              shouldCloseOnSelect={false}
-              showTimeInput
-            />
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <p className={styles.input_title}>Дата</p>
+              <DateTimePicker
+                value={selectedDate}
+                onChange={handleDateChange}
+                showTodayButton
+                ampm={false}
+                disableFuture
+                format="dd/MM/yyyy hh:mm"
+                InputProps={{ className: styles.input }}
+                // InputProps={{ classes: { root: styles.input } }}
+                // classes={{ root: styles.input }}
+                // TextFieldComponent
+                // className={styles.input}
+              />
+            </MuiPickersUtilsProvider>
           </label>
           <label className={styles.label}>
             <p className={styles.input_title}>Кількість сторінок</p>
