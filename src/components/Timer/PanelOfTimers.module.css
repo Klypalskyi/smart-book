@@ -1,0 +1,17 @@
+.panel {
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .panel {
+    width: 679px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 1280px) {
+  .panel {
+    width: 645px;
+  }
+}
