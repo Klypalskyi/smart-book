@@ -6,7 +6,6 @@ function App() {
   return (
     <>
       <CssBaseline />
-
       {/* ... bottom place your components */}
     </>
   );
