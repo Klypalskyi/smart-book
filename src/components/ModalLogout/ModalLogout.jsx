@@ -1,5 +1,4 @@
 import React from 'react';
-import { tsExportAssignment } from '@babel/types';
 import styles from './ModalLogout.module.css';
 
 const ModalLogout = ({
@@ -10,7 +9,7 @@ const ModalLogout = ({
     console.log('closeModal');
   },
 }) => {
-  const handleclick = ({ target }) => {
+  const handleClick = ({ target }) => {
     if (target.name === 'cancel') {
       closeModal();
     } else if (target.name === 'logout') {
@@ -24,10 +23,10 @@ const ModalLogout = ({
         Якщо Ви вийдете з програми незбережені дані будуть втрачені
       </p>
       <div className={styles.buttonContainer}>
-        <button type="button" name="cancel" onClick={handleclick}>
+        <button type="button" name="cancel" onClick={handleClick}>
           Відміна
         </button>
-        <button type="button" name="logout" onClick={handleclick}>
+        <button type="button" name="logout" onClick={handleClick}>
           Вийти
         </button>
       </div>

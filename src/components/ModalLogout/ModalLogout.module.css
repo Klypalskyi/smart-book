@@ -30,7 +30,6 @@
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
-  /* line-height: 39px; */
   letter-spacing: 0.39px;
   text-align: center;
   color: #091e3f;
@@ -59,9 +58,6 @@
     font-size: 15px;
     line-height: 1.33;
     letter-spacing: 0.45px;
-  }
-
-  .buttonContainer {
   }
 
   .buttonContainer button {
