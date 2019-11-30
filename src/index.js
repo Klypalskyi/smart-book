@@ -3,7 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-// import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import App from './containers/App/App';
 import createStore from './createStore';
 import * as serviceWorker from './serviceWorker';
@@ -11,29 +12,54 @@ import './assets/css/normalize.css';
 import './assets/css/fonts.css';
 import './assets/css/main.css';
 import './assets/css/var.css';
-// import { green, orange } from '@material-ui/core/colors';
-// import themeFile from './assets/theme/theme.json';
 
-// const { palette } = themeFile;
-// console.log(palette);
-
-// const styles = createMuiTheme({
-//   palette: {
-//     primary: colors.orange,
-//   },
-// });
 // const initStore = {};
 const store = createStore;
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#ffffff',
+      main: '#242a37',
+      dark: '#0066ff',
+      // contrastText: will be calculated to contrast with palette.primary.main
+    },
+    secondary: {
+      light: '#0066ff',
+      main: '#ff6b08',
+      // dark: will be calculated from palette.secondary.main,
+      contrastText: '#ffcc00',
+    },
+    background: {
+      default: '#f5f7fa',
+    },
+    // error: will use the default color
+  },
+  typography: {
+    button: {
+      fontFamily: 'Montserrat',
+      fontSize: '13px',
+      fontWeight: 500,
+      fontStretch: 'normal',
+      fontStyle: 'normal',
+      lineHeight: 1.23,
+      letterSpacing: '0.39px',
+      textAlign: 'center',
+      color: 'var(--dark)',
+      textTransform: 'initial',
+    },
+  },
+});
 
 // eslint-disable-next-line no-unused-vars
 const render = Component => {
   return ReactDOM.render(
     <Provider store={store}>
-      {/* <ThemeProvider theme={styles}> */}
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-      {/* </ThemeProvider> */}
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Component />
+        </BrowserRouter>
+      </ThemeProvider>
     </Provider>,
     document.getElementById('root'),
   );

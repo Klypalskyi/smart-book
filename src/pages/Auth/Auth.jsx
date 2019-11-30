@@ -1,16 +1,17 @@
-import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import RegistrationPage from '../../components/RegistrationPage/RegistrationPage';
+import React from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import RegistrationPage from '../../components/RegistrationPage/RegistrationPage'
 
-function Auth() {
+function Auth () {
   return (
     <Switch>
-      <Route exact path="/">
-        <Redirect to="/registration" />
+      <Route exact path='/'>
+        <Redirect to='/registration' />
       </Route>
-      <Route path="/registration" component={RegistrationPage} />
+      <Route path='/registration' component={RegistrationPage} />
+      <Route path='/login' component={RegistrationPage} />
     </Switch>
-  );
+  )
 }
 
-export default Auth;
+export default Auth
