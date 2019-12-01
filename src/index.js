@@ -2,14 +2,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
-import App from './containers/App/App';
+import { ThemeProvider } from '@material-ui/styles';
+import { BrowserRouter } from 'react-router-dom';
+import App from './сontainers/App/App';
 import createStore from './createStore';
 import * as serviceWorker from './serviceWorker';
 import './assets/css/normalize.css';
-import './assets/css/styles.css';
 import './assets/css/fonts.css';
 import './assets/css/main.css';
 import './assets/css/var.css';
@@ -69,9 +68,9 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./containers/App/App', () => {
+  module.hot.accept('./сontainers/App/App', () => {
     // eslint-disable-next-line global-require
-    const NextApp = require('./containers/App/App').default;
+    const NextApp = require('./сontainers/App/App').default;
     render(NextApp);
   });
 }
