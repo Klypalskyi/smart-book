@@ -58,8 +58,8 @@ const render = Component => {
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <App />
-        </BrowserRouter>{' '}
-      </ThemeProvider>{' '}
+        </BrowserRouter>
+      </ThemeProvider>
     </Provider>,
     document.getElementById('root'),
   );
