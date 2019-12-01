@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import css from './FormOfRegistration.module.css';
+import css from './RegistrationForm.module.css';
 
 const FormOfRegistration = () => (
   <form className={css.form}>

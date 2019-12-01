@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import styles from './LoginPage.module.css';
+import styles from './LoginForm.module.css';
 import login from '../../services/API';
 
 const LoginPage = () => {
