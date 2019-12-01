@@ -6,10 +6,10 @@ function Auth () {
   return (
     <Switch>
       <Route exact path='/'>
-        <Redirect to='/registration' />
+        <Redirect to='/login' />
       </Route>
-      <Route path='/registration' component={RegistrationPage} />
       <Route path='/login' component={RegistrationPage} />
+      <Route path='/registration' component={RegistrationPage} />
     </Switch>
   )
 }

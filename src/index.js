@@ -9,6 +9,7 @@ import App from './containers/App/App';
 import createStore from './createStore';
 import * as serviceWorker from './serviceWorker';
 import './assets/css/normalize.css';
+import './assets/css/styles.css';
 import './assets/css/fonts.css';
 import './assets/css/main.css';
 import './assets/css/var.css';

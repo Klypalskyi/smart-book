@@ -3,16 +3,13 @@ import styles from './GoogleButton.module.css'
 import googleLogo from '../../assets/icons/googleLogo.png'
 import googleLogo2x from '../../assets/icons/googleLogo@2x.png'
 import googleLogo3x from '../../assets/icons/googleLogo@3x.png'
-// import url from '../../api/apiEndpoint';
+import url from '../../api/apiEndpoint'
 
 const GoogleButton = () => {
-  const handleClick = () => {
-    // document.location.replace(url.googleAuth);
-    console.log('go to auth by google')
-  }
+  const { googleAuth } = url
 
   return (
-    <button type='button' className={styles.button} onClick={handleClick}>
+    <a href={googleAuth} className={styles.googleLink}>
       <img
         className={styles.logo}
         src={googleLogo}
@@ -20,7 +17,7 @@ const GoogleButton = () => {
         alt='google-logo'
       />
       <p className={styles.text}>Google</p>
-    </button>
+    </a>
   )
 }
 
