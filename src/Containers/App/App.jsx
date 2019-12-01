@@ -3,6 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { Switch, Route } from 'react-router-dom';
 import Auth from '../../pages/Auth/Auth';
 import LibraryPage from '../../pages/LibraryPage/LibraryPage';
+import TrainingPage from '../../pages/TrainingPage/TrainingPage';
 // import PropTypes from 'prop-types'
 
 function App() {
@@ -13,8 +14,8 @@ function App() {
         <Route path="/library">
           <LibraryPage />
         </Route>
-        <Route path="/trainer">
-          <div>trainer</div>
+        <Route path="/training">
+          <TrainingPage />
         </Route>
         <Route path="/">
           <Auth />
