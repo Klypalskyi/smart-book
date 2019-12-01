@@ -1,21 +1,23 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import styles from './LoginPage.module.css';
+import login from '../../services/API';
 
-const LoginPage = ({ onLogIn }) => {
+const LoginPage = () => {
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
     validationSchema: Yup.object({
-      email: Yup.string().required('Email обовязкове поле'),
+      email: Yup.string().required("Email обов'язкове поле"),
       password: Yup.string()
         .min(6, 'Пароль має бути не менше 6 символів')
-        .required('Password обовязкове поле'),
+        .required("Password обов'язкове поле"),
     }),
     onSubmit: values => {
       JSON.stringify(values, null, 2);
@@ -23,6 +25,7 @@ const LoginPage = ({ onLogIn }) => {
         email: values.email,
         password: values.password,
       };
+      dispatch(login(credential));
     },
   });
   return (
@@ -61,6 +64,4 @@ const LoginPage = ({ onLogIn }) => {
   );
 };
 
-const mapDispatchToProps = {};
-
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default LoginPage;
