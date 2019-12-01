@@ -57,7 +57,7 @@ const render = Component => {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <App />
+          <Component />
         </BrowserRouter>
       </ThemeProvider>
     </Provider>,
