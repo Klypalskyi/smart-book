@@ -1,17 +1,39 @@
-import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
-import RegistrationPage from '../../components/RegistrationPage/RegistrationPage'
+import React from 'react';
+import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
+import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
+import LoginForm from '../../components/LoginForm/LoginForm';
+import GoogleButton from '../../components/GoogleButton/GoogleButton';
+import styles from './Auth.module.css';
 
-function Auth () {
+function Auth() {
+  const { pathname } = useLocation();
+
   return (
-    <Switch>
-      <Route exact path='/'>
-        <Redirect to='/login' />
-      </Route>
-      <Route path='/login' component={RegistrationPage} />
-      <Route path='/registration' component={RegistrationPage} />
-    </Switch>
-  )
+    <>
+      <div
+        className={
+          pathname === '/registration'
+            ? styles.regContainer
+            : styles.loginContainer
+        }
+      >
+        <div className={styles.formContainer}>
+          <GoogleButton />
+          <Switch>
+            <Route exact path="/">
+              <Redirect to="/login" />
+            </Route>
+            <Route exact path="/login">
+              <LoginForm />
+            </Route>
+            <Route exact path="/registration">
+              <RegistrationForm />
+            </Route>
+          </Switch>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default Auth
+export default Auth;
