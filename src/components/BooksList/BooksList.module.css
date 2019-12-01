@@ -107,3 +107,45 @@
   color: var(--white);
   cursor: pointer;
 }
+
+@media (min-width: 768px) {
+  .container {
+    width: 549px;
+    height: 293px;
+  }
+  .title {
+    font-size: 19px;
+    line-height: 1.58;
+    letter-spacing: 0.86px;
+  }
+  .titleText {
+    font-size: 16px;
+    line-height: 1.88;
+    letter-spacing: 0.72px;
+  }
+  .bodyText {
+    width: 82%;
+    padding-left: 15px;
+  }
+  .button {
+    display: none;
+  }
+  .bookIcon {
+    width: 27px;
+    height: 28px;
+  }
+  .arrowIcon {
+    width: 30px;
+    height: 19px;
+  }
+  .flagIcon {
+    width: 27px;
+    height: 28px;
+  }
+  .secondTitle {
+    padding-left: 15px;
+  }
+  .title {
+    padding-left: 15px;
+  }
+}
