@@ -32,6 +32,54 @@ const planReadBooks = () => {
               </tr>
             </table>
           </li>
+          <li className={styles.item}>
+            <div className={styles.display}>
+              <img src={img} alt="book-icon" className={styles.icon} />
+
+              <h2 className={styles.cardTitle}>
+                Deadline. Роман об управлении проектами.
+              </h2>
+            </div>
+
+            <table className={styles.table}>
+              <tr>
+                <td className={styles.label}>Автор:</td>
+                <td className={styles.quantity}>Том ДеМарко</td>
+              </tr>
+              <tr className={styles.tr}>
+                <td className={styles.label}>Рік:</td>
+                <td className={styles.quantity}>2006</td>
+              </tr>
+              <tr cla>
+                <td className={styles.label}>Стор.:</td>
+                <td className={styles.quantity}>188</td>
+              </tr>
+            </table>
+          </li>
+          <li className={styles.item}>
+            <div className={styles.display}>
+              <img src={img} alt="book-icon" className={styles.icon} />
+
+              <h2 className={styles.cardTitle}>
+                5 Пороков команды. Притчи о лидерстве.
+              </h2>
+            </div>
+
+            <table className={styles.table}>
+              <tr>
+                <td className={styles.label}>Автор:</td>
+                <td className={styles.quantity}>Патрик Ленсиони</td>
+              </tr>
+              <tr className={styles.tr}>
+                <td className={styles.label}>Рік:</td>
+                <td className={styles.quantity}>2014</td>
+              </tr>
+              <tr cla>
+                <td className={styles.label}>Стор.:</td>
+                <td className={styles.quantity}>125</td>
+              </tr>
+            </table>
+          </li>
         </ul>
       </div>
       <div className={styles.tablet}>
@@ -47,7 +95,7 @@ const planReadBooks = () => {
             <li className={styles.list_tablet}>
               <img src={img} alt="book-icon" className={styles.icon__tablet} />
 
-              <table>
+              <table className={styles.table_book}>
                 <tr>
                   <td className={styles.name_book}>
                     <p className={styles.p_name_book}>
@@ -59,6 +107,42 @@ const planReadBooks = () => {
                   </td>
                   <td className={styles.year}>2014</td>
                   <td className={styles.page}>25</td>
+                </tr>
+              </table>
+            </li>
+            <li className={styles.list_tablet}>
+              <img src={img} alt="book-icon" className={styles.icon__tablet} />
+
+              <table className={styles.table_book}>
+                <tr>
+                  <td className={styles.name_book}>
+                    <p className={styles.p_name_book}>
+                      Deadline. Роман об управлении проектами.
+                    </p>
+                  </td>
+                  <td className={styles.avtor}>
+                    <p className={styles.p_avtor}>Том ДеМарко</p>
+                  </td>
+                  <td className={styles.year}>2006</td>
+                  <td className={styles.page}>188</td>
+                </tr>
+              </table>
+            </li>
+            <li className={styles.list_tablet}>
+              <img src={img} alt="book-icon" className={styles.icon__tablet} />
+
+              <table className={styles.table_book}>
+                <tr>
+                  <td className={styles.name_book}>
+                    <p className={styles.p_name_book}>
+                      5 Пороков команды. Притчи о лидерстве.
+                    </p>
+                  </td>
+                  <td className={styles.avtor}>
+                    <p className={styles.p_avtor}>Патрик Ленсиони</p>
+                  </td>
+                  <td className={styles.year}>2011</td>
+                  <td className={styles.page}>125</td>
                 </tr>
               </table>
             </li>
