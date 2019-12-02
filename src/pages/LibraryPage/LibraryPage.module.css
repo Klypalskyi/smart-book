@@ -1,4 +1,5 @@
 .libraryPage__wrapper {
+  margin: 0 auto;
   width: 320px;
   height: 100%;
   background: #f5f7fa;
@@ -8,13 +9,11 @@
 @media (min-width: 768px) {
   .libraryPage__wrapper {
     width: 768px;
-    padding: 2px 45px 0;
   }
 }
 
 @media (min-width: 1280px) {
   .libraryPage__wrapper {
     width: 1280px;
-    padding: 1px 40px 0;
   }
 }

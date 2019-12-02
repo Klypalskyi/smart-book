@@ -3,7 +3,7 @@
 }
 .title {
   margin: 0 auto;
-  width: 275px;
+  width: 260px;
   height: 60px;
   padding-top: 20px;
   padding-bottom: 16px;
@@ -16,10 +16,10 @@
   letter-spacing: 0.86px;
 }
 .cardBook {
+  margin-left: 40px;
   list-style-type: none;
   width: 325px;
   height: 167px;
-  margin: 0 auto;
 }
 .item {
   margin-left: -15px;
@@ -38,6 +38,8 @@
   height: 43px;
 }
 .cardTitle {
+  margin-bottom: 10px;
+  margin-top: 10px;
   width: 205px;
   height: 30px;
   font-family: OpenSans;
@@ -50,7 +52,7 @@
   text-align: left;
 }
 .table {
-  padding-left: 14px;
+  padding-left: 18px;
   margin-top: 3px;
   margin-left: 27px;
 }
@@ -66,6 +68,7 @@
   letter-spacing: 0.39px;
   text-align: left;
   color: #b4b7be;
+  padding-bottom: 6px;
 }
 .quantity {
   width: 109px;
@@ -92,7 +95,7 @@
   margin-left: 44px;
 }
 .tittle__tablet {
-  margin: 0;
+  margin-top: 35px;
   padding-bottom: 22px;
   width: 240px;
   height: 15px;
@@ -104,6 +107,7 @@
   line-height: 1.58;
   letter-spacing: 0.86px;
   text-align: left;
+  margin-bottom: 20px;
 }
 .text__name_book {
   padding-bottom: 15px;
@@ -119,6 +123,7 @@
   line-height: 1.23;
   letter-spacing: 0.39px;
   text-align: left;
+  margin-bottom: 15px;
 }
 .text__avtor {
   padding-bottom: 15px;
@@ -187,6 +192,7 @@
   width: 678px;
   background: #fff;
   height: 60px;
+  margin-bottom: 10px;
 }
 .icon__tablet {
   width: 22px;
@@ -194,6 +200,9 @@
   top: 21px;
   left: 15px;
   position: absolute;
+}
+.table_book {
+  padding-top: 13px;
 }
 .name_book {
   padding-left: 55px;
@@ -275,6 +284,10 @@
   .list_tablet {
     margin: 0 auto;
     width: 1200px;
+    margin-bottom: 10px;
+  }
+  .table_book {
+    padding-top: 13px;
   }
   .wrapper_text {
     width: 1200px;
