@@ -4,20 +4,17 @@
 }
 
 .form {
+  position: relative;
   min-width: 320px;
   padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: var(--dark-indigo-80);
-  background-image: url('../../assets/images/bg-320.jpg');
-  background-size: 100% 100%;
-  background-blend-mode: multiply;
+  background-color: transparent;
 }
 
 .label {
-  position: relative;
   width: 100%;
 }
 
@@ -81,6 +78,7 @@ input[type='password'] {
   line-height: 3;
   letter-spacing: 0.42px;
   color: var(--white);
+  font-weight: 600;
 }
 
 .emailText::after,
@@ -104,6 +102,7 @@ input[type='password'] {
   font-weight: 600;
   font-size: 16px;
   color: var(--white);
+  outline: none;
 }
 
 .singInLink:hover {
@@ -111,10 +110,10 @@ input[type='password'] {
 }
 
 .singInLink {
-  color: var(--white);
+  color: var(--orange);
   text-decoration: none;
   margin-bottom: 18px;
-  border-bottom: 0.1px var(--white) solid;
+  border-bottom: 0.1px var(--orange) solid;
   font-family: 'Montserrat';
   font-size: 13px;
   font-weight: 600;
@@ -122,10 +121,9 @@ input[type='password'] {
 
 @media (min-width: 768px) {
   .form {
-    width: 404px;
+    width: 100%;
     background-color: var(--white);
     background-image: none;
-    margin-bottom: 70px;
     padding: 20px;
   }
 

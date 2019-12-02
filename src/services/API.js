@@ -3,11 +3,24 @@ import {
   loginRequest,
   loginSuccess,
   loginError,
+  refreshUserRequest,
+  refreshUserSuccess,
+  refreshUserError,
+  logOutSuccess,
 } from '../redux/login/loginActions';
+import { getUserToken } from '../redux/selectors/sessionSelectors';
 
 axios.defaults.baseURL = 'https://book-read.goit.co.ua/api/v1';
 
-const login = credentials => dispatch => {
+const setAuthToken = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+const clearAuthToken = () => {
+  axios.defaults.headers.common.Authorization = null;
+};
+
+export const login = credentials => dispatch => {
   dispatch(loginRequest());
 
   axios
@@ -20,4 +33,25 @@ const login = credentials => dispatch => {
     });
 };
 
-export default login;
+export const refreshUser = () => (dispatch, getState) => {
+  const token = getUserToken(getState());
+  if (!token) {
+    return;
+  }
+  setAuthToken(token);
+  dispatch(refreshUserRequest());
+
+  axios
+    .get('/user/me')
+    .then(response => {
+      dispatch(refreshUserSuccess(response));
+    })
+    .catch(err => {
+      dispatch(refreshUserError(err));
+    });
+};
+
+export const logOut = () => dispatch => {
+  clearAuthToken();
+  dispatch(logOutSuccess());
+};
