@@ -76,7 +76,7 @@
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
-  line-height: 98px;
+  line-height: 0.15;
   text-align: center;
   color: #091e3f;
 }
@@ -88,7 +88,6 @@
 .goalDigitsStat,
 .goalDigitsStatLast {
   font-size: 36px;
-  line-height: 80px;
 }
 
 .goalDigitsStatLast {
@@ -111,7 +110,7 @@
 .goalText {
   width: 100px;
   font-size: 14px;
-  padding-top: 8px;
+  padding-top: 12px;
 }
 
 .goalTextStat {
@@ -120,7 +119,7 @@
   padding-top: 18px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 678px) {
   .goalContainer,
   .goalContainerStat {
     width: 680px;
@@ -135,20 +134,24 @@
 
   .goalContainerStat {
     margin-top: 20px;
-    height: 113px;
+    height: 83px;
+    padding: 0 0 20px 0;
   }
 
   .goalTitleBox,
   .goalTitleBoxStat {
-    margin-left: 27px;
+    margin-left: 57px;
     width: 312px;
-    margin-right: 27px;
+    margin-right: 8px;
+  }
+
+  .goalTitleBox {
     margin-top: 22px;
   }
 
   .goalBodyBox,
   .goalBodyBoxStat {
-    justify-content: center;
+    justify-content: left;
   }
 
   .goalBodyBox {
@@ -157,7 +160,8 @@
 
   .goalBodyBoxStat {
     width: 374px;
-    height: 113px;
+    height: 103px;
+    margin-left: 8px;
   }
 
   .goalDigitsBox,
@@ -172,7 +176,7 @@
 
   .goalDigitsBoxStat {
     width: 100px;
-    margin: 22px 8px;
+    margin: 0px 8px;
   }
 
   .goalTitle {
@@ -187,7 +191,7 @@
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
-    line-height: 60px;
+    margin-top: 28px;
     text-align: center;
     color: #091e3f;
   }
@@ -204,7 +208,9 @@
     line-height: 1;
     letter-spacing: normal;
     text-align: left;
-    padding-top: 6px;
+    margin: 0;
+    padding: 0;
+    margin-top: -5px;
   }
 }
 
@@ -263,23 +269,24 @@
   }
 
   .goalDigits,
-  .goalDigitsStat,
-  .goalDigitsStatLast {
-    line-height: 80px;
+  .goalDigitsStat {
+    line-height: 0.15;
     color: #091e3f;
   }
 
   .goalDigits {
     font-size: 46px;
-    line-height: 98px;
+    padding-top: 17px;
   }
 
   .goalDigitsStat,
   .goalDigitsStatLast {
     font-size: 36px;
+    padding-top: 10px;
   }
 
   .goalDigitsStatLast {
+    line-height: 0.15;
     color: #ff6b07;
   }
 
@@ -295,6 +302,7 @@
   .goalText {
     width: 100px;
     font-size: 14px;
+    padding-top: 28px;
   }
 
   .goalTextStat {
