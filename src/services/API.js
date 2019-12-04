@@ -1,13 +1,19 @@
 import axios from 'axios';
+import * as apiEndpoint from '../api/apiEndpoint';
 import {
   loginRequest,
   loginSuccess,
   loginError,
 } from '../redux/login/loginActions';
+import {
+  registrationRequest,
+  registrationSuccess,
+  registrationError,
+} from '../redux/registration/registrationActions';
 
 axios.defaults.baseURL = 'https://book-read.goit.co.ua/api/v1';
 
-const login = credentials => dispatch => {
+export const login = credentials => dispatch => {
   dispatch(loginRequest());
 
   axios
@@ -20,4 +26,14 @@ const login = credentials => dispatch => {
     });
 };
 
-export default login;
+export const registration = userValue => dispatch => {
+  dispatch(registrationRequest());
+
+  axios
+    .post(apiEndpoint.registration, userValue)
+    .then(response => {
+      console.log(userValue);
+      return dispatch(registrationSuccess(response));
+    })
+    .catch(error => dispatch(registrationError(error)));
+};
