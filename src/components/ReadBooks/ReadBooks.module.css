@@ -1,0 +1,429 @@
+.conteiner {
+  background: #f5f7fa;
+}
+.title {
+  margin: 0 auto;
+  width: 275px;
+  height: 60px;
+  padding-top: 20px;
+  padding-bottom: 16px;
+  padding-left: 10px;
+  font-family: Montserrat;
+  font-size: 19px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.58;
+  letter-spacing: 0.86px;
+}
+.cardBook {
+  list-style-type: none;
+  width: 325px;
+  margin: 0 auto;
+  margin-left: 29px;
+}
+.item {
+  margin-bottom: 10px;
+  background-color: white;
+  width: 270px;
+  height: 200px;
+  box-shadow: 1px 1.7px 1px 0 grey;
+}
+.display {
+  display: flex;
+}
+.icon {
+  padding: 14px;
+  width: 48px;
+  height: 43px;
+}
+.cardTitle {
+  width: 205px;
+  height: 30px;
+  font-family: OpenSans;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: left;
+  margin-top: 13px;
+  margin-bottom: 8px;
+}
+.table {
+  padding-left: 14px;
+  margin-top: 3px;
+  margin-left: 27px;
+}
+.label {
+  padding-bottom: 3px;
+  width: 63px;
+  height: 11px;
+  font-family: OpenSans;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: left;
+  color: #b4b7be;
+}
+.quantity {
+  width: 109px;
+  display: block;
+  height: 11px;
+  font-family: OpenSans;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: left;
+}
+.button {
+  width: 130px;
+  height: 39px;
+  font-family: Montserrat;
+  font-size: 13px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: center;
+  color: white;
+  border: none;
+  margin-left: 73px;
+  margin-top: 11px;
+  box-shadow: 1px 1.7px 3px 0 rgba(0, 0, 0, 0.15);
+  background-color: #6d7a8d;
+  cursor: pointer;
+}
+
+/* tablet */
+.tablet {
+  display: none;
+  background: #f5f7fa;
+  margin: 0 auto;
+  width: 768px;
+}
+.wrapper {
+  margin-left: 44px;
+  margin-bottom: 35px;
+}
+.tittle__tablet {
+  margin-top: 55px;
+  margin-bottom: 20px;
+  padding-bottom: 22px;
+  width: 210px;
+  height: 15px;
+  font-family: 'Montserrat';
+  font-size: 19px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.58;
+  letter-spacing: 0.86px;
+  text-align: left;
+}
+.text__name_book {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  color: #898f9f;
+  display: inline-block;
+  width: 90px;
+  height: 10px;
+  font-family: 'Montserrat';
+  font-size: 13px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: left;
+}
+.text__avtor {
+  padding-bottom: 15px;
+  padding-left: 100px;
+  color: #898f9f;
+  display: inline-block;
+  width: 88px;
+  height: 10px;
+  font-family: 'Montserrat';
+  font-size: 13px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: left;
+}
+.text__year {
+  padding-bottom: 15px;
+  padding-left: 143px;
+  color: #898f9f;
+  display: inline-block;
+  width: 88px;
+  height: 10px;
+  font-family: 'Montserrat';
+  font-size: 13px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: left;
+}
+.text__page {
+  padding-bottom: 15px;
+  padding-left: 45px;
+  color: #898f9f;
+  display: inline-block;
+  width: 88px;
+  height: 10px;
+  font-family: 'Montserrat';
+  font-size: 13px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: left;
+}
+
+.text__rating {
+  display: inline-block;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  width: 59px;
+  height: 10px;
+  font-family: Montserrat;
+  font-size: 13px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: left;
+  color: #898f9f;
+}
+
+.text__rating_book {
+  display: inline-block;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  width: 59px;
+  height: 10px;
+  font-family: Montserrat;
+  font-size: 13px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: left;
+  color: #898f9f;
+}
+.read__book {
+  margin: 0;
+  padding: 0;
+}
+.wrapper_text {
+  margin: 0 auto;
+}
+.list_tablet {
+  margin-bottom: 10px;
+  box-shadow: 1px 1.7px 1px 0 grey;
+
+  display: flex;
+  position: relative;
+  padding: 0;
+
+  list-style: none;
+  width: 678px;
+  background: #fff;
+  height: 60px;
+}
+.icon__tablet {
+  width: 22px;
+  height: 18px;
+  top: 21px;
+  left: 15px;
+  position: absolute;
+}
+.table_book {
+  padding-top: 13px;
+}
+.name_book {
+  padding-left: 55px;
+  width: 186px;
+  height: 31px;
+  font-family: 'OpenSans';
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: left;
+  color: #242a37;
+}
+.avtor {
+  margin: 0;
+  width: 134px;
+  height: 31px;
+  font-family: 'OpenSans';
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: left;
+  color: #242a37;
+}
+.year {
+  width: 47px;
+  height: 31px;
+  font-family: 'OpenSans';
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: left;
+  color: #242a37;
+}
+.page {
+  height: 31px;
+  width: 61px;
+  padding-left: 20px;
+  font-family: 'OpenSans';
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: left;
+  color: #242a37;
+}
+
+.button_tablet {
+  width: 90px;
+  height: 39px;
+  margin-left: 30px;
+  margin-top: 11px;
+  font-family: Montserrat;
+  font-size: 13px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: center;
+  color: white;
+  border: none;
+  box-shadow: 1px 1.7px 3px 0 rgba(0, 0, 0, 0.15);
+  background-color: #6d7a8d;
+  cursor: pointer;
+}
+
+.p_name_book {
+  width: 200px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.p_avtor {
+  width: 125px;
+}
+
+@media (min-width: 768px) {
+  .conteiner {
+    display: none;
+  }
+  .tablet {
+    display: block;
+  }
+  .p_name_book {
+    width: 123px;
+  }
+  .text__rating_book {
+    display: none;
+  }
+}
+@media (min-width: 1280px) {
+  .tablet {
+    margin: 0 auto;
+    width: 1280px;
+  }
+  .wrapper {
+    margin: 0 auto;
+    margin-bottom: 35px;
+  }
+  .list_tablet {
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 1200px;
+  }
+  .wrapper_text {
+    width: 1200px;
+  }
+
+  .text__avtor {
+    padding-left: 234px;
+  }
+  .text__year {
+    padding-left: 230px;
+  }
+  .text__page {
+    padding-left: 113px;
+  }
+  .text__rating {
+    display: none;
+  }
+  .text__rating_book {
+    display: inline-block;
+    width: 227px;
+    padding-left: 120px;
+  }
+  .tittle__tablet {
+    margin-top: 10px;
+  }
+  .name_book {
+    width: 318px;
+  }
+  .p_name_book {
+    width: 208px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .p_avtor {
+    width: 224px;
+  }
+  .avtor {
+    width: 224px;
+  }
+  .year {
+    width: 113px;
+  }
+  .page {
+    width: 118px;
+  }
+  .rating {
+    width: 190px;
+  }
+  .button_tablet {
+    width: 130px;
+    margin-left: 0px;
+    cursor: pointer;
+  }
+}
