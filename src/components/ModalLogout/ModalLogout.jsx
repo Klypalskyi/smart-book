@@ -1,10 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './ModalLogout.module.css';
 
 const ModalLogout = ({
-  onLogout = () => {
-    console.log('logout');
-  },
   closeModal = () => {
     console.log('closeModal');
   },
@@ -13,7 +11,7 @@ const ModalLogout = ({
     if (target.name === 'cancel') {
       closeModal();
     } else if (target.name === 'logout') {
-      onLogout(); // .then(() => closeModal()) - onLogout - операция разлогинивания которая возвращает промис
+      // onLogout(); // .then(() => closeModal()) - onLogout - операция разлогинивания которая возвращает промис
     }
   };
 
@@ -32,6 +30,14 @@ const ModalLogout = ({
       </div>
     </div>
   );
+};
+
+ModalLogout.propTypes = {
+  closeModal: PropTypes.func,
+};
+
+ModalLogout.defaultProps = {
+  closeModal: () => {},
 };
 
 export default ModalLogout;

@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import styles from './LoginForm.module.css';
-import login from '../../services/API';
+import { login } from '../../services/API';
+import withAuthRedirect from '../WithAuthRedirect/WithAuthRedirect';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -64,4 +65,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default withAuthRedirect(LoginPage);

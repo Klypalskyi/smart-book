@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import css from './RegistrationForm.module.css';
+import withAuthRedirect from '../WithAuthRedirect/WithAuthRedirect';
 
 const FormOfRegistration = () => (
   <form className={css.form}>
@@ -48,4 +49,4 @@ const FormOfRegistration = () => (
   </form>
 );
 
-export default FormOfRegistration;
+export default withAuthRedirect(FormOfRegistration);
