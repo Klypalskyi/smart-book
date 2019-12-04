@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
+// import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import { Switch, Route } from 'react-router-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Auth from '../../pages/Auth/Auth';
 import LibraryPage from '../../pages/LibraryPage/LibraryPage';
 import TrainingPage from '../../pages/TrainingPage/TrainingPage';
-import { refreshUser } from '../../services/API';
+import Header from '../../components/Header/Header';
 import ProtectedRoute from '../../components/ProtectedRoute/ProtectedRoute';
-// import PropTypes from 'prop-types'
+
+import { refreshUser } from '../../services/API';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +21,7 @@ function App() {
   return (
     <>
       <CssBaseline />
+      <Header />
       <Switch>
         <ProtectedRoute
           component={LibraryPage}
