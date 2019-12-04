@@ -1,10 +1,12 @@
 .conteiner {
+  margin-top: 37px;
   background: #f5f7fa;
   margin: 0 auto;
   width: 320px;
 }
 .tittle {
-  margin-left: 44px;
+  margin-left: 24px;
+  margin-top: 62px;
   width: 69px;
   height: 15px;
   font-family: 'Montserrat';
@@ -78,7 +80,7 @@
 .item {
   list-style: none;
   margin-top: 20px;
-  margin-left: -14px;
+  margin-left: 24px;
   margin-bottom: 10px;
   background-color: white;
   width: 270px;
@@ -96,7 +98,8 @@
   position: absolute;
 }
 .cardTitle {
-  padding-left: 45px;
+  margin-top: 14px;
+  padding-left: 55px;
   width: 205px;
   height: 30px;
   font-family: 'OpenSans';
@@ -109,7 +112,7 @@
   text-align: left;
 }
 .table {
-  padding-left: 14px;
+  padding-left: 29px;
   margin-top: 3px;
   margin-left: 27px;
 }
@@ -150,7 +153,8 @@
 }
 .tittle__tablet {
   margin: 0;
-  padding-bottom: 22px;
+  margin-top: 45px;
+  padding-bottom: 35px;
   width: 69px;
   height: 15px;
   font-family: 'Montserrat';
@@ -163,10 +167,10 @@
   text-align: left;
 }
 .text__name_book {
-  padding-bottom: 15px;
+  padding-bottom: 25px;
   color: #898f9f;
   display: inline-block;
-  width: 88px;
+  width: 98px;
   height: 10px;
   font-family: 'Montserrat';
   font-size: 13px;
@@ -195,7 +199,7 @@
 }
 .text__year {
   padding-bottom: 15px;
-  padding-left: 232px;
+  padding-left: 224px;
   color: #898f9f;
   display: inline-block;
   width: 88px;
@@ -238,6 +242,7 @@
   display: flex;
   position: relative;
   margin: 0;
+  margin-bottom: 10px;
   padding: 0;
 
   list-style: none;
@@ -254,7 +259,7 @@
 }
 .name_book {
   padding-left: 55px;
-  width: 352px;
+  width: 363px;
   height: 31px;
   font-family: 'OpenSans';
   font-size: 13px;
@@ -282,6 +287,7 @@
   color: #242a37;
 }
 .year {
+  padding-top: 14px;
   width: 47px;
   height: 31px;
   font-family: 'OpenSans';
@@ -295,6 +301,7 @@
   color: #242a37;
 }
 .page {
+  padding-top: 14px;
   height: 31px;
   font-family: 'OpenSans';
   font-size: 13px;
@@ -307,9 +314,11 @@
   color: #242a37;
 }
 .p_name_book {
+  padding-top: 14px;
   width: 200px;
 }
 .p_avtor {
+  padding-top: 14px;
   width: 125px;
 }
 @media (min-width: 768px) {
@@ -346,15 +355,15 @@
     padding-left: 109px;
   }
   .name_book {
-    width: 625px;
+    width: 634px;
   }
   .p_avtor {
     width: 226px;
   }
   .avtor {
-    width: 376px;
+    width: 383px;
   }
   .year {
-    width: 113px;
+    width: 130px;
   }
 }
