@@ -5,7 +5,9 @@ import { Provider } from 'react-redux';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter } from 'react-router-dom';
-import App from './Containers/App/App';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
+import App from './containers/App/App';
 import createStore from './createStore';
 import * as serviceWorker from './serviceWorker';
 import './assets/css/normalize.css';
@@ -15,6 +17,7 @@ import './assets/css/var.css';
 
 // const initStore = {};
 const store = createStore;
+const persistor = persistStore(store);
 
 const theme = createMuiTheme({
   palette: {
@@ -55,11 +58,13 @@ const theme = createMuiTheme({
 const render = Component => {
   return ReactDOM.render(
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <Component />
-        </BrowserRouter>
-      </ThemeProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider theme={theme}>
+          <BrowserRouter>
+            <Component />
+          </BrowserRouter>{' '}
+        </ThemeProvider>{' '}
+      </PersistGate>{' '}
     </Provider>,
     document.getElementById('root'),
   );
@@ -68,9 +73,9 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./Containers/App/App', () => {
+  module.hot.accept('./containers/App/App', () => {
     // eslint-disable-next-line global-require
-    const NextApp = require('./Containers/App/App').default;
+    const NextApp = require('./containers/App/App').default;
     render(NextApp);
   });
 }
