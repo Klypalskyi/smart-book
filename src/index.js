@@ -7,7 +7,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
-import App from './Containers/App/App';
+import App from './containers/App/App';
 import createStore from './createStore';
 import * as serviceWorker from './serviceWorker';
 import './assets/css/normalize.css';
@@ -73,9 +73,9 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./Containers/App/App', () => {
+  module.hot.accept('./containers/App/App', () => {
     // eslint-disable-next-line global-require
-    const NextApp = require('./Containers/App/App').default;
+    const NextApp = require('./containers/App/App').default;
     render(NextApp);
   });
 }
