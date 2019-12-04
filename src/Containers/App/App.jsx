@@ -6,6 +6,7 @@ import Auth from '../../pages/Auth/Auth';
 import LibraryPage from '../../pages/LibraryPage/LibraryPage';
 import TrainingPage from '../../pages/TrainingPage/TrainingPage';
 import { refreshUser } from '../../services/API';
+import ProtectedRoute from '../../components/ProtectedRoute/ProtectedRoute';
 // import PropTypes from 'prop-types'
 
 function App() {
@@ -19,15 +20,20 @@ function App() {
     <>
       <CssBaseline />
       <Switch>
-        <Route path="/library">
-          <LibraryPage />
-        </Route>
-        <Route path="/training">
-          <TrainingPage />
-        </Route>
+        <ProtectedRoute
+          component={LibraryPage}
+          path="/library"
+          redirectTo="/login"
+        />
+        <ProtectedRoute
+          component={TrainingPage}
+          path="/training"
+          redirectTo="/login"
+        />
         <Route path="/">
           <Auth />
         </Route>
+
         <Route path="*">
           <div>create page for 404</div>
         </Route>
