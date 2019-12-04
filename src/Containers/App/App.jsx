@@ -4,12 +4,14 @@ import { Switch, Route } from 'react-router-dom';
 import Auth from '../../pages/Auth/Auth';
 import LibraryPage from '../../pages/LibraryPage/LibraryPage';
 import TrainingPage from '../../pages/TrainingPage/TrainingPage';
+import Header from '../../components/Header/Header';
 // import PropTypes from 'prop-types'
 
 function App() {
   return (
     <>
       <CssBaseline />
+      <Header />
       <Switch>
         <Route path="/library">
           <LibraryPage />
