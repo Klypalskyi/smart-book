@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./Goal.module.css";
+import React from 'react';
+import styles from './Goal.module.css';
 
 const Goal = ({ isThisStatPage = false }) => {
   console.log(isThisStatPage);
