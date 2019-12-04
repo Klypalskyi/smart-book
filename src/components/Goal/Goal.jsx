@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Goal.module.css';
 
 const Goal = ({ isThisStatPage = false }) => {
@@ -76,6 +77,13 @@ const Goal = ({ isThisStatPage = false }) => {
       </div>
     </div>
   );
+};
+Goal.propTypes = {
+  isThisStatPage: PropTypes.bool,
+};
+
+Goal.defaultProps = {
+  isThisStatPage: false,
 };
 
 export default Goal;
