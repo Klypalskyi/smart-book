@@ -10,7 +10,7 @@ import {
 } from '../redux/login/loginActions';
 import { getUserToken } from '../redux/selectors/sessionSelectors';
 
-axios.defaults.baseURL = 'https://book-read.goit.co.ua/api/v1';
+axios.defaults.baseURL = process.env.REACT_APP_BASE_API_URL;
 
 const setAuthToken = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;

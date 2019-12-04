@@ -7,7 +7,7 @@ import styles from './LoginForm.module.css';
 import { login } from '../../services/API';
 import withAuthRedirect from '../WithAuthRedirect/WithAuthRedirect';
 
-const LoginPage = props => {
+const LoginPage = () => {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {

@@ -5,7 +5,7 @@ export const user = (state = null, { type, payload }) => {
   switch (type) {
     case ActionType.LOGIN_SUCCESS:
     case ActionType.REFRESH_USER_SUCCESS:
-      return payload.data;
+      return payload.data.user.userData;
     case ActionType.LOGOUT:
       return null;
     default:
