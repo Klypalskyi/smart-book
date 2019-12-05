@@ -42,19 +42,14 @@ const ContainerRegistrationForm = props => {
 
   const handlerChangeInput = ({ target }) => {
     const { name, value } = target;
-    const inputsObj = {};
     if (name === 'userName') {
       setUserName(value);
-      inputsObj[name] = value;
     } else if (name === 'email') {
       setEmail(value);
-      inputsObj[name] = value;
     } else if (name === 'password') {
       setPassword(value);
-      inputsObj[name] = value;
     } else if (name === 'passwordRepeat') {
       setPasswordRepeat(value);
-      inputsObj[name] = value;
     }
     console.log(inputsObj);
   };
