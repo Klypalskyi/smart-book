@@ -3,6 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import backdropReducer from './components/Backdrop/backdropReducer';
 import { user, sessionReducer } from './redux/login/loginReducers';
+import booksReducer from './redux/books/booksReducer';
 
 const sessionPersistConfig = {
   key: 'session',
@@ -12,6 +13,7 @@ const sessionPersistConfig = {
 
 const rootReducer = combineReducers({
   user,
+  books: booksReducer,
   session: persistReducer(sessionPersistConfig, sessionReducer),
   isModalOpen: backdropReducer,
 });
