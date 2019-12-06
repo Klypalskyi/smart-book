@@ -22,6 +22,7 @@ function App() {
     <>
       <CssBaseline />
       <Header />
+
       <Switch>
         <ProtectedRoute
           component={LibraryPage}
@@ -33,9 +34,7 @@ function App() {
           path="/training"
           redirectTo="/login"
         />
-        <Route path="/">
-          <Auth />
-        </Route>
+        <Route path="/" component={Auth} />
 
         <Route path="*">
           <div>create page for 404</div>
