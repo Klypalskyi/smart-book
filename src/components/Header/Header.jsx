@@ -11,11 +11,15 @@ import { openModal } from '../Backdrop/backdropActions';
 import {
   getIsModalOpen,
   getAuthenticated,
+  // getFullName,
 } from '../../redux/selectors/sessionSelectors';
 
 const Header = () => {
   const isModalOpen = useSelector(state => getIsModalOpen(state));
+  // const name = useSelector(state => getFullName(state));
   const dispatch = useDispatch();
+
+  // console.log(name);
 
   const handleOpenModalLogout = () => {
     dispatch(openModal());
