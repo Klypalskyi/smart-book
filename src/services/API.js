@@ -12,7 +12,7 @@ import { getUserToken } from '../redux/selectors/sessionSelectors';
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_API_URL;
 
-const setAuthToken = token => {
+export const setAuthToken = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 

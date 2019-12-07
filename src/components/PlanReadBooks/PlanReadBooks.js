@@ -11,78 +11,30 @@ const planReadBooks = ({ books }) => {
           <div className={styles.conteiner}>
             <h1 className={styles.title}>Маю намір прочитати</h1>
             <ul className={styles.cardBook}>
-              <li className={styles.item}>
-                <div className={styles.display}>
-                  <img src={img} alt="book-icon" className={styles.icon} />
+              {books.map(book => (
+                <li className={styles.item} key={book.id}>
+                  <div className={styles.display}>
+                    <img src={img} alt="book-icon" className={styles.icon} />
 
-                  <h2 className={styles.cardTitle}>
-                    Scrum. Революционный метод управлениями проектами.
-                  </h2>
-                </div>
+                    <h2 className={styles.cardTitle}>{book.title}</h2>
+                  </div>
 
-                <table className={styles.table}>
-                  <tr>
-                    <td className={styles.label}>Автор:</td>
-                    <td className={styles.quantity}>Джефф Сазерленд</td>
-                  </tr>
-                  <tr className={styles.tr}>
-                    <td className={styles.label}>Рік:</td>
-                    <td className={styles.quantity}>2014</td>
-                  </tr>
-                  <tr cla>
-                    <td className={styles.label}>Стор.:</td>
-                    <td className={styles.quantity}>25</td>
-                  </tr>
-                </table>
-              </li>
-              <li className={styles.item}>
-                <div className={styles.display}>
-                  <img src={img} alt="book-icon" className={styles.icon} />
-
-                  <h2 className={styles.cardTitle}>
-                    Deadline. Роман об управлении проектами.
-                  </h2>
-                </div>
-
-                <table className={styles.table}>
-                  <tr>
-                    <td className={styles.label}>Автор:</td>
-                    <td className={styles.quantity}>Том ДеМарко</td>
-                  </tr>
-                  <tr className={styles.tr}>
-                    <td className={styles.label}>Рік:</td>
-                    <td className={styles.quantity}>2006</td>
-                  </tr>
-                  <tr cla>
-                    <td className={styles.label}>Стор.:</td>
-                    <td className={styles.quantity}>188</td>
-                  </tr>
-                </table>
-              </li>
-              <li className={styles.item}>
-                <div className={styles.display}>
-                  <img src={img} alt="book-icon" className={styles.icon} />
-
-                  <h2 className={styles.cardTitle}>
-                    5 Пороков команды. Притчи о лидерстве.
-                  </h2>
-                </div>
-
-                <table className={styles.table}>
-                  <tr>
-                    <td className={styles.label}>Автор:</td>
-                    <td className={styles.quantity}>Патрик Ленсиони</td>
-                  </tr>
-                  <tr className={styles.tr}>
-                    <td className={styles.label}>Рік:</td>
-                    <td className={styles.quantity}>2014</td>
-                  </tr>
-                  <tr cla>
-                    <td className={styles.label}>Стор.:</td>
-                    <td className={styles.quantity}>125</td>
-                  </tr>
-                </table>
-              </li>
+                  <table className={styles.table}>
+                    <tr>
+                      <td className={styles.label}>Автор:</td>
+                      <td className={styles.quantity}>{book.author}</td>
+                    </tr>
+                    <tr className={styles.tr}>
+                      <td className={styles.label}>Рік:</td>
+                      <td className={styles.quantity}>{book.year}</td>
+                    </tr>
+                    <tr cla>
+                      <td className={styles.label}>Стор.:</td>
+                      <td className={styles.quantity}>{book.pagesCount}</td>
+                    </tr>
+                  </table>
+                </li>
+              ))}
             </ul>
           </div>
           <div className={styles.tablet}>
@@ -95,72 +47,28 @@ const planReadBooks = ({ books }) => {
                 <p className={styles.text__page}>Стор.</p>
               </div>
               <ul className={styles.read__book}>
-                <li className={styles.list_tablet}>
-                  <img
-                    src={img}
-                    alt="book-icon"
-                    className={styles.icon__tablet}
-                  />
+                {books.map(book => (
+                  <li className={styles.list_tablet} key={book.id}>
+                    <img
+                      src={img}
+                      alt="book-icon"
+                      className={styles.icon__tablet}
+                    />
 
-                  <table className={styles.table_book}>
-                    <tr>
-                      <td className={styles.name_book}>
-                        <p className={styles.p_name_book}>
-                          Scrum. Революционный метод управлениями проектами.
-                        </p>
-                      </td>
-                      <td className={styles.avtor}>
-                        <p className={styles.p_avtor}>Джефф Сазерленд</p>
-                      </td>
-                      <td className={styles.year}>2014</td>
-                      <td className={styles.page}>25</td>
-                    </tr>
-                  </table>
-                </li>
-                <li className={styles.list_tablet}>
-                  <img
-                    src={img}
-                    alt="book-icon"
-                    className={styles.icon__tablet}
-                  />
-
-                  <table className={styles.table_book}>
-                    <tr>
-                      <td className={styles.name_book}>
-                        <p className={styles.p_name_book}>
-                          Deadline. Роман об управлении проектами.
-                        </p>
-                      </td>
-                      <td className={styles.avtor}>
-                        <p className={styles.p_avtor}>Том ДеМарко</p>
-                      </td>
-                      <td className={styles.year}>2006</td>
-                      <td className={styles.page}>188</td>
-                    </tr>
-                  </table>
-                </li>
-                <li className={styles.list_tablet}>
-                  <img
-                    src={img}
-                    alt="book-icon"
-                    className={styles.icon__tablet}
-                  />
-
-                  <table className={styles.table_book}>
-                    <tr>
-                      <td className={styles.name_book}>
-                        <p className={styles.p_name_book}>
-                          5 Пороков команды. Притчи о лидерстве.
-                        </p>
-                      </td>
-                      <td className={styles.avtor}>
-                        <p className={styles.p_avtor}>Патрик Ленсиони</p>
-                      </td>
-                      <td className={styles.year}>2011</td>
-                      <td className={styles.page}>125</td>
-                    </tr>
-                  </table>
-                </li>
+                    <table className={styles.table_book}>
+                      <tr>
+                        <td className={styles.name_book}>
+                          <p className={styles.p_name_book}>{book.title}</p>
+                        </td>
+                        <td className={styles.avtor}>
+                          <p className={styles.p_avtor}>{book.author}</p>
+                        </td>
+                        <td className={styles.year}>{book.year}</td>
+                        <td className={styles.page}>{book.pagesCount}</td>
+                      </tr>
+                    </table>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

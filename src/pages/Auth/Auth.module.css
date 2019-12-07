@@ -23,6 +23,7 @@
 .loginContainer {
   composes: regContainer;
   padding-bottom: 25px;
+  min-height: 360px;
 }
 
 @media (min-width: 768px) {
@@ -52,6 +53,11 @@
 }
 
 @media (min-width: 1280px) {
+  .mainWrapper {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
   .regContainer {
     background: linear-gradient(rgba(9, 30, 63, 0.8), rgba(9, 30, 63, 0.8)),
       url('../../assets/images/desktopSignupBg.png');
@@ -68,6 +74,6 @@
   }
 
   .loginContainer {
-    padding: 187px 91px 185px;
+    padding: 50px 91px 40px;
   }
 }
