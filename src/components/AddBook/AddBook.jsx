@@ -12,7 +12,7 @@ const AddBook = () => {
   const [bookName, setbookName] = useState('');
   const [bookAuthor, setbookAuthor] = useState('');
   const [bookDate, setbookDate] = useState(Number(newDate.slice(10, 15)));
-  const [pagesAmount, setpagesAmount] = useState(0);
+  const [pagesAmount, setpagesAmount] = useState('');
 
   const getInputValue = ({ target }) => {
     if (target.name === 'bookName') {
@@ -46,7 +46,7 @@ const AddBook = () => {
     setbookName('');
     setbookAuthor('');
     setbookDate(Number(Date.now()));
-    setpagesAmount(0);
+    setpagesAmount('');
   };
 
   return (
@@ -101,6 +101,7 @@ const AddBook = () => {
             placeholder="..."
             className={styles.inputData}
             onChange={getInputValue}
+            min="0"
             required
           />
         </label>
