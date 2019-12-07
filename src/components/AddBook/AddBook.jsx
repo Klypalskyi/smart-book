@@ -36,10 +36,10 @@ const AddBook = () => {
     if (pagesAmount <= 0) return;
     const book = {
       title: bookName,
-      author: bookAuthor,
       year: bookDate,
       pagesCount: pagesAmount,
     };
+    if (bookAuthor.trim().length) book.author = bookAuthor;
     postBook(book, token);
 
     setbookName('');
