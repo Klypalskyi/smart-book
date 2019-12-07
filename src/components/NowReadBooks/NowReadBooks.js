@@ -12,28 +12,22 @@ const NowReadBooks = ({ books }) => {
 
             <ul>
               {books.map(book => (
-                <li className={styles.item} key={book.id}>
+                <li className={styles.item} key={book._id}>
                   <div className={styles.display}>
                     <img src={img} alt="book-icon" className={styles.icon} />
-                    <h2 className={styles.cardTitle}>
-                      {book.title}
-                    </h2>
+                    <h2 className={styles.cardTitle}>{book.title}</h2>
                   </div>
 
-                  <table className={styles.table}>
-                    <tr>
-                      <td className={styles.label}>Автор:</td>
-                      <td className={styles.quantity}>{book.author}</td>
-                    </tr>
-                    <tr>
-                      <td className={styles.label}>Рік:</td>
-                      <td className={styles.quantity}>{book.year}</td>
-                    </tr>
-                    <tr>
-                      <td className={styles.label}>Стор.:</td>
-                      <td className={styles.quantity}>{book.pagesCount}</td>
-                    </tr>
-                  </table>
+                  <div className={styles.table}>
+                    <div className={styles.label}>Автор:</div>
+                    <div className={styles.quantity}>{book.author}</div>
+
+                    <div className={styles.label}>Рік:</div>
+                    <div className={styles.quantity}>{book.year}</div>
+
+                    <div className={styles.label}>Стор.:</div>
+                    <div className={styles.quantity}>{book.pagesCount}</div>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -49,27 +43,25 @@ const NowReadBooks = ({ books }) => {
               </div>
               <ul className={styles.read__book}>
                 {books.map(book => (
-                  <li className={styles.list_tablet} key={book.id}>
+                  <li className={styles.list_tablet} key={book._id}>
                     <img
                       src={img}
                       alt="book-icon"
                       className={styles.icon__tablet}
                     />
 
-                    <table>
-                      <tr>
-                        <td className={styles.name_book}>
-                          <p className={styles.p_name_book}>
-                            {book.title}
-                          </p>
-                        </td>
-                        <td className={styles.author}>
-                          <p className={styles.p_avtor}>{book.author}</p>
-                        </td>
-                        <td className={styles.year}>{book.year}</td>
-                        <td className={styles.page}>{book.page}</td>
-                      </tr>
-                    </table>
+                    <div className={styles.flex}>
+                      <div className={styles.name_book}>
+                        <p className={styles.p_name_book}>{book.title}</p>
+                      </div>
+                      <div className={styles.author}>
+                        <p className={styles.p_avtor}>{book.author}</p>
+                      </div>
+                      <div className={styles.year}>{book.year}</div>
+                      <div className={styles.page}>
+                        {book.page ? book.year : '-'}
+                      </div>
+                    </div>
                   </li>
                 ))}
               </ul>
