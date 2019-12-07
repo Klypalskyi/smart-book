@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-// import DateFnsUtils from '@date-io/date-fns';
-// import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { useSelector } from 'react-redux';
 import { postBook } from '../../services/API';
 import { getUserToken } from '../../redux/selectors/sessionSelectors';
@@ -10,7 +10,7 @@ const AddBook = () => {
   const token = useSelector(state => getUserToken(state));
   const [bookName, setbookName] = useState('');
   const [bookAuthor, setbookAuthor] = useState('');
-  const [bookDate, setbookDate] = useState('');
+  const [bookDate, setbookDate] = useState(Number(new Date()));
   const [pagesAmount, setpagesAmount] = useState(0);
 
   const getInputValue = ({ target }) => {
@@ -22,17 +22,18 @@ const AddBook = () => {
       setbookAuthor(target.value);
       return;
     }
-    if (target.name === 'bookDate') {
-      setbookDate(Number(target.value));
-      return;
-    }
     if (target.name === 'pagesAmount') {
       setpagesAmount(Number(target.value));
     }
   };
 
+  const handleDateInput = date => {
+    setbookDate(Number(date));
+  };
+
   const createBook = event => {
     event.preventDefault();
+    if (pagesAmount <= 0) return;
     const book = {
       title: bookName,
       author: bookAuthor,
@@ -59,6 +60,7 @@ const AddBook = () => {
           placeholder="..."
           className={styles.inputData}
           onChange={getInputValue}
+          required
         />
       </label>
       <div className={styles.tabletWrapper}>
@@ -74,26 +76,19 @@ const AddBook = () => {
             onChange={getInputValue}
           />
         </label>
-        <label htmlFor="bookDate" className={styles.labelYear}>
+        <label htmlFor="" className={styles.labelYear}>
           <div className={styles.inputTitle}>Рік випуску</div>
-          {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils} id="bookDate">
             <DatePicker
               value={bookDate}
-              onChange={event => console.log(event.target)}
-              // className={styles.inputData}
+              onChange={handleDateInput}
+              InputProps={{ className: styles.inputData }}
               views={['year']}
               name={bookDate}
               invalidDateMessage=""
+              disableFuture
             />
-          </MuiPickersUtilsProvider> */}
-          <input
-            type="date"
-            name="bookDate"
-            value={bookDate}
-            id="bookDate"
-            className={styles.inputData}
-            onChange={getInputValue}
-          />
+          </MuiPickersUtilsProvider>
         </label>
         <label htmlFor="pagesAmount" className={styles.labelPages}>
           <div className={styles.inputTitle}>Кількість сторінок</div>
@@ -105,6 +100,7 @@ const AddBook = () => {
             placeholder="..."
             className={styles.inputData}
             onChange={getInputValue}
+            required
           />
         </label>
       </div>
