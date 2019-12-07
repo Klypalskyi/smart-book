@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
@@ -38,6 +39,7 @@ const Results = () => {
   const [pagesReadResult, setPagesReadResult] = useState([]);
 
   const token = useSelector(state => state.session.token);
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     axios
@@ -48,9 +50,13 @@ const Results = () => {
       })
       .then(res => {
         setTrainingId(res.data.training.trainingId);
-        setPagesReadResult(res.data.training.pagesReadResult);
+        setPagesReadResult(
+          res.data.training.pagesReadResult.sort((a, b) =>
+            a.date > b.date ? -1 : 1,
+          ),
+        );
       });
-  }, []);
+  }, [pagesReadResult]);
 
   const handleDateInput = date => {
     setSelectedDate(date);
@@ -91,12 +97,10 @@ const Results = () => {
         <h3 className={styles.title}>РЕЗУЛЬТАТИ</h3>
 
         <form className={styles.form} onSubmit={handleSubmit}>
-          <label className={styles.label} forHtml="resultDatePicker">
+          <label className={styles.label}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <p className={styles.input_title}>Дата</p>
               <DateTimePicker
-                id="resultDatePicker"
-                name="resultDatePicker"
                 value={selectedDate}
                 onChange={handleDateInput}
                 showTodayButton
@@ -105,7 +109,6 @@ const Results = () => {
                 format="dd/MM/yyyy"
                 InputProps={{
                   className: styles.picker,
-                  id: 'resultDatePicker',
                 }}
               />
             </MuiPickersUtilsProvider>
@@ -146,7 +149,7 @@ const Results = () => {
                 ))} */}
               {pagesReadResult.length > 0 &&
                 pagesReadResult.map(res => (
-                  <tr className={styles.table_row} key={res.id}>
+                  <tr className={styles.table_row} key={res._id}>
                     <td className={styles.table_date}>
                       {formatDate(res.date)}
                     </td>
