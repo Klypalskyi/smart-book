@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { ActionType } from './registrationActions';
+import { ActionType } from '../login/loginActions';
 
 const requestRegistration = (state = false, { type }) => {
   switch (type) {
