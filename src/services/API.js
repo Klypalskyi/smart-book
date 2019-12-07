@@ -4,14 +4,29 @@ import {
   loginRequest,
   loginSuccess,
   loginError,
+  refreshUserRequest,
+  refreshUserSuccess,
+  refreshUserError,
+  logOutSuccess,
 } from '../redux/login/loginActions';
+
 import {
   registrationRequest,
   registrationSuccess,
   registrationError,
 } from '../redux/registration/registrationActions';
 
-axios.defaults.baseURL = 'https://book-read.goit.co.ua/api/v1';
+import { getUserToken } from '../redux/selectors/sessionSelectors';
+
+axios.defaults.baseURL = process.env.REACT_APP_BASE_API_URL;
+
+const setAuthToken = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+const clearAuthToken = () => {
+  axios.defaults.headers.common.Authorization = null;
+};
 
 export const login = credentials => dispatch => {
   dispatch(loginRequest());
@@ -32,8 +47,30 @@ export const registration = userValue => dispatch => {
   axios
     .post(apiEndpoint.registration, userValue)
     .then(response => {
-      console.log(userValue);
       return dispatch(registrationSuccess(response));
     })
     .catch(error => dispatch(registrationError(error)));
+};
+
+export const refreshUser = () => (dispatch, getState) => {
+  const token = getUserToken(getState());
+  if (!token) {
+    return;
+  }
+  setAuthToken(token);
+  dispatch(refreshUserRequest());
+
+  axios
+    .get('/user/me')
+    .then(response => {
+      dispatch(refreshUserSuccess(response));
+    })
+    .catch(err => {
+      dispatch(refreshUserError(err));
+    });
+};
+
+export const logOut = () => dispatch => {
+  clearAuthToken();
+  dispatch(logOutSuccess());
 };

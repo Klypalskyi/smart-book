@@ -15,6 +15,10 @@
   color: var(--white);
 }
 
+.label {
+  position: relative;
+}
+
 .form h2 > span {
   color: var(--orangey-red);
 }
@@ -43,11 +47,6 @@
   font-style: normal;
   letter-spacing: 0.42px;
   color: var(--light-grey-blue-three);
-}
-
-/* border switch on invalid input */
-.invalid {
-  border: 1px solid #f50a93;
 }
 
 .form button {
@@ -91,26 +90,18 @@
 }
 
 /* input error */
-.passwordError,
-.emailError {
-  display: block;
-  color: var(--orangey-red);
+.form label .error {
   position: absolute;
+  padding: 0 10px;
+  /* display: block; */
+  color: var(--orangey-red);
   font-weight: 600;
-}
-
-.emailError {
-  top: 94px;
-  left: 10px;
-}
-
-.passwordError {
-  top: 188px;
-  left: 10px;
-}
-
-.emailInput {
-  margin-bottom: 13px;
+  top: 105%;
+  right: 0;
+  z-index: 1;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: rgba(222, 184, 135, 0.9);
 }
 /* input error -END */
 
@@ -129,7 +120,7 @@
   }
 
   /* input error */
-  .emailError {
+  /* .emailError {
     top: 102px;
     left: 20px;
   }
@@ -137,6 +128,6 @@
   .passwordError {
     top: 196px;
     left: 20px;
-  }
+  } */
   /* input error -END */
 }

@@ -7,6 +7,7 @@
   height: 60px;
   padding-top: 20px;
   padding-bottom: 16px;
+  padding-left: 10px;
   font-family: Montserrat;
   font-size: 19px;
   font-weight: 600;
@@ -18,11 +19,10 @@
 .cardBook {
   list-style-type: none;
   width: 325px;
-  height: 167px;
   margin: 0 auto;
+  margin-left: 29px;
 }
 .item {
-  margin-left: -15px;
   margin-bottom: 10px;
   background-color: white;
   width: 270px;
@@ -48,6 +48,8 @@
   line-height: 1.23;
   letter-spacing: 0.39px;
   text-align: left;
+  margin-top: 13px;
+  margin-bottom: 8px;
 }
 .table {
   padding-left: 14px;
@@ -55,6 +57,7 @@
   margin-left: 27px;
 }
 .label {
+  padding-bottom: 3px;
   width: 63px;
   height: 11px;
   font-family: OpenSans;
@@ -109,9 +112,11 @@
 }
 .wrapper {
   margin-left: 44px;
+  margin-bottom: 35px;
 }
 .tittle__tablet {
-  margin: 0;
+  margin-top: 55px;
+  margin-bottom: 20px;
   padding-bottom: 22px;
   width: 210px;
   height: 15px;
@@ -125,6 +130,7 @@
   text-align: left;
 }
 .text__name_book {
+  margin-bottom: 15px;
   padding-bottom: 15px;
   color: #898f9f;
   display: inline-block;
@@ -229,11 +235,11 @@
   margin: 0 auto;
 }
 .list_tablet {
+  margin-bottom: 10px;
   box-shadow: 1px 1.7px 1px 0 grey;
 
   display: flex;
   position: relative;
-  margin: 0;
   padding: 0;
 
   list-style: none;
@@ -247,6 +253,9 @@
   top: 21px;
   left: 15px;
   position: absolute;
+}
+.table_book {
+  padding-top: 13px;
 }
 .name_book {
   padding-left: 55px;
@@ -356,9 +365,11 @@
   }
   .wrapper {
     margin: 0 auto;
+    margin-bottom: 35px;
   }
   .list_tablet {
     margin: 0 auto;
+    margin-bottom: 10px;
     width: 1200px;
   }
   .wrapper_text {
@@ -382,8 +393,8 @@
     width: 227px;
     padding-left: 120px;
   }
-  .table_book {
-    margin-top: 7px;
+  .tittle__tablet {
+    margin-top: 10px;
   }
   .name_book {
     width: 318px;

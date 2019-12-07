@@ -23,12 +23,8 @@ function Auth() {
             <Route exact path="/">
               <Redirect to="/login" />
             </Route>
-            <Route exact path="/login">
-              <LoginForm />
-            </Route>
-            <Route exact path="/registration">
-              <RegistrationForm />
-            </Route>
+            <Route path="/login" exact component={LoginForm} />
+            <Route path="/registration" exact component={RegistrationForm} />
           </Switch>
         </div>
       </div>

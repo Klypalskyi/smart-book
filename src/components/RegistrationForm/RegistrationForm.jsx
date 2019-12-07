@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import css from './RegistrationForm.module.css';
 
 const FormOfRegistration = ({
+  formik,
   onChange,
   onSubmit,
+  onBlur,
   userName,
   email,
   password,
@@ -12,7 +14,7 @@ const FormOfRegistration = ({
 }) => {
   return (
     <form onSubmit={onSubmit} className={css.form}>
-      <label htmlFor="userName">
+      <label className={css.label} htmlFor="userName">
         <h2>
           Ім&apos;я <span>*</span>
         </h2>
@@ -23,9 +25,14 @@ const FormOfRegistration = ({
           value={userName}
           placeholder="..."
           onChange={onChange}
+          onBlur={onBlur}
         />
+        {formik.errors.userName && formik.touched.userName ? (
+          <div className={css.error}>{formik.errors.userName}</div>
+        ) : null}
       </label>
-      <label htmlFor="email">
+
+      <label className={css.label} htmlFor="email">
         <h2>
           Електронна адреса <span>*</span>
         </h2>
@@ -36,9 +43,13 @@ const FormOfRegistration = ({
           value={email}
           placeholder="your@email.com"
           onChange={onChange}
+          onBlur={onBlur}
         />
+        {formik.errors.email && formik.touched.email ? (
+          <div className={css.error}>{formik.errors.email}</div>
+        ) : null}
       </label>
-      <label htmlFor="password">
+      <label className={css.label} htmlFor="password">
         <h2>
           Пароль <span>*</span>
         </h2>
@@ -49,9 +60,13 @@ const FormOfRegistration = ({
           value={password}
           placeholder="..."
           onChange={onChange}
+          onBlur={onBlur}
         />
+        {formik.errors.password && formik.touched.password ? (
+          <div className={css.error}>{formik.errors.password}</div>
+        ) : null}
       </label>
-      <label htmlFor="passwordRepeat">
+      <label className={css.label} htmlFor="passwordRepeat">
         <h2>
           Підтвердити пароль <span>*</span>
         </h2>
@@ -62,7 +77,11 @@ const FormOfRegistration = ({
           value={passwordRepeat}
           placeholder="..."
           onChange={onChange}
+          onBlur={onBlur}
         />
+        {formik.errors.passwordRepeat && formik.touched.passwordRepeat ? (
+          <div className={css.error}>{formik.errors.passwordRepeat}</div>
+        ) : null}
       </label>
       <button type="submit">Зареєструватися</button>
       <p>

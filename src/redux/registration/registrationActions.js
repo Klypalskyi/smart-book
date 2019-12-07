@@ -1,8 +1,4 @@
-export const ActionType = {
-  REGISTRATION_REQUEST: 'REGISTRATION_REQUEST',
-  REGISTRATION_SUCCESS: 'REGISTRATION_SUCCESS',
-  REGISTRATION_ERROR: 'REGISTRATION_ERROR',
-};
+import { ActionType } from '../login/loginActions';
 
 export const registrationRequest = () => ({
   type: ActionType.REGISTRATION_REQUEST,

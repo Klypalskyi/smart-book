@@ -50,6 +50,86 @@ const ReadBooks = () => {
               Резюме
             </button>
           </li>
+          <li className={styles.item}>
+            <div className={styles.display}>
+              <img src={img} alt="book-icon" className={styles.icon} />
+
+              <h2 className={styles.cardTitle}>
+                Scrum. Революционный метод управлениями проектами.
+              </h2>
+            </div>
+
+            <table className={styles.table}>
+              <tr>
+                <td className={styles.label}>Автор:</td>
+                <td className={styles.quantity}>Джефф Сазерленд</td>
+              </tr>
+              <tr className={styles.tr}>
+                <td className={styles.label}>Рік:</td>
+                <td className={styles.quantity}>2014</td>
+              </tr>
+              <tr>
+                <td className={styles.label}>Стор.:</td>
+                <td className={styles.quantity}>25</td>
+              </tr>
+              <tr>
+                <td className={styles.label}>Рейтинг:</td>
+                <td className={styles.quantity}>
+                  <Rating
+                    name="simple-controlled "
+                    size="small"
+                    value={value}
+                    onChange={newValue => {
+                      setValue(newValue);
+                    }}
+                  />
+                </td>
+              </tr>
+            </table>
+            <button className={styles.button} type="button">
+              Резюме
+            </button>
+          </li>
+          <li className={styles.item}>
+            <div className={styles.display}>
+              <img src={img} alt="book-icon" className={styles.icon} />
+
+              <h2 className={styles.cardTitle}>
+                Scrum. Революционный метод управлениями проектами.
+              </h2>
+            </div>
+
+            <table className={styles.table}>
+              <tr>
+                <td className={styles.label}>Автор:</td>
+                <td className={styles.quantity}>Джефф Сазерленд</td>
+              </tr>
+              <tr className={styles.tr}>
+                <td className={styles.label}>Рік:</td>
+                <td className={styles.quantity}>2014</td>
+              </tr>
+              <tr>
+                <td className={styles.label}>Стор.:</td>
+                <td className={styles.quantity}>25</td>
+              </tr>
+              <tr>
+                <td className={styles.label}>Рейтинг:</td>
+                <td className={styles.quantity}>
+                  <Rating
+                    name="simple-controlled "
+                    size="small"
+                    value={value}
+                    onChange={newValue => {
+                      setValue(newValue);
+                    }}
+                  />
+                </td>
+              </tr>
+            </table>
+            <button className={styles.button} type="button">
+              Резюме
+            </button>
+          </li>
         </ul>
       </div>
       <div className={styles.tablet}>
@@ -64,6 +144,68 @@ const ReadBooks = () => {
             <p className={styles.text__rating_book}>Рейтинг книги</p>
           </div>
           <ul className={styles.read__book}>
+            <li className={styles.list_tablet}>
+              <img src={img} alt="book-icon" className={styles.icon__tablet} />
+
+              <table className={styles.table_book}>
+                <tr>
+                  <td className={styles.name_book}>
+                    <p className={styles.p_name_book}>
+                      Scrum. Революционный метод управлениями проектами.
+                    </p>
+                  </td>
+                  <td className={styles.avtor}>
+                    <p className={styles.p_avtor}>Купер Алан</p>
+                  </td>
+                  <td className={styles.year}>2009</td>
+                  <td className={styles.page}>183</td>
+                  <td className={styles.rating}>
+                    <Rating
+                      name="simple-controlled"
+                      size="small"
+                      value={value}
+                      onChange={newValue => {
+                        setValue(newValue);
+                      }}
+                    />
+                  </td>
+                </tr>
+              </table>
+              <button className={styles.button_tablet} type="button">
+                Резюме
+              </button>
+            </li>
+            <li className={styles.list_tablet}>
+              <img src={img} alt="book-icon" className={styles.icon__tablet} />
+
+              <table className={styles.table_book}>
+                <tr>
+                  <td className={styles.name_book}>
+                    <p className={styles.p_name_book}>
+                      Scrum. Революционный метод управлениями проектами.
+                    </p>
+                  </td>
+                  <td className={styles.avtor}>
+                    <p className={styles.p_avtor}>Купер Алан</p>
+                  </td>
+                  <td className={styles.year}>2009</td>
+                  <td className={styles.page}>183</td>
+                  <td className={styles.rating}>
+                    <Rating
+                      name="simple-controlled"
+                      size="small"
+                      value={value}
+                      onChange={newValue => {
+                        setValue(newValue);
+                      }}
+                    />
+                  </td>
+                </tr>
+              </table>
+              <button className={styles.button_tablet} type="button">
+                Резюме
+              </button>
+            </li>
             <li className={styles.list_tablet}>
               <img src={img} alt="book-icon" className={styles.icon__tablet} />
 
