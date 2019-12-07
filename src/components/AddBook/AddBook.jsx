@@ -23,11 +23,11 @@ const AddBook = () => {
       return;
     }
     if (target.name === 'bookDate') {
-      setbookDate(target.value);
+      setbookDate(Number(target.value));
       return;
     }
     if (target.name === 'pagesAmount') {
-      setpagesAmount(target.value);
+      setpagesAmount(Number(target.value));
     }
   };
 
@@ -37,9 +37,7 @@ const AddBook = () => {
       title: bookName,
       author: bookAuthor,
       year: bookDate,
-      pagesCount: Number(pagesAmount),
-      comment: 'string',
-      rating: 1,
+      pagesCount: pagesAmount,
     };
     postBook(book, token);
 
@@ -81,7 +79,7 @@ const AddBook = () => {
           {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DatePicker
               value={bookDate}
-              onChange={getInputValue}
+              onChange={event => console.log(event.target)}
               // className={styles.inputData}
               views={['year']}
               name={bookDate}

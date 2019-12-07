@@ -88,7 +88,7 @@ export const logOut = token => dispatch => {
 
 export const postBook = (book, token) =>
   axios
-    .post(`${process.env.REACT_APP_BASE_API_URL}/books/`, book, {
+    .post(`${process.env.REACT_APP_BASE_API_URL}/books/create`, book, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
