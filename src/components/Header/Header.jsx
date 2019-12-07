@@ -11,17 +11,22 @@ import { openModal } from '../Backdrop/backdropActions';
 import {
   getIsModalOpen,
   getAuthenticated,
+  getUser,
 } from '../../redux/selectors/sessionSelectors';
 
 const Header = () => {
   const isModalOpen = useSelector(state => getIsModalOpen(state));
+  const user = useSelector(state => getUser(state));
+  const authenticated = useSelector(state => getAuthenticated(state));
   const dispatch = useDispatch();
 
   const handleOpenModalLogout = () => {
     dispatch(openModal());
   };
 
-  const authenticated = useSelector(state => getAuthenticated(state));
+  const firstLetter = name => {
+    return name.split('')[0];
+  };
 
   return (
     <div className={styles.container}>
@@ -43,11 +48,16 @@ const Header = () => {
               <HomeOutlinedIcon className={styles.icon} />
             </IconButton>
           </Link>
-
-          <div className={styles.bookPars}>
-            <span className={styles.bookNameLetter}>C</span>
-            <span className={styles.bookName}>Full Name of the Book</span>
-          </div>
+          {user && (
+            <div className={styles.bookPars}>
+              <span className={styles.bookNameLetter}>
+                {firstLetter(user.name.fullName)}
+              </span>
+              <span className={styles.bookName}>
+                {user ? user.name.fullName : 'User name'}
+              </span>
+            </div>
+          )}
           <button
             type="button"
             className={styles.buttonExit}

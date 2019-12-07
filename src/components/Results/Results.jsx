@@ -1,11 +1,12 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DateTimePicker } from '@material-ui/pickers';
 
-import { addResult } from '../../redux/results/resultsActions';
+// import { addResult } from '../../redux/results/resultsActions';
 
 import styles from './Results.module.css';
 
@@ -37,7 +38,6 @@ const Results = () => {
   const [pagesReadResult, setPagesReadResult] = useState([]);
 
   const token = useSelector(state => state.session.token);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     axios
@@ -72,8 +72,6 @@ const Results = () => {
         count: Number(selectedPages), // count	number
       };
 
-      dispatch(addResult(addedResult));
-
       // add to backend
       axios.post(`/training/time/${trainingId}`, addedResult, {
         headers: {
@@ -93,17 +91,22 @@ const Results = () => {
         <h3 className={styles.title}>РЕЗУЛЬТАТИ</h3>
 
         <form className={styles.form} onSubmit={handleSubmit}>
-          <label className={styles.label}>
+          <label className={styles.label} forHtml="resultDatePicker">
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <p className={styles.input_title}>Дата</p>
               <DateTimePicker
+                id="resultDatePicker"
+                name="resultDatePicker"
                 value={selectedDate}
                 onChange={handleDateInput}
                 showTodayButton
                 ampm={false}
                 disableFuture
                 format="dd/MM/yyyy"
-                InputProps={{ className: styles.picker }}
+                InputProps={{
+                  className: styles.picker,
+                  id: 'resultDatePicker',
+                }}
               />
             </MuiPickersUtilsProvider>
           </label>
@@ -143,7 +146,7 @@ const Results = () => {
                 ))} */}
               {pagesReadResult.length > 0 &&
                 pagesReadResult.map(res => (
-                  <tr className={styles.table_row} key={res._id}>
+                  <tr className={styles.table_row} key={res.id}>
                     <td className={styles.table_date}>
                       {formatDate(res.date)}
                     </td>

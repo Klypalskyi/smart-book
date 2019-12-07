@@ -36,6 +36,14 @@ const theme = createMuiTheme({
     background: {
       default: '#f5f7fa',
     },
+    action: {
+      active: 'rgba(255, 56, 50, 0.9)',
+      hover: 'rgba(0, 0, 0, 0.08)',
+      hoverOpacity: 0.08,
+      selected: 'var(--orangey-red)',
+      disabled: 'rgba(0, 0, 0, 0.26)',
+      disabledBackground: 'rgba(0, 0, 0, 0.12)',
+    },
     // error: will use the default color
   },
   typography: {

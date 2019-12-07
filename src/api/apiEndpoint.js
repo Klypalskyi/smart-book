@@ -1,5 +1,5 @@
-const urlList = {
-  googleAuth: 'https://book-read.goit.co.ua/api/v1/auth/google',
-};
+export const BASE_URL = process.env.REACT_APP_BASE_API_URL;
 
-export default urlList;
+export const googleAuth = `/auth/google`;
+
+export const registration = '/auth/register';
