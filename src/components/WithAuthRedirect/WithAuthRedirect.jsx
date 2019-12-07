@@ -5,13 +5,13 @@ const withAuthRedirect = BaseComponent => {
   class WithAuthRedirect extends Component {
     componentDidMount() {
       if (this.props.authenticated) {
-        this.props.history.replace('library');
+        this.props.history.replace('/library');
       }
     }
 
     componentDidUpdate() {
       if (this.props.authenticated) {
-        this.props.history.replace('library');
+        this.props.history.replace('/library');
       }
     }
 

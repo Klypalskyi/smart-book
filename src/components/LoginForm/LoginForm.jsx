@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import styles from './LoginForm.module.css';
 import { login } from '../../services/API';
 import withAuthRedirect from '../WithAuthRedirect/WithAuthRedirect';
+import withConnectByGoogle from '../../hoc/WithConnectByGoogle';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -65,4 +66,4 @@ const LoginPage = () => {
   );
 };
 
-export default withAuthRedirect(LoginPage);
+export default withConnectByGoogle(withAuthRedirect(LoginPage));
