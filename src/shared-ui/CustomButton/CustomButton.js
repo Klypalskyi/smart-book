@@ -7,6 +7,11 @@ const useStyle = makeStyles(theme => ({
   contained: {
     color: theme.palette.primary.light,
     backgroundColor: theme.palette.secondary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.main,
+      borderColor: '#0062cc',
+      boxShadow: 'none',
+    },
   },
   outlined: {
     color: 'var(--rusty-orange)',
@@ -25,7 +30,7 @@ const CustomButton = ({ variant, size, className, children, ...rest }) => {
       className={`${className} ${classes[variant]} `}
       {...rest}
     >
-      {children}
+      {children}{' '}
     </Button>
   );
 };
