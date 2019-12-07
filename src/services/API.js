@@ -85,3 +85,18 @@ export const logOut = token => dispatch => {
       console.log(err);
     });
 };
+
+export const getTraining = token => () => {
+  axios
+    .get(`/training`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};

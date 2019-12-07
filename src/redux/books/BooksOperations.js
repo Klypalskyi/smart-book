@@ -10,7 +10,7 @@ export const booksOperation = token => dispatch => {
       },
     })
     .then(res => {
-      dispatch(BooksSuccess(res.data.bookss));
+      dispatch(BooksSuccess(res.data.books));
     })
     .catch(err => {
       dispatch(BooksError(err));
