@@ -81,7 +81,7 @@ const AddBook = () => {
           <div className={styles.inputTitle}>Рік випуску</div>
           <MuiPickersUtilsProvider utils={DateFnsUtils} id="bookDate">
             <DatePicker
-              value={newDate}
+              value=""
               onChange={handleDateInput}
               InputProps={{ className: styles.inputData }}
               views={['year']}
