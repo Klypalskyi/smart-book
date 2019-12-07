@@ -3,7 +3,7 @@ export const backdropActionTypes = {
   CLOSE_MODAL: 'CLOSE_MODAL',
 };
 
-const backdropReducer = (state = true, { type }) => {
+const backdropReducer = (state = false, { type }) => {
   switch (type) {
     case backdropActionTypes.OPEN_MODAL:
       return true;

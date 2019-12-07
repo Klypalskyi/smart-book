@@ -51,7 +51,18 @@ export const refreshUser = () => (dispatch, getState) => {
     });
 };
 
-export const logOut = () => dispatch => {
-  clearAuthToken();
-  dispatch(logOutSuccess());
+export const logOut = token => dispatch => {
+  axios
+    .post(`${process.env.REACT_APP_BASE_API_URL}/auth/logout`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(() => {
+      dispatch(logOutSuccess());
+      clearAuthToken();
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
