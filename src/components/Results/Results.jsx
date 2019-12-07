@@ -1,41 +1,56 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DateTimePicker } from '@material-ui/pickers';
 
+import { addResult } from '../../redux/results/resultsActions';
+
 import styles from './Results.module.css';
 
-const testResults = [
-  {
-    id: 1,
-    date: '25.11.2019',
-    time: '19:52:48',
-    pages: 123,
-  },
-  {
-    id: 2,
-    date: '26.11.2019',
-    time: '18:52:32',
-    pages: 234,
-  },
-  {
-    id: 3,
-    date: '27.11.2019',
-    time: '19:32:41',
-    pages: 345,
-  },
-  {
-    id: 4,
-    date: '28.11.2019',
-    time: '09:23:18',
-    pages: 45,
-  },
-];
+function formatDate(date) {
+  let dd = new Date(date).getDate();
+  if (dd < 10) dd = `0${dd}`;
+  let mm = new Date(date).getMonth() + 1;
+  if (mm < 10) mm = `0${mm}`;
+  const yyyy = new Date(date).getFullYear();
+  return `${dd}.${mm}.${yyyy}`;
+}
+function formatTime(date) {
+  let hh = new Date(date).getHours();
+  if (hh < 10) hh = `0${hh}`;
+
+  let mm = new Date(date).getMinutes();
+  if (mm < 10) mm = `0${mm}`;
+
+  let ss = new Date(date).getSeconds();
+  if (ss < 10) ss = `0${ss}`;
+
+  return `${hh}:${mm}:${ss}`;
+}
 
 const Results = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString());
   const [selectedPages, setSelectedPages] = useState('');
+  const [trainingId, setTrainingId] = useState('');
+  const [pagesReadResult, setPagesReadResult] = useState([]);
+
+  const token = useSelector(state => state.session.token);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    axios
+      .get(`/training`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(res => {
+        setTrainingId(res.data.training.trainingId);
+        setPagesReadResult(res.data.training.pagesReadResult);
+      });
+  }, []);
 
   const handleDateInput = date => {
     setSelectedDate(date);
@@ -51,8 +66,23 @@ const Results = () => {
     if (selectedPages.length === 0 || Number(selectedPages) <= 0) {
       // error handler
     } else {
+      // set pages result
+      const addedResult = {
+        date: new Date(selectedDate).toISOString(), // date	string($date)
+        count: Number(selectedPages), // count	number
+      };
+
+      dispatch(addResult(addedResult));
+
+      // add to backend
+      axios.post(`/training/time/${trainingId}`, addedResult, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       // clear inputs
-      setSelectedDate(new Date());
+      setSelectedDate(new Date().toISOString());
       setSelectedPages('');
     }
   };
@@ -72,7 +102,7 @@ const Results = () => {
                 showTodayButton
                 ampm={false}
                 disableFuture
-                format="dd/MM/yyyy HH:mm"
+                format="dd/MM/yyyy"
                 InputProps={{ className: styles.picker }}
               />
             </MuiPickersUtilsProvider>
@@ -100,13 +130,28 @@ const Results = () => {
           </h3>
           <table className={styles.table}>
             <tbody>
-              {testResults.length > 0 &&
+              {/* {testResults.length > 0 &&
                 testResults.map(res => (
                   <tr className={styles.table_row} key={res.id}>
                     <td className={styles.table_date}>{res.date}</td>
                     <td className={styles.table_time}>{res.time}</td>
                     <td className={styles.table_pages}>
                       <p className={styles.table_pages_value}>{res.pages}</p>
+                      <p className={styles.table_pages_text}>стор.</p>
+                    </td>
+                  </tr>
+                ))} */}
+              {pagesReadResult.length > 0 &&
+                pagesReadResult.map(res => (
+                  <tr className={styles.table_row} key={res._id}>
+                    <td className={styles.table_date}>
+                      {formatDate(res.date)}
+                    </td>
+                    <td className={styles.table_time}>
+                      {formatTime(res.date)}
+                    </td>
+                    <td className={styles.table_pages}>
+                      <p className={styles.table_pages_value}>{res.count}</p>
                       <p className={styles.table_pages_text}>стор.</p>
                     </td>
                   </tr>
