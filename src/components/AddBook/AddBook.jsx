@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { useSelector } from 'react-redux';
-import { now } from 'moment';
 import { postBook } from '../../services/API';
 import { getUserToken } from '../../redux/selectors/sessionSelectors';
 import styles from './AddBook.module.css';
