@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { useSelector } from 'react-redux';
+import moment from 'moment';
 import { postBook } from '../../services/API';
 import { getUserToken } from '../../redux/selectors/sessionSelectors';
 import styles from './AddBook.module.css';
 
 const AddBook = () => {
-  const newDate = String(new Date());
   const token = useSelector(state => getUserToken(state));
   const [bookName, setbookName] = useState('');
   const [bookAuthor, setbookAuthor] = useState('');
-  const [bookDate, setbookDate] = useState(Number(newDate.slice(10, 15)));
+  const [bookDate, setbookDate] = useState(Date.now());
   const [pagesAmount, setpagesAmount] = useState('');
 
   const getInputValue = ({ target }) => {
@@ -29,7 +29,7 @@ const AddBook = () => {
   };
 
   const handleDateInput = date => {
-    setbookDate(Number(String(date).slice(10, 15)));
+    setbookDate(date);
   };
 
   const createBook = event => {
@@ -37,7 +37,7 @@ const AddBook = () => {
     if (pagesAmount <= 0) return;
     const book = {
       title: bookName,
-      year: bookDate,
+      year: new Date(bookDate).getFullYear(),
       pagesCount: pagesAmount,
     };
     if (bookAuthor.trim().length) book.author = bookAuthor;
@@ -45,7 +45,7 @@ const AddBook = () => {
 
     setbookName('');
     setbookAuthor('');
-    setbookDate(Number(Date.now()));
+    setbookDate(Date.now());
     setpagesAmount('');
   };
 
@@ -81,11 +81,10 @@ const AddBook = () => {
           <div className={styles.inputTitle}>Рік випуску</div>
           <MuiPickersUtilsProvider utils={DateFnsUtils} id="bookDate">
             <DatePicker
-              value=""
+              value={bookDate}
               onChange={handleDateInput}
               InputProps={{ className: styles.inputData }}
               views={['year']}
-              name={bookDate}
               invalidDateMessage=""
               disableFuture
             />
