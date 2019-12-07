@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { useSelector } from 'react-redux';
+import { now } from 'moment';
 import { postBook } from '../../services/API';
 import { getUserToken } from '../../redux/selectors/sessionSelectors';
 import styles from './AddBook.module.css';
@@ -10,7 +11,7 @@ const AddBook = () => {
   const token = useSelector(state => getUserToken(state));
   const [bookName, setbookName] = useState('');
   const [bookAuthor, setbookAuthor] = useState('');
-  const [bookDate, setbookDate] = useState(Number(new Date()));
+  const [bookDate, setbookDate] = useState(Number(new Date().getFullYear()));
   const [pagesAmount, setpagesAmount] = useState(0);
 
   const getInputValue = ({ target }) => {
