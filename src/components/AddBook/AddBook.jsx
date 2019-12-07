@@ -7,10 +7,11 @@ import { getUserToken } from '../../redux/selectors/sessionSelectors';
 import styles from './AddBook.module.css';
 
 const AddBook = () => {
+  const newDate = String(new Date());
   const token = useSelector(state => getUserToken(state));
   const [bookName, setbookName] = useState('');
   const [bookAuthor, setbookAuthor] = useState('');
-  const [bookDate, setbookDate] = useState(Number(Date.now()));
+  const [bookDate, setbookDate] = useState(Number(newDate.slice(10, 15)));
   const [pagesAmount, setpagesAmount] = useState(0);
 
   const getInputValue = ({ target }) => {
@@ -28,7 +29,7 @@ const AddBook = () => {
   };
 
   const handleDateInput = date => {
-    setbookDate(Number(date));
+    setbookDate(Number(String(date).slice(10, 15)));
   };
 
   const createBook = event => {
@@ -80,7 +81,7 @@ const AddBook = () => {
           <div className={styles.inputTitle}>Рік випуску</div>
           <MuiPickersUtilsProvider utils={DateFnsUtils} id="bookDate">
             <DatePicker
-              value={bookDate}
+              value={newDate}
               onChange={handleDateInput}
               InputProps={{ className: styles.inputData }}
               views={['year']}
