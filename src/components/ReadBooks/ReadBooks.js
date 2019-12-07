@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Rating from '@material-ui/lab/Rating';
+import { useDispatch } from 'react-redux';
 import styles from './ReadBooks.module.css';
+import { openModalSummary } from '../../redux/summaryModal/summaryModalActions';
 import img from './images/library.png';
 
 const ReadBooks = ({ books }) => {
   const [value, setValue] = useState(null);
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(openModalSummary());
+  };
+
   return (
     <>
       {books ? (
@@ -53,6 +61,7 @@ const ReadBooks = ({ books }) => {
                       book.comment ? styles.button__orange : styles.button__grey
                     }
                     type="button"
+                    onClick={handleClick}
                   >
                     Резюме
                   </button>
@@ -109,6 +118,7 @@ const ReadBooks = ({ books }) => {
                           : styles.button__tablet_grey
                       }
                       type="button"
+                      onClick={handleClick}
                     >
                       Резюме
                     </button>
