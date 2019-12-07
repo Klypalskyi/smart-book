@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Goal.module.css';
 
-const Goal = ({ isThisStatPage = false }) => {
-  console.log(isThisStatPage);
+const Goal = ({ isThisStatPage }) => {
+  // console.log(isThisStatPage);
   return (
     <div
       className={
