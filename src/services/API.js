@@ -20,7 +20,7 @@ import { getUserToken } from '../redux/selectors/sessionSelectors';
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_API_URL;
 
-const setAuthToken = token => {
+export const setAuthToken = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
@@ -70,7 +70,18 @@ export const refreshUser = () => (dispatch, getState) => {
     });
 };
 
-export const logOut = () => dispatch => {
-  clearAuthToken();
-  dispatch(logOutSuccess());
+export const logOut = token => dispatch => {
+  axios
+    .post(`${process.env.REACT_APP_BASE_API_URL}/auth/logout`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(() => {
+      dispatch(logOutSuccess());
+      clearAuthToken();
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
