@@ -49,7 +49,7 @@ const AddBook = () => {
   };
 
   return (
-    <form action="#" className={styles.addBookForm} onSubmit={createBook}>
+    <form className={styles.addBookForm} onSubmit={createBook}>
       <label htmlFor="bookName" className={styles.labelTitle}>
         <div className={styles.inputTitle}>Назва книги</div>
         <input
