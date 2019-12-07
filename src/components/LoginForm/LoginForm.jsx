@@ -9,6 +9,7 @@ import withAuthRedirect from '../WithAuthRedirect/WithAuthRedirect';
 import { login } from '../../services/API';
 import styles from './LoginForm.module.css';
 import CustomButton from '../../shared-ui/CustomButton/CustomButton';
+import withConnectByGoogle from '../../hoc/WithConnectByGoogle';
 
 const useStyles = makeStyles(theme => ({
   emailInput: {
@@ -112,4 +113,4 @@ const LoginPage = () => {
   );
 };
 
-export default withAuthRedirect(LoginPage);
+export default withConnectByGoogle(withAuthRedirect(LoginPage));
