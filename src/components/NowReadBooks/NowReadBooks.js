@@ -16,7 +16,7 @@ const NowReadBooks = ({ books }) => {
                   <div className={styles.display}>
                     <img src={img} alt="book-icon" className={styles.icon} />
                     <h2 className={styles.cardTitle}>
-                      Разработка ценностных предложений.
+                      {book.title}
                     </h2>
                   </div>
 
@@ -60,7 +60,7 @@ const NowReadBooks = ({ books }) => {
                       <tr>
                         <td className={styles.name_book}>
                           <p className={styles.p_name_book}>
-                            Разработка ценностных предложений.
+                            {book.title}
                           </p>
                         </td>
                         <td className={styles.author}>
