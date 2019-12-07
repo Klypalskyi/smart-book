@@ -7,6 +7,7 @@ import Results from '../../components/Results/Results';
 import ModalCongrats from '../../components/ModalCongrats/ModalCongrats';
 // import { addGoal } from '../../redux/goal/goalActions';
 import Workout from '../../components/Workout/Workout';
+import Goal from '../../components/Goal/Goal';
 
 // const URL = 'https://book-read.goit.co.ua/api/v1';
 
@@ -19,11 +20,13 @@ const TrainingPage = ({ modalCongratsOpen }) => {
 
   return (
     <div className={style.container}>
-      {/* <Goal /> */}
       <PanelOfTimers />
+      <div className={style.trainingContainer}>
+        {modalCongratsOpen && <ModalCongrats />}
+        <Workout />
+        <Goal />
+      </div>
       <Results />
-      {modalCongratsOpen && <ModalCongrats />}
-      <Workout />
     </div>
   );
 };
