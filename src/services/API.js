@@ -86,6 +86,21 @@ export const logOut = token => dispatch => {
     });
 };
 
+export const getTraining = token => () => {
+  axios
+    .get(`/training`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
 export const postBook = (book, token) =>
   axios
     .post(`${process.env.REACT_APP_BASE_API_URL}/books/create`, book, {
