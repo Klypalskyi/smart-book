@@ -10,7 +10,7 @@ const AddBook = () => {
   const token = useSelector(state => getUserToken(state));
   const [bookName, setbookName] = useState('');
   const [bookAuthor, setbookAuthor] = useState('');
-  const [bookDate, setbookDate] = useState(Number(new Date().getFullYear()));
+  const [bookDate, setbookDate] = useState(Number(Date.now()));
   const [pagesAmount, setpagesAmount] = useState(0);
 
   const getInputValue = ({ target }) => {
@@ -44,7 +44,7 @@ const AddBook = () => {
 
     setbookName('');
     setbookAuthor('');
-    setbookDate('');
+    setbookDate(Number(Date.now()));
     setpagesAmount(0);
   };
 
