@@ -1,5 +1,18 @@
+.summaryModal {
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 12;
+  background-color: rgba(0, 0, 0, 0.102);
+}
+
 .modal {
-  padding: 50px 76px;
+  padding-top: 44px;
+  padding-left: 22px;
   margin: 0;
   position: fixed;
   top: 50%;
@@ -7,25 +20,53 @@
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   background-color: #fff;
-  border: 1px solid #dce0e9;
+  border: 1px solid #a3a3a3;
   z-index: 12;
+  width: 325px;
+  height: 410px;
+  box-shadow: 1px 1.7px 1px 0 var(--light-blue-grey-40);
+}
+
+.rating {
+  margin-bottom: 25px;
 }
 
 .text {
-  width: 288px;
-  margin-bottom: 18px;
+  width: 190px;
+  height: 16px;
+  font-family: Montserrat;
   font-size: 15px;
-  font-weight: 600;
-  line-height: 1.43;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.07;
   letter-spacing: 0.45px;
-  text-align: center;
+  text-align: left;
   color: #242a37;
-  margin-top: 0;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.resume {
+  margin-bottom: 11px;
+}
+
+.text_area {
+  width: 280px;
+  height: 154px;
+  opacity: 0.49;
+  box-shadow: 0px -2px 1px 0 rgba(193, 196, 206, 0.4);
+  border: solid 1px #a6abb9;
+  background-color: white;
+  resize: none;
+  margin-bottom: 20px;
 }
 
 .buttonContainer {
   display: flex;
   justify-content: space-between;
+  width: 281px;
+  height: 39px;
 }
 
 .buttonContainer button {
@@ -40,7 +81,7 @@
   letter-spacing: 0.39px;
   text-align: center;
   color: #091e3f;
-  border: solid 2px #091e3f;
+  border: solid 1px #091e3f;
   cursor: pointer;
   outline: none;
   transition-property: color, background-color;

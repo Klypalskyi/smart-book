@@ -97,15 +97,15 @@
 }
 
 @media (min-width: 1280px) {
-  .wrapper {
-    margin: 180px 60px 183px 5%;
-  }
-
   .wrapperQuote {
     align-self: start;
-    padding-top: 260px;
-    height: 100vh;
+    padding-top: 120px;
+    height: 92vh;
     background-color: #fff;
     margin: 0;
+  }
+
+  .wrapper {
+    margin: 180px 60px 183px 5%;
   }
 }

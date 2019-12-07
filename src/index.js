@@ -7,7 +7,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
-import App from './containers/App/App';
+import App from './Containers/App/App';
 import createStore from './createStore';
 import * as serviceWorker from './serviceWorker';
 import './assets/css/normalize.css';
@@ -35,6 +35,14 @@ const theme = createMuiTheme({
     },
     background: {
       default: '#f5f7fa',
+    },
+    action: {
+      active: 'rgba(255, 56, 50, 0.9)',
+      hover: 'rgba(0, 0, 0, 0.08)',
+      hoverOpacity: 0.08,
+      selected: 'var(--orangey-red)',
+      disabled: 'rgba(0, 0, 0, 0.26)',
+      disabledBackground: 'rgba(0, 0, 0, 0.12)',
     },
     // error: will use the default color
   },
@@ -73,9 +81,9 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./containers/App/App', () => {
+  module.hot.accept('./Containers/App/App', () => {
     // eslint-disable-next-line global-require
-    const NextApp = require('./containers/App/App').default;
+    const NextApp = require('./Containers/App/App').default;
     render(NextApp);
   });
 }
