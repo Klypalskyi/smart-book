@@ -11,7 +11,6 @@ export default class AddBook extends Component {
   }
 
   getInputValue = ({ target }) => {
-    console.log(target);
     this.setState({
       [target.name]: [target.value],
     })
