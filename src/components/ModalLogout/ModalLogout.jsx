@@ -1,19 +1,37 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './ModalLogout.module.css';
+import { closeModal } from '../Backdrop/backdropActions';
+import { logOut } from '../../services/API';
+import { getUserToken } from '../../redux/selectors/sessionSelectors';
 
-const ModalLogout = ({
-  closeModal = () => {
-    console.log('closeModal');
-  },
-}) => {
+const ModalLogout = () => {
+  const dispatch = useDispatch();
+  const token = useSelector(state => getUserToken(state));
+
   const handleClick = ({ target }) => {
     if (target.name === 'cancel') {
-      closeModal();
+      dispatch(closeModal());
     } else if (target.name === 'logout') {
+      dispatch(logOut(token));
+      dispatch(closeModal());
       // onLogout(); // .then(() => closeModal()) - onLogout - операция разлогинивания которая возвращает промис
     }
   };
+
+  const handleEsc = e => {
+    if (e.keyCode === 27) dispatch(closeModal());
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleEsc);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
 
   return (
     <div className={styles.modal}>
@@ -30,14 +48,6 @@ const ModalLogout = ({
       </div>
     </div>
   );
-};
-
-ModalLogout.propTypes = {
-  closeModal: PropTypes.func,
-};
-
-ModalLogout.defaultProps = {
-  closeModal: () => {},
 };
 
 export default ModalLogout;
