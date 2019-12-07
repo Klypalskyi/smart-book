@@ -111,13 +111,19 @@
   letter-spacing: 0.39px;
   text-align: left;
 }
+.flex {
+  display: flex;
+}
 .table {
+  display: flex;
+  flex-wrap: wrap;
   padding-left: 29px;
   margin-top: 3px;
   margin-left: 27px;
 }
 .label {
-  width: 63px;
+  margin-top: 6px;
+  width: 94px;
   height: 11px;
   font-family: 'OpenSans';
   font-size: 13px;
@@ -130,6 +136,7 @@
   color: grey;
 }
 .quantity {
+  margin-top: 5px;
   height: 11px;
   font-family: 'OpenSans';
   font-size: 13px;
@@ -238,7 +245,7 @@
 }
 .list_tablet {
   box-shadow: 1px 1.7px 1px 0 grey;
-
+  margin-bottom: 15px;
   display: flex;
   position: relative;
   margin: 0;
@@ -258,6 +265,7 @@
   position: absolute;
 }
 .name_book {
+  padding-top: 8px;
   padding-left: 55px;
   width: 363px;
   height: 31px;
@@ -273,8 +281,8 @@
 }
 .author {
   margin: 0;
-
-  width: 230px;
+  width: 232px;
+  padding-top: 8px;
   height: 31px;
   font-family: 'OpenSans';
   font-size: 13px;
@@ -287,7 +295,7 @@
   color: #242a37;
 }
 .year {
-  padding-top: 14px;
+  padding-top: 23px;
   width: 47px;
   height: 31px;
   font-family: 'OpenSans';
@@ -301,7 +309,7 @@
   color: #242a37;
 }
 .page {
-  padding-top: 14px;
+  padding-top: 23px;
   height: 31px;
   font-family: 'OpenSans';
   font-size: 13px;
@@ -330,6 +338,9 @@
   }
 }
 @media (min-width: 1280px) {
+  .author {
+    width: 380px;
+  }
   .tablet {
     margin: 0 auto;
     width: 1280px;
@@ -355,13 +366,13 @@
     padding-left: 109px;
   }
   .name_book {
-    width: 634px;
+    width: 638px;
   }
   .p_avtor {
     width: 226px;
   }
   .avtor {
-    width: 383px;
+    width: 375px;
   }
   .year {
     width: 130px;

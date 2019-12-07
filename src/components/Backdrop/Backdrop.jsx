@@ -1,17 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './Backdrop.module.css'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './Backdrop.module.css';
 
 const Backdrop = ({ component: Component, isModalOpen, closeModal }) => {
   const handleClose = ({ target, key }) => {
     if (target.id === 'backdrop') {
-      closeModal()
+      closeModal();
     }
 
     if (key === 'Escape') {
-      closeModal()
+      closeModal();
     }
-  }
+  };
 
   return (
     <>
@@ -20,18 +20,18 @@ const Backdrop = ({ component: Component, isModalOpen, closeModal }) => {
           className={styles.backdrop}
           onClick={handleClose}
           onKeyDown={handleClose}
-          id='backdrop'
+          id="backdrop"
         >
           <Component />
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
 Backdrop.propTypes = {
   component: PropTypes.node.isRequired,
-  isModalOpen: PropTypes.bool.isRequired
-}
+  isModalOpen: PropTypes.bool.isRequired,
+};
 
-export default Backdrop
+export default Backdrop;

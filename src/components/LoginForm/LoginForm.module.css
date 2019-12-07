@@ -16,6 +16,7 @@
 
 .label {
   width: 100%;
+  margin-bottom: 10px;
 }
 
 input::placeholder {
@@ -53,12 +54,12 @@ input[type='password'] {
 }
 
 .emailError {
-  top: 94px;
+  top: 108px;
   left: 10px;
 }
 
 .passwordError {
-  top: 188px;
+  top: 216px;
   left: 10px;
 }
 
@@ -97,7 +98,7 @@ input[type='password'] {
   height: 55px;
   background-color: var(--orange);
   cursor: pointer;
-  margin-bottom: 22px;
+  margin-bottom: 25px;
   font-family: 'Montserrat';
   font-weight: 600;
   font-size: 16px;
@@ -117,6 +118,7 @@ input[type='password'] {
   font-family: 'Montserrat';
   font-size: 13px;
   font-weight: 600;
+  margin-top: 10px;
 }
 
 @media (min-width: 768px) {
@@ -125,6 +127,10 @@ input[type='password'] {
     background-color: var(--white);
     background-image: none;
     padding: 20px;
+  }
+
+  .logInButton {
+    margin-bottom: 25px;
   }
 
   .emailText,
@@ -139,12 +145,18 @@ input[type='password'] {
   }
 
   .emailError {
-    top: 102px;
+    top: 118px;
     left: 20px;
   }
 
   .passwordError {
-    top: 196px;
+    top: 226px;
     left: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .logInButton {
+    margin-bottom: 25px;
   }
 }
