@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import { useSelector, useDispatch } from 'react-redux';
+import makeStyle from '@material-ui/styles/makeStyles';
 import Logo from '../Logo/Logo';
 import ModalLogout from '../ModalLogout/ModalLogout';
 import styles from './Header.module.css';
@@ -14,7 +15,18 @@ import {
   getUser,
 } from '../../redux/selectors/sessionSelectors';
 
+const useStyles = makeStyle(theme => ({
+  btnIcon: {
+    fill: '#a6abb9',
+    color: '#a6abb9',
+  },
+  btnActiveIcon: {
+    color: theme.palette.secondary.main,
+  },
+}));
+
 const Header = () => {
+  const classes = useStyles();
   const isModalOpen = useSelector(state => getIsModalOpen(state));
   const user = useSelector(state => getUser(state));
   const authenticated = useSelector(state => getAuthenticated(state));
@@ -38,16 +50,22 @@ const Header = () => {
       <Logo />
       {authenticated && (
         <div className={styles.nav}>
-          <Link to="/training">
-            <IconButton>
-              <MenuBookIcon className={styles.icon} />
-            </IconButton>
-          </Link>
-          <Link to="/library">
-            <IconButton>
-              <HomeOutlinedIcon className={styles.icon} />
-            </IconButton>
-          </Link>
+          <IconButton
+            component={NavLink}
+            to="/training"
+            className={`${styles.icon} ${classes.btnIcon}`}
+            activeClassName={classes.btnActiveIcon}
+          >
+            <MenuBookIcon />
+          </IconButton>
+          <IconButton
+            component={NavLink}
+            to="/library"
+            className={`${styles.icon} ${classes.btnIcon}`}
+            activeClassName={classes.btnActiveIcon}
+          >
+            <HomeOutlinedIcon />
+          </IconButton>
           {user && (
             <div className={styles.bookPars}>
               <span className={styles.bookNameLetter}>
