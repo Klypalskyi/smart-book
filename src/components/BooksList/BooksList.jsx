@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
 import SubdirectoryArrowRightIcon from '@material-ui/icons/SubdirectoryArrowRight';
 import OutlinedFlagIcon from '@material-ui/icons/OutlinedFlag';
@@ -10,10 +10,12 @@ import PlanReadBooks from '../PlanReadBooks/PlanReadBooks';
 import ReadBooks from '../ReadBooks/ReadBooks';
 import NextStepButton from '../NextStepButton/NextStepButton';
 
-const BooksList = ({ books }) => {
+const BooksList = () => {
   const [planedBooks, setPlanedBooks] = useState([]);
   const [readBooks, setReadBooks] = useState([]);
   const [nowReadBooks, setNowReadBooks] = useState([]);
+
+  const books = useSelector(state => state.books);
 
   useEffect(() => {
     if (books) {
