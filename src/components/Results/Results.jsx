@@ -49,14 +49,21 @@ const Results = () => {
         },
       })
       .then(res => {
-        setTrainingId(res.data.training.trainingId);
-        setPagesReadResult(
-          res.data.training.pagesReadResult.sort((a, b) =>
-            a.date > b.date ? -1 : 1,
-          ),
-        );
-      });
-  }, [pagesReadResult]);
+        const trainingID = res.data.training.trainingId; // trainingID = null;
+        const trainingARR = [...res.data.training.pagesReadResult]; // trainingARR = [];
+        console.log('trainingID:', trainingID, 'trainingARR:', trainingARR);
+
+        if (trainingID && trainingARR.length > 0) {
+          setTrainingId(trainingID);
+          setPagesReadResult(
+            trainingARR.sort((a, b) => (a.date > b.date ? -1 : 1)),
+          );
+        }
+      })
+      .catch(console.log);
+
+    // console.log(pagesReadResult);
+  }, []);
 
   const handleDateInput = date => {
     setSelectedDate(date);
