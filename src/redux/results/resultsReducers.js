@@ -2,7 +2,7 @@ import { ActionConstants } from './resultsActions';
 
 const { RESULTS_ADD } = ActionConstants;
 
-export const resultsReducer = (state = [], { type, payload }) => {
+const resultsReducer = (state = [], { type, payload }) => {
   switch (type) {
     case RESULTS_ADD:
       return [...state, payload];
@@ -11,4 +11,4 @@ export const resultsReducer = (state = [], { type, payload }) => {
   }
 };
 
-export const zero = 0;
+export default resultsReducer;
