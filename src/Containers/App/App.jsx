@@ -33,7 +33,6 @@ function App() {
           redirectTo="/login"
         />
         <Route path="/" component={Auth} />
-
         <Route path="*">
           <div>create page for 404</div>
         </Route>

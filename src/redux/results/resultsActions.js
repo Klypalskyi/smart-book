@@ -1,19 +1,28 @@
+import axios from 'axios';
+
 export const ActionConstants = {
   RESULTS_ADD: 'RESULTS_ADD',
-  // RESULTS_GET: 'RESULTS_GET',
-  // RESULTS_POST: 'RESULTS_POST',
 };
 
-// export const getResults = res => ({
-//   type: ActionResults.RESULTS_GET,
-//   payload: res,
-// });
-
-// export const postResults = () => ({
-//   type: ActionResults.RESULTS_POST,
-// });
-
-export const addResult = obj => ({
+const addResult = res => ({
   type: ActionConstants.RESULTS_ADD,
-  payload: obj,
+  payload: res,
 });
+
+export const postResultsOnServer = (
+  token,
+  trainingId,
+  resultsArr,
+) => dispatch => {
+  axios
+    .post(`/training/time/${trainingId}`, resultsArr, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(res => {
+      // console.log(res.data.pagesReadResult),
+      dispatch(addResult(res.data.pagesReadResult));
+    })
+    .catch(console.log);
+};

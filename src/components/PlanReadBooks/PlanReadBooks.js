@@ -19,12 +19,18 @@ const planReadBooks = ({ books }) => {
                     <h2 className={styles.cardTitle}>{book.title}</h2>
                   </div>
                   <div className={styles.table}>
-                    <div className={styles.label}>Автор: </div>
-                    <div className={styles.quantity}>{book.author}</div>
-                    <div className={styles.label}> Рік: </div>
-                    <div className={styles.quantity}> {book.year} </div>
-                    <div className={styles.label}> Стор.: </div>
-                    <div className={styles.quantity}> {book.pagesCount} </div>
+                    <div className={styles.wrapper_mob}>
+                      <div className={styles.label}>Автор: </div>
+                      <div className={styles.quantity}>{book.author}</div>
+                    </div>
+                    <div className={styles.wrapper_mob}>
+                      <div className={styles.label}> Рік: </div>
+                      <div className={styles.quantity_year}> {book.year} </div>
+                    </div>
+                    <div className={styles.wrapper_mob}>
+                      <div className={styles.label}> Стор.: </div>
+                      <div className={styles.quantity}> {book.pagesCount} </div>
+                    </div>
                   </div>
                 </li>
               ))}

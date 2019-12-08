@@ -33,8 +33,11 @@ const TrainingPage = ({ modalCongratsOpen }) => {
         </div>
       ) : (
         <>
-          <Workout />
-          <Chart />
+          <Goal />
+          <div className={style.someContainer}>
+            <Workout />
+            <Chart />
+          </div>
         </>
       )}
     </div>
