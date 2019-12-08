@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { useSelector } from 'react-redux';
-import moment from 'moment';
 import { postBook } from '../../services/API';
 import { getUserToken } from '../../redux/selectors/sessionSelectors';
 import styles from './AddBook.module.css';
@@ -77,7 +76,7 @@ const AddBook = () => {
             onChange={getInputValue}
           />
         </label>
-        <label htmlFor="" className={styles.labelYear}>
+        <label htmlFor="bookDate" className={styles.labelYear}>
           <div className={styles.inputTitle}>Рік випуску</div>
           <MuiPickersUtilsProvider utils={DateFnsUtils} id="bookDate">
             <DatePicker
