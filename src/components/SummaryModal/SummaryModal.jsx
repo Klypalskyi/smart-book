@@ -1,19 +1,22 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './SummaryModal.module.css';
 import { closeModalSummary } from '../../redux/summaryModal/summaryModalActions';
 
 const SummaryModal = () => {
   const dispatch = useDispatch();
+  const [textarea, seTextarea] = useState('');
+  const id = useSelector(state => state.isSummaryModalOpen.bookId);
+
+  const handleChange = ({ target }) => {
+    seTextarea(target.value);
+  };
 
   const handleClick = ({ target }) => {
-    dispatch(closeModalSummary());
     if (target.name === 'back') {
       dispatch(closeModalSummary());
     } else if (target.name === 'save') {
-      //   dispatch(logOut(token));
-      //   dispatch(closeModalSummary());
-      // onLogout(); // .then(() => closeModal()) - onLogout - операция разлогинивания которая возвращает промис
+      dispatch(closeModalSummary());
     }
   };
 
@@ -36,7 +39,13 @@ const SummaryModal = () => {
       <div className={styles.modal}>
         <p className={styles.text}>Обрати рейтинг книги</p>
         <p className={styles.resume}>Резюме</p>
-        <textarea className={styles.text_area} name="text" placeholder="|..." />
+        <textarea
+          className={styles.text_area}
+          name="text"
+          placeholder="|..."
+          value={textarea}
+          onChange={handleChange}
+        />
         <div className={styles.buttonContainer}>
           <button type="button" name="back" onClick={handleClick}>
             Назад

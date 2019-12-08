@@ -3,13 +3,18 @@ export const summaryModalActionTypes = {
   CLOSE_MODAL_SUMMARY: 'CLOSE_MODAL_SUMMARY',
 };
 
-export const summaryModalReducer = (state = false, { type }) => {
+const initialState = { open: false, bookId: null };
+
+export const summaryModalReducer = (
+  state = initialState,
+  { type, payload },
+) => {
   switch (type) {
     case summaryModalActionTypes.OPEN_MODAL_SUMMARY:
-      return true;
+      return { open: !state.open, bookId: payload.bookId };
 
     case summaryModalActionTypes.CLOSE_MODAL_SUMMARY:
-      return false;
+      return { open: !state.open, bookId: null };
 
     default:
       return state;

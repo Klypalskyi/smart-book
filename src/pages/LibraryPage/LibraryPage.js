@@ -18,7 +18,7 @@ const LibraryPage = () => {
 
   return (
     <div className={styles.libraryPage__wrapper}>
-      {isSummaryModalOpen && <SummaryModal />}
+      {isSummaryModalOpen.open && <SummaryModal />}
       <AddBook />
       <BooksList books={book} />
     </div>

@@ -1,7 +1,10 @@
 import { summaryModalActionTypes } from './summaryModalReducer';
 
-export const openModalSummary = () => ({
+export const openModalSummary = bookId => ({
   type: summaryModalActionTypes.OPEN_MODAL_SUMMARY,
+  payload: {
+    bookId,
+  },
 });
 
 export const closeModalSummary = () => ({

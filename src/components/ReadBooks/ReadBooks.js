@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Rating from '@material-ui/lab/Rating';
@@ -10,8 +11,8 @@ const ReadBooks = ({ books }) => {
   const [value, setValue] = useState(null);
   const dispatch = useDispatch();
 
-  const handleClick = () => {
-    dispatch(openModalSummary());
+  const handleClick = bookId => {
+    dispatch(openModalSummary(bookId));
   };
 
   return (
@@ -22,7 +23,7 @@ const ReadBooks = ({ books }) => {
             <h1 className={styles.title}>Прочитано</h1>
             <ul className={styles.cardBook}>
               {books.map(book => (
-                <li className={styles.item} key={book.id}>
+                <li className={styles.item} key={book._id}>
                   <div className={styles.display}>
                     <img src={img} alt="book-icon" className={styles.icon} />
 
@@ -61,7 +62,7 @@ const ReadBooks = ({ books }) => {
                       book.comment ? styles.button__orange : styles.button__grey
                     }
                     type="button"
-                    onClick={handleClick}
+                    onClick={() => handleClick(book._id)}
                   >
                     Резюме
                   </button>
