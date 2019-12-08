@@ -8,10 +8,12 @@ import Results from '../../components/Results/Results';
 import ModalCongrats from '../../components/ModalCongrats/ModalCongrats';
 import Workout from '../../components/Workout/Workout';
 import Goal from '../../components/Goal/Goal';
+import Chart from '../../components/Chart/Chart';
 import { getTrainingFromServer } from '../../services/API';
 
 const TrainingPage = ({ modalCongratsOpen }) => {
   const token = useSelector(state => state.session.token);
+  const haveTraining = useSelector(state => state.user.haveTraining);
 
   const dispatch = useDispatch();
 
@@ -21,13 +23,23 @@ const TrainingPage = ({ modalCongratsOpen }) => {
 
   return (
     <div className={style.container}>
-      <PanelOfTimers />
-      <div className={style.trainingContainer}>
-        {modalCongratsOpen && <ModalCongrats />}
-        <Workout />
-        <Goal />
-      </div>
-      <Results />
+      {modalCongratsOpen && <ModalCongrats />}
+      {haveTraining ? (
+        <div className={style.wrapper}>
+          <PanelOfTimers />
+          <Workout />
+          <Goal />
+          <Results />
+        </div>
+      ) : (
+        <>
+          <Goal />
+          <div className={style.someContainer}>
+            <Workout />
+            <Chart />
+          </div>
+        </>
+      )}
     </div>
   );
 };

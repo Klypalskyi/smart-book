@@ -228,6 +228,8 @@
 @media (min-width: 1280px) {
   .container {
     max-width: 300px;
+    flex-basis: 30%;
+    order: 4;
   }
 
   .inner_container {
