@@ -52,11 +52,14 @@
   text-align: left;
 }
 .table {
+  display: flex;
+  flex-wrap: wrap;
   padding-left: 18px;
   margin-top: 3px;
   margin-left: 27px;
 }
 .label {
+  margin-top: 7px;
   width: 63px;
   height: 11px;
   font-family: OpenSans;
@@ -71,6 +74,7 @@
   padding-bottom: 6px;
 }
 .quantity {
+  margin-top: 7px;
   width: 109px;
   display: block;
   height: 11px;
@@ -177,6 +181,9 @@
   margin: 0;
   padding: 0;
 }
+.flex {
+  display: flex;
+}
 .wrapper_text {
   margin: 0 auto;
 }
@@ -206,7 +213,7 @@
 }
 .name_book {
   padding-left: 55px;
-  width: 352px;
+  width: 358px;
   height: 31px;
   font-family: 'OpenSans';
   font-size: 13px;
@@ -234,6 +241,7 @@
   color: #242a37;
 }
 .year {
+  padding-top: 7px;
   width: 47px;
   height: 31px;
   font-family: 'OpenSans';
@@ -248,6 +256,7 @@
 }
 .page {
   height: 31px;
+  padding-top: 7px;
   font-family: 'OpenSans';
   font-size: 13px;
   font-weight: normal;
@@ -259,9 +268,11 @@
   color: #242a37;
 }
 .p_name_book {
+  padding-top: 7px;
   width: 200px;
 }
 .p_avtor {
+  padding-top: 7px;
   width: 125px;
 }
 
