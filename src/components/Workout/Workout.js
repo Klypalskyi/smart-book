@@ -75,7 +75,6 @@ const Workout = () => {
 
   return (
     <div className={style.container}>
-      <div className={style.header}>Моє тренування</div>
       <div className={style.pickers}>
         <MuiPickersUtilsProvider
           className={style.pickerOverlay}
