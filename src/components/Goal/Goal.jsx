@@ -1,9 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './Goal.module.css';
+import moment from 'moment';
 
 const Goal = ({ isThisStatPage }) => {
-  // console.log(a);
+  const training = useSelector(state => state.training);
+  const start = moment('2019-12-08T13:56:30+02:00').dayOfYear();
+  const finish = moment('2019-12-15T13:56:30+02:00').dayOfYear();
+  const leftDays = finish - start;
+  console.log(leftDays);
   return (
     <>
       <div
@@ -33,7 +39,7 @@ const Goal = ({ isThisStatPage }) => {
                 isThisStatPage ? styles.goalDigitsStat : styles.goalDigits
               }
             >
-              123
+              {training ? training.booksCount : '!'}
             </p>
             <p
               className={isThisStatPage ? styles.goalTextStat : styles.goalText}
@@ -51,7 +57,7 @@ const Goal = ({ isThisStatPage }) => {
                 isThisStatPage ? styles.goalDigitsStat : styles.goalDigits
               }
             >
-              !
+              {leftDays}
             </p>
             <p
               className={isThisStatPage ? styles.goalTextStat : styles.goalText}
@@ -59,7 +65,7 @@ const Goal = ({ isThisStatPage }) => {
               Кількість днів
             </p>
           </div>
-          {isThisStatPage && (
+          {training != null && training.unreadCount && (
             <div
               className={
                 isThisStatPage ? styles.goalDigitsBoxStat : styles.goalDigitsBox
@@ -72,7 +78,7 @@ const Goal = ({ isThisStatPage }) => {
                     : styles.goalDigitsStat
                 }
               >
-                123
+                {training.unreadCount}
               </p>
               <p
                 className={
@@ -93,7 +99,7 @@ Goal.propTypes = {
 };
 
 Goal.defaultProps = {
-  isThisStatPage: false,
+  isThisStatPage: true,
 };
 
 export default Goal;
