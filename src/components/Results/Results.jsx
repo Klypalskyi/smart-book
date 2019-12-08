@@ -2,15 +2,14 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+// import PropTypes from 'prop-types';
 // import axios from 'axios';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DateTimePicker } from '@material-ui/pickers';
 
-import {
-  addResult,
-  postResultsOnServer,
-} from '../../redux/results/resultsActions';
+import { postResultsOnServer } from '../../redux/results/resultsActions';
+import { getTrainingFromServer } from '../../services/API';
 
 import styles from './Results.module.css';
 
@@ -53,13 +52,25 @@ const Results = () => {
         trainingId: initTrainingId,
       } = training;
       setTrainingId(initTrainingId);
-      if (initPageReadResult) {
+      if (initPageReadResult.length !== pagesReadResult.length) {
+        const lastTenPagesReadResult = [...initPageReadResult].sort((a, b) =>
+          a.date > b.date ? -1 : 1,
+        );
+        lastTenPagesReadResult.length = 10;
         setPagesReadResult(
-          initPageReadResult.sort((a, b) => (a.date > b.date ? -1 : 1)),
+          lastTenPagesReadResult,
+          // initPageReadResult.sort((a, b) => (a.date > b.date ? -1 : 1)),
         );
       }
     }
   }, [training]);
+
+  // useEffect(() => {
+  //   if (training.pagesReadResult > pagesReadResult) {
+  //     console.log(pagesReadResult);
+  //     setPagesReadResult(training.pagesReadResult);
+  //   }
+  // }, [training]);
 
   const handleDateInput = date => {
     setSelectedDate(date);
@@ -73,12 +84,12 @@ const Results = () => {
     e.preventDefault();
 
     if (!trainingId) {
-      console.log('Create workout!!!');
+      console.log('Please, create workout!!!');
       return;
     }
 
     if (selectedPages.length === 0 || Number(selectedPages) <= 0) {
-      // error handler
+      console.log('Please, insert pages!!!');
     } else {
       // set pages result
       const addedResult = {
@@ -90,23 +101,8 @@ const Results = () => {
       console.log('addedResult: ', addedResult);
       console.log('token: ', token);
 
-      dispatch(addResult(addedResult));
       dispatch(postResultsOnServer(token, trainingId, addedResult));
-
-      // add to backend
-      // axios
-      //   .post(`/training/time/${trainingId}`, addedResult, {
-      //     headers: {
-      //       Authorization: `Bearer ${token}`,
-      //     },
-      //   })
-      //   .then(res =>
-      //     // console.log(res.data.pagesReadResult)
-      //     setPagesReadResult(
-      //       res.data.pagesReadResult.sort((a, b) => (a.date > b.date ? -1 : 1)),
-      //     ),
-      //   )
-      //   .catch(console.log);
+      dispatch(getTrainingFromServer(token));
 
       // clear inputs
       setSelectedDate(new Date().toISOString());
@@ -159,17 +155,6 @@ const Results = () => {
           </h3>
           <table className={styles.table}>
             <tbody>
-              {/* {testResults.length > 0 &&
-                testResults.map(res => (
-                  <tr className={styles.table_row} key={res.id}>
-                    <td className={styles.table_date}>{res.date}</td>
-                    <td className={styles.table_time}>{res.time}</td>
-                    <td className={styles.table_pages}>
-                      <p className={styles.table_pages_value}>{res.pages}</p>
-                      <p className={styles.table_pages_text}>стор.</p>
-                    </td>
-                  </tr>
-                ))} */}
               {pagesReadResult &&
                 pagesReadResult.map(res => (
                   <tr className={styles.table_row} key={res._id}>
@@ -192,5 +177,11 @@ const Results = () => {
     </div>
   );
 };
+
+// Results.propTypes = {
+//   token: PropTypes.string.isRequired,
+//   training: PropTypes.string.isRequired,
+//   dispatch: PropTypes.string.isRequired,
+// };
 
 export default Results;

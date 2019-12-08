@@ -4,7 +4,7 @@ export const ActionConstants = {
   RESULTS_ADD: 'RESULTS_ADD',
 };
 
-export const addResult = res => ({
+const addResult = res => ({
   type: ActionConstants.RESULTS_ADD,
   payload: res,
 });
@@ -20,9 +20,9 @@ export const postResultsOnServer = (
         Authorization: `Bearer ${token}`,
       },
     })
-    .then(res =>
+    .then(res => {
       // console.log(res.data.pagesReadResult),
-      dispatch(addResult(res.data.pagesReadResult)),
-    )
+      dispatch(addResult(res.data.pagesReadResult));
+    })
     .catch(console.log);
 };
