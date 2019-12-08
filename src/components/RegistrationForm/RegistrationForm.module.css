@@ -15,6 +15,10 @@
   color: var(--white);
 }
 
+.label {
+  position: relative;
+}
+
 .form h2 > span {
   color: var(--orangey-red);
 }
@@ -43,11 +47,6 @@
   font-style: normal;
   letter-spacing: 0.42px;
   color: var(--light-grey-blue-three);
-}
-
-/* border switch on invalid input */
-.invalid {
-  border: 1px solid #f50a93;
 }
 
 .form button {
@@ -85,9 +84,26 @@
 
 .form a {
   font-weight: 500;
+  text-decoration-line: underline;
   color: var(--rusty-orange);
   cursor: pointer;
 }
+
+/* input error */
+.form label .error {
+  position: absolute;
+  padding: 0 10px;
+  /* display: block; */
+  color: var(--orangey-red);
+  font-weight: 600;
+  top: 105%;
+  right: 0;
+  z-index: 1;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: rgba(222, 184, 135, 0.9);
+}
+/* input error -END */
 
 @media (min-width: 768px) {
   .form {
@@ -102,4 +118,16 @@
   .form p {
     color: var(--blue-grey);
   }
+
+  /* input error */
+  /* .emailError {
+    top: 102px;
+    left: 20px;
+  }
+
+  .passwordError {
+    top: 196px;
+    left: 20px;
+  } */
+  /* input error -END */
 }
