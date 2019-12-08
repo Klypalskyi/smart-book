@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types's
 import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
