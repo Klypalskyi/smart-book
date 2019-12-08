@@ -8,6 +8,7 @@ import Results from '../../components/Results/Results';
 import ModalCongrats from '../../components/ModalCongrats/ModalCongrats';
 import Workout from '../../components/Workout/Workout';
 import Goal from '../../components/Goal/Goal';
+import Chart from '../../components/Chart/Chart';
 import { getTrainingFromServer } from '../../services/API';
 
 const TrainingPage = ({ modalCongratsOpen }) => {
@@ -31,7 +32,10 @@ const TrainingPage = ({ modalCongratsOpen }) => {
           <Results />
         </div>
       ) : (
-        <Workout />
+        <>
+          <Workout />
+          <Chart />
+        </>
       )}
     </div>
   );
