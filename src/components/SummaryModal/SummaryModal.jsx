@@ -36,7 +36,7 @@ const SummaryModal = () => {
       <div className={styles.modal}>
         <p className={styles.text}>Обрати рейтинг книги</p>
         <p className={styles.resume}>Резюме</p>
-        <textarea className={styles.text_area} name="text" />
+        <textarea className={styles.text_area} name="text" placeholder="|..." />
         <div className={styles.buttonContainer}>
           <button type="button" name="back" onClick={handleClick}>
             Назад
