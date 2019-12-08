@@ -10,10 +10,25 @@ import style from './Workout.module.css';
 import TrainingBookTable from '../TrainingBooksTable/TrainingBooksTable';
 import { addUserTraining } from '../../redux/userTraining/userTrainingActions';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   selectEmpty: {
     marginRight: '21px',
+    margin: theme.spacing(1),
+    backgroundColor: 'transparent',
+    background: 'transparent',
+    '.MuiSelect-selectMenu': {
+      paddingLeft: 10,
+    },
     // marginTop: theme.spacing(2),
+    '&$:focus': {
+      backgroundColor: '#fff',
+    },
+    '&:focus': {
+      background: '#fff',
+    },
+    '.MuiSelect-select': {
+      background: '#fff',
+    },
   },
 }));
 
@@ -55,6 +70,10 @@ const Workout = () => {
     if (booksForRender.find(el => el._id === selectedBookId)) return;
     setBooksForRender([...booksForRender, getSelectedBook]);
     setBooks([...books, { book: selectedBookId }]);
+    setSelectedBook({
+      _id: null,
+      title: '',
+    });
   };
 
   const deleteBook = id => {
@@ -119,8 +138,6 @@ const Workout = () => {
         </MuiPickersUtilsProvider>
       </div>
       <div className={style.selectContainer}>
-        {console.log('selectBook :', selectedBook)}
-
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
