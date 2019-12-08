@@ -83,6 +83,7 @@ const AddBook = () => {
             <DatePicker
               value={bookDate}
               onChange={handleDateInput}
+              className={styles.inputData}
               InputProps={{ className: styles.inputData }}
               views={['year']}
               invalidDateMessage=""
