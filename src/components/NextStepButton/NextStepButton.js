@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import styles from './NextStepButton.module.css';
 
@@ -41,6 +42,7 @@ const NextStepButton = () => {
   return (
     <div className={styles.nextStepButton__wrapper}>
       <Button
+        component={Link}
         to="/training"
         className={
           window.innerWidth >= 768 ? classes.linkTablet : classes.linkMobile
