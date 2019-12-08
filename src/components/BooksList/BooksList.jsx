@@ -11,6 +11,7 @@ const BooksList = () => {
   const [planedBooks, setPlanedBooks] = useState([]);
   const [readBooks, setReadBooks] = useState([]);
   const [nowReadBooks, setNowReadBooks] = useState([]);
+  const userHaveTraining = useSelector(state => state.user.haveTraining);
 
   const books = useSelector(state => state.books);
 
@@ -26,9 +27,10 @@ const BooksList = () => {
     <>
       {books ? (
         <>
-          <ReadBooks books={readBooks} />
-          <NowReadBooks books={nowReadBooks} />
-          <PlanReadBooks books={planedBooks} />
+          {!userHaveTraining && <NextStepButton />}
+          {!!readBooks.length && <ReadBooks books={readBooks} />}
+          {!!nowReadBooks.length && <NowReadBooks books={nowReadBooks} />}
+          {planedBooks.length && <PlanReadBooks books={planedBooks} />}
         </>
       ) : (
         <StartingSteps />
