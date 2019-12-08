@@ -19,12 +19,12 @@ const planReadBooks = ({ books }) => {
                   <div className={styles.display}>
                     <img src={img} alt="book-icon" className={styles.icon} />{' '}
                     <h2 className={styles.cardTitle}> {book.title} </h2>{' '}
-                  </div>
+                  </div>{' '}
                   <div className={styles.table}>
                     <div className={styles.label}> Автор: </div>{' '}
-                    <div className={styles.quantity}> {book.author} </div>
+                    <div className={styles.quantity}> {book.author} </div>{' '}
                     <div className={styles.label}> Рік: </div>{' '}
-                    <div className={styles.quantity}> {book.year} </div>
+                    <div className={styles.quantity}> {book.year} </div>{' '}
                     <div className={styles.label}> Стор.: </div>{' '}
                     <div className={styles.quantity}> {book.pagesCount} </div>{' '}
                   </div>{' '}
@@ -49,7 +49,7 @@ const planReadBooks = ({ books }) => {
                       src={img}
                       alt="book-icon"
                       className={styles.icon__tablet}
-                    />
+                    />{' '}
                     <div className={styles.table_book}>
                       <div className={styles.flex}>
                         <div className={styles.name_book}>
