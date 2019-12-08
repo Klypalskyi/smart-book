@@ -1,103 +1,173 @@
-import React from 'react';
-import { Line } from 'react-chartjs-2';
+import React, { useEffect, useState } from 'react';
+import moment from 'moment';
+import Paper from '@material-ui/core/Paper';
+import {
+  ArgumentAxis,
+  ValueAxis,
+  Chart,
+  LineSeries,
+  SplineSeries,
+} from '@devexpress/dx-react-chart-material-ui';
 
-const Chart = props => {
-  const data = {
-    labels: ['hallo', , , , , ,],
-    datasets: [
-      {
-        label: 'Факт',
-        fill: false,
-        lineTension: 0.4,
-        backgroundColor: '#e18337',
-        borderColor: '#d97833',
-        borderWidth: 1,
-        data: [65, 59, 80, 81, 56, 1],
-      },
-      {
-        label: 'План',
-        fill: false,
-        lineTension: 0.4,
-        backgroundColor: '#091e3f',
-        borderColor: '#091e3f',
-        borderWidth: 1,
-        data: [1, 56, 70, 7, 10, 45],
-      },
-    ],
+const pagesReadResult = [
+  {
+    _id: '5debb14b496b296044455570',
+    date: '2019-12-01T13:15:00.000Z',
+    count: 15,
+  },
+  {
+    _id: '5deb8534b15b06277af0b461',
+    date: '2019-12-02T20:38:00.000Z',
+    count: 123,
+  },
+  {
+    _id: '5debaa6d5defc6604353a8fa',
+    date: '2019-12-04T14:26:00.000Z',
+    count: 88,
+  },
+  {
+    _id: '5deba9cd5defc6604353a8f9',
+    date: '2019-12-06T12:16:00.000Z',
+    count: 11,
+  },
+  {
+    _id: '5debaeac5defc6604353a8fd',
+    date: '2019-12-06T10:12:00.000Z',
+    count: 121,
+  },
+  {
+    _id: '5debac1f5defc6604353a8fc',
+    date: '2019-12-07T13:38:45.473Z',
+    count: 7,
+  },
+  {
+    _id: '5deba30ab15b06277af0b462',
+    date: '2019-12-07T14:32:14.844Z',
+    count: 11,
+  },
+  {
+    _id: '5debab615defc6604353a8fb',
+    date: '2019-12-07T13:38:38.134Z',
+    count: 213,
+  },
+  {
+    _id: '5deb9e3cdd9d032772bf52a1',
+    date: '2019-12-07T12:35:44.844Z',
+    count: 32,
+  },
+];
+
+const obj = {};
+
+pagesReadResult.forEach(el => {
+  const formatedDate = moment(el.date).format('YYYY/MM/DD');
+
+  obj[formatedDate] = {
+    count: obj[formatedDate] ? obj[formatedDate].count : 0 + el.count,
   };
+});
+
+const arrayOfCount = Object.values(obj);
+const finalCount = arrayOfCount.map(el => el.count);
+
+// const countArray = [];
+const generateData = (start, end, count, average) => {
+  const data = [];
+  for (let i = start; i <= end; i++) {
+    data.push({
+      countAveragePage: average,
+      countPagesEveryDay: count[i - 1],
+      argument: i,
+    });
+  }
+
+  return data;
+};
+
+const ChartComp = props => {
+  // hooks
+  const [average, setAverage] = useState(0);
+  const [dateArray, setObject] = useState(pagesReadResult);
+  const [date, setDate] = useState([]);
+  const [allPages, setAllPages] = useState(3186);
+  // end of hooks
+
+  const timeStart = 1575417600000;
+  const timeEnd = '2019-12-07T00:00:00.000Z';
+  const allPagesCount = 1593;
+
+  const startOfTranning = moment(timeStart).dayOfYear();
+  const endOfTranning = moment(timeEnd).dayOfYear();
+  const difference = endOfTranning - startOfTranning;
+
+  const averageCountPage = allPagesCount / difference;
+
+  const onlyDate = [];
+  const onlyNormalDate = [];
+
+  dateArray.forEach(train => {
+    const day = moment(train.date).dayOfYear(); // day of year
+
+    if (!onlyDate.includes(day)) {
+      onlyDate.push(day); // push day of year
+
+      const format = moment().dayOfYear(day)._d;
+      onlyNormalDate.push(moment(format).format('YYYY/MM/DD')); // push normal date to another array
+    }
+  });
+
+  dateArray.forEach(train => {
+    const day = moment(train.date).dayOfYear(); // day of year
+
+    if (!onlyDate.includes(day)) {
+      onlyDate.push(day); // push day of year
+
+      const format = moment().dayOfYear(day)._d;
+      onlyNormalDate.push(moment(format).format('YYYY/MM/DD')); // push normal date to another array
+    }
+  });
+
+  const differenceWithDeadline =
+    difference + (onlyNormalDate.length - difference);
+
+  const dataa = [
+    { argument: 1, value: 10 },
+    { argument: 2, value: 1000 },
+    { argument: 3, value: 30 },
+  ];
+
+  useEffect(() => {
+    setDate(pagesReadResult);
+  }, []);
+
+  const chartData = generateData(
+    1,
+    differenceWithDeadline,
+    finalCount,
+    averageCountPage,
+  );
+
+  console.log('chart', chartData);
 
   return (
-    <div className="ChartWrapper">
-      <Line
-        height={170}
-        width={390}
-        data={data}
-        options={{
-          title: {
-            display: true,
-            position: 'top',
-            fontColor: '#091e3f',
-            fontStyle: 'normal',
-            padding: 20,
-            left: 0,
-            horizontalAlign: 'right',
-            text: `КІЛЬКІСТЬ СТОРІНОК / ДЕНЬ 56`,
-            fontSize: 12,
-          },
-          legend: {
-            position: 'right',
-            labels: {
-              fontSize: 12,
-              fontFamily: 'Montserrat',
-              fontColor: '#242a37',
-              boxWidth: 8,
-              padding: 10,
-              fullWidth: false,
-              usePointStyle: true,
-            },
-          },
-          layout: {
-            padding: {
-              left: 30,
-              right: 30,
-              top: 30,
-              bottom: 0,
-            },
-          },
-          scales: {
-            yAxes: [
-              {
-                scaleLabel: {
-                  display: true,
-                  labelString: 'hallo',
-                  position: 'left',
-                },
-                display: false,
-              },
-            ],
-            xAxes: [
-              {
-                scaleLabel: {
-                  display: true,
-                  labelString: 'ЧАС',
-                  fontSize: 12,
-                  fontFamily: 'Montserrat',
-                  fontColor: '#242a37',
-                  fontStyle: 'bold',
-                },
-                ticks: {
-                  display: false,
-                },
-                gridLines: {
-                  color: 'rgba(193, 196, 206, 0.9)',
-                },
-              },
-            ],
-          },
-        }}
-      />
-    </div>
+    <Paper>
+      <Chart data={chartData}>
+        <ArgumentAxis />
+        <ValueAxis />
+
+        <LineSeries
+          name="line"
+          valueField="countAveragePage"
+          argumentField="argument"
+        />
+        <SplineSeries
+          name="spline"
+          valueField="countPagesEveryDay"
+          argumentField="argument"
+        />
+      </Chart>
+    </Paper>
   );
 };
 
-export default Chart;
+export default ChartComp;
