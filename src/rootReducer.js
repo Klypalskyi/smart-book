@@ -5,7 +5,7 @@ import backdropReducer from './components/Backdrop/backdropReducer';
 import { user, sessionReducer } from './redux/login/loginReducers';
 import booksReducer from './redux/books/booksReducer';
 import componentController from './redux/componentController/componentControllerReducer';
-import goalReducer from './redux/goal/goalReducer';
+import trainingReducer from './redux/training/trainingReducer';
 import { summaryModalReducer } from './redux/summaryModal/summaryModalReducer';
 
 const sessionPersistConfig = {
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   session: persistReducer(sessionPersistConfig, sessionReducer),
   isModalOpen: backdropReducer,
   componentController,
-  goal: goalReducer,
+  training: trainingReducer,
   isSummaryModalOpen: summaryModalReducer,
 });
 
