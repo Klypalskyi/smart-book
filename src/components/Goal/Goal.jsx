@@ -10,7 +10,8 @@ const Goal = () => {
   const finish = moment('2019-12-15T13:56:30+02:00').dayOfYear();
   const leftDays = finish - start;
   // let isThisStatPage = !!(training != null && training.unreadCount);
-  let isThisStatPage = false;
+  let isThisStatPage = !!(training && training.unreadCount);
+  console.log(isThisStatPage);
   // console.log(leftDays);
   return (
     <>
@@ -67,7 +68,7 @@ const Goal = () => {
               Кількість днів
             </p>
           </div>
-          {training != null && training.unreadCount && (
+          {training && training.unreadCount && (
             <div
               className={
                 isThisStatPage ? styles.goalDigitsBoxStat : styles.goalDigitsBox
