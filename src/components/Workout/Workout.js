@@ -1,22 +1,51 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
-import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
+import makeStyles from '@material-ui/styles/makeStyles';
+import MenuItem from '@material-ui/core/MenuItem';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import { useSelector, useDispatch } from 'react-redux';
+import Select from '@material-ui/core/Select';
 import style from './Workout.module.css';
 import TrainingBookTable from '../TrainingBooksTable/TrainingBooksTable';
 import { addUserTraining } from '../../redux/userTraining/userTrainingActions';
 import TrainingTableInfo from '../TrainingTableInfo/TrainingTableInfo';
 import { postTraining } from '../../services/API';
 
+const useStyles = makeStyles(theme => ({
+  selectEmpty: {
+    marginRight: '21px',
+    margin: theme.spacing(1),
+    backgroundColor: 'transparent',
+    background: 'transparent',
+    '.MuiSelect-selectMenu': {
+      paddingLeft: 10,
+    },
+    // marginTop: theme.spacing(2),
+    '&$:focus': {
+      backgroundColor: '#fff',
+    },
+    '&:focus': {
+      background: '#fff',
+    },
+    '.MuiSelect-select': {
+      background: '#fff',
+    },
+  },
+}));
+
 const Workout = () => {
+  const classes = useStyles();
   const [selectedBookId, setSelectedBookId] = useState('');
   const [books, setBooks] = useState([]);
   const [booksForRender, setBooksForRender] = useState([]);
   const [timeStart, setTimeStart] = useState(new Date().toISOString());
   const [timeEnd, setTimeEnd] = useState();
   const [avgReadPages, setAvgReadPages] = useState(0);
+  const [selectedBook, setSelectedBook] = useState({
+    _id: null,
+    title: '',
+  });
 
   const dispatch = useDispatch();
   // const token = useSelector(state => state.session.token);
@@ -34,16 +63,20 @@ const Workout = () => {
     setTimeEnd(date.toISOString());
   };
 
-  const addBook = evt => {
-    setSelectedBookId(evt.target.options[evt.target.selectedIndex].dataset.id);
-  };
+  // const addBook = evt => {
+  //   setSelectedBookId(evt.target.options[evt.target.selectedIndex].dataset.id);
+  // };
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    const selectedBook = plannedBooks.find(el => el._id === selectedBookId);
+    const getSelectedBook = plannedBooks.find(el => el._id === selectedBookId);
     if (booksForRender.find(el => el._id === selectedBookId)) return;
-    setBooksForRender([...booksForRender, selectedBook]);
+    setBooksForRender([...booksForRender, getSelectedBook]);
     setBooks([...books, { book: selectedBookId }]);
+    setSelectedBook({
+      _id: null,
+      title: '',
+    });
   };
 
   const deleteBook = id => {
@@ -77,13 +110,17 @@ const Workout = () => {
     }
   };
 
+  const handleSelectBook = event => {
+    setSelectedBookId(event.target.value);
+    setSelectedBook(event.target.value);
+  };
+
   return (
     <div className={style.container}>
       {haveTraining ? (
         <TrainingTableInfo />
       ) : (
         <>
-          <div className={style.header}>Моє тренування</div>
           <div className={style.pickers}>
             <MuiPickersUtilsProvider
               className={style.pickerOverlay}
@@ -108,21 +145,33 @@ const Workout = () => {
               />
             </MuiPickersUtilsProvider>
           </div>
-          <form className={style.selectContainer} onSubmit={handleSubmit}>
-            <select className={style.select} onChange={addBook}>
-              <option disabled selected className={style.label}>
-                Обрати книги з бібліотеки
-              </option>
+          <div className={style.selectContainer}>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              fullWidth
+              value={selectedBook}
+              onChange={handleSelectBook}
+              className={classes.selectEmpty}
+              inputProps={{
+                placeholder: 'Виберіть книгу...',
+                style: { paddingLeft: '10px' },
+              }}
+            >
               {plannedBooks.map(el => (
-                <option data-id={el._id} key={el._id}>
+                <MenuItem data-id={el._id} value={el._id} key={el._id}>
                   {el.title}
-                </option>
+                </MenuItem>
               ))}
-            </select>
-            <button type="submit" className={style.button}>
+            </Select>
+            <button
+              type="button"
+              className={style.button}
+              onClick={handleSubmit}
+            >
               Додати
             </button>
-          </form>
+          </div>
           <TrainingBookTable books={booksForRender} deleteBook={deleteBook} />
           <button type="submit" className={style.submit} onClick={addTraining}>
             Почати тренування
