@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
@@ -14,8 +14,10 @@ const Workout = () => {
   const [booksForRender, setBooksForRender] = useState([]);
   const [timeStart, setTimeStart] = useState(new Date().toISOString());
   const [timeEnd, setTimeEnd] = useState();
-  const avgReadPages = 0;
-  // const [avgReadPages, setAvgReadPages] = useState(0);
+  const [avgReadPages, setAvgReadPages] = useState(0);
+
+  const dispatch = useDispatch();
+  // const token = useSelector(state => state.session.token);
 
   const plannedBooks = useSelector(state =>
     state.books.filter(book => book.status === 'planned'),
@@ -47,9 +49,15 @@ const Workout = () => {
     setBooks(books.filter(el => el.book !== id));
   };
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    const allPages = booksForRender.reduce(
+      (acc, el) => (el.pagesCount !== null ? acc + el.pagesCount : acc),
+      0,
+    );
+    setAvgReadPages(allPages);
+  }, [booksForRender]);
 
-  const addTrainingToState = () => {
+  const addTraining = () => {
     if (booksForRender.length !== 0 && timeEnd) {
       const training = {
         books,
@@ -58,10 +66,10 @@ const Workout = () => {
         avgReadPages,
       };
       dispatch(addUserTraining(training));
-      setSelectedBookId('');
-      setBooks([]);
-      setBooksForRender([]);
-      setTimeEnd(new Date().toISOString());
+      // setSelectedBookId('');
+      // setBooks([]);
+      // setBooksForRender([]);
+      // setTimeEnd(new Date().toISOString());
     }
   };
 
@@ -108,11 +116,7 @@ const Workout = () => {
         </button>
       </form>
       <TrainingBookTable books={booksForRender} deleteBook={deleteBook} />
-      <button
-        type="submit"
-        className={style.submit}
-        onClick={addTrainingToState}
-      >
+      <button type="submit" className={style.submit} onClick={addTraining}>
         Почати тренування
       </button>
     </div>

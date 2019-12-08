@@ -3,6 +3,11 @@
   min-width: 320px;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 @media (min-width: 768px) {
   .container {
     padding: 26px 44px;
@@ -14,9 +19,5 @@
   .container {
     padding: 30px 40px 50px 40px;
     min-width: 1280px;
-  }
-
-  .trainingContainer {
-    display: flex;
   }
 }

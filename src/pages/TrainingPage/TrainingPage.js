@@ -12,6 +12,7 @@ import { getTrainingFromServer } from '../../services/API';
 
 const TrainingPage = ({ modalCongratsOpen }) => {
   const token = useSelector(state => state.session.token);
+  const haveTraining = useSelector(state => state.user.haveTraining);
 
   const dispatch = useDispatch();
 
@@ -21,13 +22,17 @@ const TrainingPage = ({ modalCongratsOpen }) => {
 
   return (
     <div className={style.container}>
-      <PanelOfTimers />
-      <div className={style.trainingContainer}>
-        {modalCongratsOpen && <ModalCongrats />}
+      {modalCongratsOpen && <ModalCongrats />}
+      {haveTraining ? (
+        <div className={style.wrapper}>
+          <PanelOfTimers />
+          <Workout />
+          <Goal />
+          <Results />
+        </div>
+      ) : (
         <Workout />
-        <Goal />
-      </div>
-      <Results />
+      )}
     </div>
   );
 };
