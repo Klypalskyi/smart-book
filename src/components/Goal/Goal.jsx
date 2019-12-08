@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Goal.module.css';
 
 const Goal = ({ isThisStatPage }) => {
+  // console.log(a);
   return (
     <>
       <div

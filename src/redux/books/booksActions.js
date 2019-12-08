@@ -2,8 +2,9 @@ export const ActionBooks = {
   BOOKS_REQUEST: 'BOOKS_REQUEST',
   BOOKS_SUCCESS: 'BOOKS_SUCCESS',
   BOOKS_ERROR: 'BOOKS_ERROR',
-  BOOKS_DELETE: 'BOOK_DELETE',
+  BOOK_DELETE: 'BOOK_DELETE',
   BOOK_UPDATE: 'BOOK_UPDATE',
+  ADD_BOOK: 'ADD_BOOK',
 };
 
 export const BooksRequest = () => ({
@@ -28,4 +29,9 @@ export const BookDelete = id => ({
 export const BookUpdate = id => ({
   type: ActionBooks.BOOK_UPDATE,
   payload: id,
+});
+
+export const AddBook = book => ({
+  type: ActionBooks.ADD_BOOK,
+  payload: book,
 });
