@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { useSelector } from 'react-redux';
-import { postBook } from '../../services/API';
+import { useSelector, useDispatch } from 'react-redux';
+import { postBook } from '../../redux/books/BooksOperations';
 import { getUserToken } from '../../redux/selectors/sessionSelectors';
 import styles from './AddBook.module.css';
 
 const AddBook = () => {
   const token = useSelector(state => getUserToken(state));
+  const dispatch = useDispatch();
   const [bookName, setbookName] = useState('');
   const [bookAuthor, setbookAuthor] = useState('');
-  const [bookDate, setbookDate] = useState(Number(Date.now()));
-  const [pagesAmount, setpagesAmount] = useState(0);
+  const [bookDate, setbookDate] = useState(Date.now());
+  const [pagesAmount, setpagesAmount] = useState('');
 
   const getInputValue = ({ target }) => {
     if (target.name === 'bookName') {
@@ -28,7 +29,7 @@ const AddBook = () => {
   };
 
   const handleDateInput = date => {
-    setbookDate(Number(date));
+    setbookDate(date);
   };
 
   const createBook = event => {
@@ -36,16 +37,16 @@ const AddBook = () => {
     if (pagesAmount <= 0) return;
     const book = {
       title: bookName,
-      author: bookAuthor,
-      year: bookDate,
+      year: new Date(bookDate).getFullYear(),
       pagesCount: pagesAmount,
     };
-    postBook(book, token);
+    if (bookAuthor.trim().length) book.author = bookAuthor;
+    dispatch(postBook(book, token));
 
     setbookName('');
     setbookAuthor('');
-    setbookDate(Number(Date.now()));
-    setpagesAmount(0);
+    setbookDate(Date.now());
+    setpagesAmount('');
   };
 
   return (
@@ -76,15 +77,15 @@ const AddBook = () => {
             onChange={getInputValue}
           />
         </label>
-        <label htmlFor="" className={styles.labelYear}>
+        <label htmlFor="bookDate" className={styles.labelYear}>
           <div className={styles.inputTitle}>Рік випуску</div>
           <MuiPickersUtilsProvider utils={DateFnsUtils} id="bookDate">
             <DatePicker
               value={bookDate}
               onChange={handleDateInput}
+              className={styles.inputData}
               InputProps={{ className: styles.inputData }}
               views={['year']}
-              name={bookDate}
               invalidDateMessage=""
               disableFuture
             />
@@ -100,6 +101,7 @@ const AddBook = () => {
             placeholder="..."
             className={styles.inputData}
             onChange={getInputValue}
+            min="0"
             required
           />
         </label>
