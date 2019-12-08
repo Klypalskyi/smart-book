@@ -46,11 +46,9 @@ export const bookUpdate = (token, id) => dispatch => {
       },
     })
     .then(res => {
-      dispatch(BookUpdate(res.data.books.filter(book => book.id === id)));
+      dispatch(BookUpdate(res.data.books.map(book => book.id === id)));
     })
-    .then(res => {
-      dispatch(() => {});
-    })
+    .then()
     .catch(err => {
       dispatch(BooksError(err));
     });
