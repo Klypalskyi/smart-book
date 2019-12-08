@@ -9,12 +9,26 @@
   background-color: var(--white);
 }
 
+.modalLogOut {
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 12;
+  background-color: rgba(0, 0, 0, 0.102);
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 65%;
+  width: 200px;
   position: relative;
+  margin-right: 20px;
 }
 
 .icon {
@@ -30,7 +44,7 @@
   display: inline-block;
   width: 33px;
   height: 33px;
-  padding-top: 6px;
+  padding-top: 8px;
   background-color: var(--pale-grey);
   border-radius: 50%;
   text-align: center;
@@ -67,7 +81,7 @@
   }
   .nav {
     justify-content: flex-end;
-    width: 62%;
+    width: 50%;
   }
 
   .bookName {

@@ -1,33 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
-// import { Redirect } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './LibraryPage.module.css';
 import AddBook from '../../components/AddBook/AddBook';
-import NextStepButton from '../../components/NextStepButton/NextStepButton';
 import BooksList from '../../components/BooksList/BooksList';
+import { booksOperation } from '../../redux/books/BooksOperations';
+import SummaryModal from '../../components/SummaryModal/SummaryModal';
 
 const LibraryPage = () => {
-  const [books, setBooks] = useState(null);
   const token = useSelector(state => state.session.token);
+  const dispatch = useDispatch();
+  const book = useSelector(state => state.books);
+  const isSummaryModalOpen = useSelector(state => state.isSummaryModalOpen);
 
   useEffect(() => {
-    const BaseUrl = 'https://smart-book.goit.co.ua/api/v1/books';
-    axios
-      .get(BaseUrl, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then(res => {
-        setBooks(res.data.books);
-      });
+    dispatch(booksOperation(token));
   }, []);
+
   return (
     <div className={styles.libraryPage__wrapper}>
+      {isSummaryModalOpen && <SummaryModal />}
       <AddBook />
-      <NextStepButton />
-      <BooksList books={books} />
+      <BooksList books={book} />
     </div>
   );
 };

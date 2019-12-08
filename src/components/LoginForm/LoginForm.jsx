@@ -1,13 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import styles from './LoginForm.module.css';
-import { login } from '../../services/API';
 import withAuthRedirect from '../WithAuthRedirect/WithAuthRedirect';
+import { login } from '../../services/API';
+import styles from './LoginForm.module.css';
+import CustomButton from '../../shared-ui/CustomButton/CustomButton';
+import withConnectByGoogle from '../../hoc/WithConnectByGoogle';
+
+const useStyles = makeStyles(theme => ({
+  emailInput: {
+    borderBottomColor: theme.palette.action.selected,
+    borderColor: theme.palette.action.selected,
+    '& label.Mui-focused': {
+      color: 'var(--orangey-red)',
+    },
+    borderRadius: 3,
+    width: '100%',
+    fontFamily: 'Montserrat',
+    fontSize: 14,
+    fontWeight: 600,
+    backgroundColor: 'var(--pale-grey)',
+    letterSpacing: 0.5,
+  },
+
+  passwordInput: {
+    '& label.Mui-focused': {
+      color: 'var(--orangey-red)',
+    },
+    borderRadius: 3,
+    width: '100%',
+    borderBottomColor: 'var(--orangey-red)',
+    fontFamily: 'Montserrat',
+    fontSize: 14,
+    fontWeight: 600,
+    backgroundColor: 'var(--pale-grey)',
+    letterSpacing: 0.5,
+    marginBottom: 20,
+  },
+}));
 
 const LoginPage = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -29,15 +66,18 @@ const LoginPage = () => {
       dispatch(login(credential));
     },
   });
+
   return (
     <form onSubmit={formik.handleSubmit} className={styles.form}>
       <label className={styles.label} htmlFor="email">
         <p className={styles.emailText}>Електронна адреса</p>
-        <input
-          placeholder="your@email.com"
-          type="email"
+        <TextField
+          id="custom-css-outlined-input"
           {...formik.getFieldProps('email')}
-          className={styles.emailInput}
+          type="email"
+          variant="filled"
+          className={classes.emailInput}
+          label="your@email.com"
         />
       </label>
       {formik.touched.email && formik.errors.email ? (
@@ -45,19 +85,27 @@ const LoginPage = () => {
       ) : null}
       <label className={styles.label} htmlFor="password">
         <p className={styles.passwordText}>Пароль</p>
-        <input
-          placeholder="Пароль"
-          type="password"
+        <TextField
+          id="custom-css-outlined-input"
           {...formik.getFieldProps('password')}
-          className={styles.passwordInput}
+          type="password"
+          variant="filled"
+          className={classes.passwordInput}
+          label="Password"
         />
       </label>
       {formik.touched.password && formik.errors.password ? (
         <span className={styles.passwordError}>{formik.errors.password}</span>
       ) : null}
-      <button type="submit" className={styles.logInButton}>
+      <CustomButton
+        size="100%"
+        type="submit"
+        variant="contained"
+        className={styles.logInButton}
+        color="var(--rusty-orange)"
+      >
         Увійти
-      </button>
+      </CustomButton>
       <Link to="/registration" className={styles.singInLink}>
         Реєстрація
       </Link>
@@ -65,4 +113,4 @@ const LoginPage = () => {
   );
 };
 
-export default withAuthRedirect(LoginPage);
+export default withConnectByGoogle(withAuthRedirect(LoginPage));

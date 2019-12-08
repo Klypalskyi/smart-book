@@ -6,6 +6,10 @@ export const ActionType = {
   REFRESH_USER_SUCCESS: 'REFRESH_USER_SUCCESS',
   REFRESH_USER_ERROR: 'REFRESH_USER_ERROR',
   LOGOUT: 'LOGOUT',
+  REGISTRATION_REQUEST: 'REGISTRATION_REQUEST',
+  REGISTRATION_SUCCESS: 'REGISTRATION_SUCCESS',
+  REGISTRATION_ERROR: 'REGISTRATION_ERROR',
+  SET_GOOGLE_TOKEN: 'SET_GOOGLE_TOKEN',
 };
 
 export const loginRequest = () => ({
@@ -38,4 +42,9 @@ export const refreshUserError = error => ({
 
 export const logOutSuccess = () => ({
   type: ActionType.LOGOUT,
+});
+
+export const setGoogleToken = googleToken => ({
+  type: ActionType.SET_GOOGLE_TOKEN,
+  payload: { googleToken },
 });
