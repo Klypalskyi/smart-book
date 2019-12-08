@@ -4,6 +4,7 @@ import {
   BooksSuccess,
   BooksError,
   BooksDelete,
+  AddBook,
 } from './booksActions';
 
 export const booksOperation = token => dispatch => {
@@ -35,4 +36,17 @@ export const booksDelete = (token, id) => dispatch => {
     .catch(err => {
       dispatch(BooksError(err));
     });
+};
+
+export const postBook = (book, token) => dispatch => {
+  axios
+    .post(`${process.env.REACT_APP_BASE_API_URL}/books/create`, book, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(response => {
+      if (response.status === 201) dispatch(AddBook(response.data.book));
+    })
+    .catch(error => dispatch(BooksError(error)));
 };

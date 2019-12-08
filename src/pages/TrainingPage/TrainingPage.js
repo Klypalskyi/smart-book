@@ -1,21 +1,22 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, connect, useDispatch } from 'react-redux';
+
 import PropTypes from 'prop-types';
 import style from './TrainingPage.module.css';
 import PanelOfTimers from '../../components/Timer/PanelOfTimers';
 import Results from '../../components/Results/Results';
 import ModalCongrats from '../../components/ModalCongrats/ModalCongrats';
-// import { addGoal } from '../../redux/goal/goalActions';
 import Workout from '../../components/Workout/Workout';
 import Goal from '../../components/Goal/Goal';
-
-// const URL = 'https://book-read.goit.co.ua/api/v1';
+import { getTrainingFromServer } from '../../services/API';
 
 const TrainingPage = ({ modalCongratsOpen }) => {
+  const token = useSelector(state => state.session.token);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    // fetch(URL)
-    //   .then(res => res.json())
-    //   .then(data => addGoal(data.hits));
+    dispatch(getTrainingFromServer(token));
   }, []);
 
   return (

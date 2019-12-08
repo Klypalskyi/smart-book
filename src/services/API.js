@@ -16,6 +16,8 @@ import {
   registrationError,
 } from '../redux/registration/registrationActions';
 
+import { getTraining } from '../redux/training/trainingActions';
+
 import { getUserToken } from '../redux/selectors/sessionSelectors';
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_API_URL;
@@ -86,12 +88,19 @@ export const logOut = token => dispatch => {
     });
 };
 
-export const postBook = (book, token) =>
+export const getTrainingFromServer = token => dispatch => {
   axios
-    .post(`${process.env.REACT_APP_BASE_API_URL}/books/create`, book, {
+    .get(`${process.env.REACT_APP_BASE_API_URL}/training`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then(response => console.log(response))
-    .catch(error => console.log(error));
+    .then(res => res.data)
+    .then(data => data.training)
+    .then(training => {
+      dispatch(getTraining(training));
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
