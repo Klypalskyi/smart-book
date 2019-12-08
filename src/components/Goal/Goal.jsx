@@ -1,9 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './Goal.module.css';
+import moment from 'moment';
 
-const Goal = ({ isThisStatPage }) => {
-  // console.log(a);
+const Goal = () => {
+  const training = useSelector(state => state.training);
+  const start = moment('2019-12-08T13:56:30+02:00').dayOfYear();
+  const finish = moment('2019-12-15T13:56:30+02:00').dayOfYear();
+  const leftDays = finish - start;
+  // let isThisStatPage = !!(training != null && training.unreadCount);
+  let isThisStatPage = !!(training && training.unreadCount);
+  console.log(isThisStatPage);
+  // console.log(leftDays);
   return (
     <>
       <div
@@ -33,7 +42,7 @@ const Goal = ({ isThisStatPage }) => {
                 isThisStatPage ? styles.goalDigitsStat : styles.goalDigits
               }
             >
-              123
+              {training ? training.booksCount : '0'}
             </p>
             <p
               className={isThisStatPage ? styles.goalTextStat : styles.goalText}
@@ -51,7 +60,7 @@ const Goal = ({ isThisStatPage }) => {
                 isThisStatPage ? styles.goalDigitsStat : styles.goalDigits
               }
             >
-              !
+              {leftDays}
             </p>
             <p
               className={isThisStatPage ? styles.goalTextStat : styles.goalText}
@@ -59,7 +68,7 @@ const Goal = ({ isThisStatPage }) => {
               Кількість днів
             </p>
           </div>
-          {isThisStatPage && (
+          {training && training.unreadCount && (
             <div
               className={
                 isThisStatPage ? styles.goalDigitsBoxStat : styles.goalDigitsBox
@@ -72,7 +81,7 @@ const Goal = ({ isThisStatPage }) => {
                     : styles.goalDigitsStat
                 }
               >
-                123
+                {training.unreadCount}
               </p>
               <p
                 className={
@@ -88,12 +97,12 @@ const Goal = ({ isThisStatPage }) => {
     </>
   );
 };
-Goal.propTypes = {
-  isThisStatPage: PropTypes.bool,
-};
+// Goal.propTypes = {
+//   isThisStatPage: PropTypes.bool,
+// };
 
-Goal.defaultProps = {
-  isThisStatPage: false,
-};
+// Goal.defaultProps = {
+//   isThisStatPage: true,
+// };
 
 export default Goal;
