@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 
 export const ActionConstants = {
   RESULTS_ADD: 'RESULTS_ADD',
@@ -9,10 +9,20 @@ export const addResult = res => ({
   payload: res,
 });
 
-// export const sendResultToServer = (trainingId, result) => dispatch => {
-//   return axios.post(`/training/time/${trainingId}`, result, {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-// };
+export const postResultsOnServer = (
+  token,
+  trainingId,
+  resultsArr,
+) => dispatch => {
+  axios
+    .post(`/training/time/${trainingId}`, resultsArr, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(res =>
+      // console.log(res.data.pagesReadResult),
+      dispatch(addResult(res.data.pagesReadResult)),
+    )
+    .catch(console.log);
+};

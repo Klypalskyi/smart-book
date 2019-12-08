@@ -7,7 +7,10 @@ import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DateTimePicker } from '@material-ui/pickers';
 
-// import { addResult } from '../../redux/results/resultsActions';
+import {
+  addResult,
+  postResultsOnServer,
+} from '../../redux/results/resultsActions';
 
 import styles from './Results.module.css';
 
@@ -39,31 +42,24 @@ const Results = () => {
   const [pagesReadResult, setPagesReadResult] = useState([]);
 
   const token = useSelector(state => state.session.token);
-  // const dispatch = useDispatch();
+  const training = useSelector(state => state.training);
+  const dispatch = useDispatch();
+  // const pagesReadResult = useSelector(state => state.training.pagesReadResult);
 
   useEffect(() => {
-    axios
-      .get(`/training`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then(res => {
-        const trainingID = res.data.training.trainingId; // trainingID = null;
-        const trainingARR = [...res.data.training.pagesReadResult]; // trainingARR = [];
-        console.log('trainingID:', trainingID, 'trainingARR:', trainingARR);
-
-        if (trainingID && trainingARR.length > 0) {
-          setTrainingId(trainingID);
-          setPagesReadResult(
-            trainingARR.sort((a, b) => (a.date > b.date ? -1 : 1)),
-          );
-        }
-      })
-      .catch(console.log);
-
-    // console.log(pagesReadResult);
-  }, []);
+    if (training) {
+      const {
+        pagesReadResult: initPageReadResult,
+        trainingId: initTrainingId,
+      } = training;
+      setTrainingId(initTrainingId);
+      if (initPageReadResult) {
+        setPagesReadResult(
+          initPageReadResult.sort((a, b) => (a.date > b.date ? -1 : 1)),
+        );
+      }
+    }
+  }, [training]);
 
   const handleDateInput = date => {
     setSelectedDate(date);
@@ -76,6 +72,11 @@ const Results = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
+    if (!trainingId) {
+      console.log('Create workout!!!');
+      return;
+    }
+
     if (selectedPages.length === 0 || Number(selectedPages) <= 0) {
       // error handler
     } else {
@@ -85,12 +86,27 @@ const Results = () => {
         count: Number(selectedPages), // count	number
       };
 
+      console.log('trainingId: ', trainingId);
+      console.log('addedResult: ', addedResult);
+      console.log('token: ', token);
+
+      dispatch(addResult(addedResult));
+      dispatch(postResultsOnServer(token, trainingId, addedResult));
+
       // add to backend
-      axios.post(`/training/time/${trainingId}`, addedResult, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      // axios
+      //   .post(`/training/time/${trainingId}`, addedResult, {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   })
+      //   .then(res =>
+      //     // console.log(res.data.pagesReadResult)
+      //     setPagesReadResult(
+      //       res.data.pagesReadResult.sort((a, b) => (a.date > b.date ? -1 : 1)),
+      //     ),
+      //   )
+      //   .catch(console.log);
 
       // clear inputs
       setSelectedDate(new Date().toISOString());
@@ -154,7 +170,7 @@ const Results = () => {
                     </td>
                   </tr>
                 ))} */}
-              {pagesReadResult.length > 0 &&
+              {pagesReadResult &&
                 pagesReadResult.map(res => (
                   <tr className={styles.table_row} key={res._id}>
                     <td className={styles.table_date}>

@@ -7,6 +7,7 @@ import booksReducer from './redux/books/booksReducer';
 import componentController from './redux/componentController/componentControllerReducer';
 import trainingReducer from './redux/training/trainingReducer';
 import { summaryModalReducer } from './redux/summaryModal/summaryModalReducer';
+// import resultsReducer from './redux/results/resultsReducers';
 
 const sessionPersistConfig = {
   key: 'session',
