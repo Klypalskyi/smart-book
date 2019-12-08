@@ -26,10 +26,14 @@ const TrainingPage = ({ modalCongratsOpen }) => {
       {modalCongratsOpen && <ModalCongrats />}
       {haveTraining ? (
         <div className={style.wrapper}>
-          <PanelOfTimers />
-          <Workout />
-          <Goal />
-          <Results />
+          <div className="booksWrapper">
+            <PanelOfTimers />
+            <Workout />
+          </div>
+          <div className="resultsWrapper">
+            <Goal />
+            <Results />
+          </div>
         </div>
       ) : (
         <>

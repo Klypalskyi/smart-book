@@ -24,6 +24,10 @@
     flex-direction: row;
   }
 
+  .wrapper {
+    flex-direction: row;
+  }
+
   .someContainer {
     display: flex;
     flex-direction: column;

@@ -234,7 +234,7 @@
 @media (min-width: 1280px) {
   .goalContainer,
   .goalContainerStat {
-    margin: 34px auto;
+    margin: 0 auto 34px;
     width: 300px;
     display: block;
     flex-basis: 30%;
