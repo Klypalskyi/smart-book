@@ -3,15 +3,18 @@ import React, { useState } from 'react';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import style from './Workout.module.css';
 import TrainingBookTable from '../TrainingBooksTable/TrainingBooksTable';
+import { addUserTraining } from '../../redux/userTraining/userTrainingActions';
 
 const Workout = () => {
-  const [selectedBook, setSelectedBook] = useState('');
+  const [selectedBookId, setSelectedBookId] = useState('');
   const [books, setBooks] = useState([]);
+  const [booksForRender, setBooksForRender] = useState([]);
   const [timeStart, setTimeStart] = useState(new Date().toISOString());
   const [timeEnd, setTimeEnd] = useState();
+  const avgReadPages = 0;
   // const [avgReadPages, setAvgReadPages] = useState(0);
 
   const plannedBooks = useSelector(state =>
@@ -27,20 +30,39 @@ const Workout = () => {
   };
 
   const addBook = evt => {
-    const { value } = evt.target;
-    setSelectedBook(value);
+    setSelectedBookId(evt.target.options[evt.target.selectedIndex].dataset.id);
   };
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    const book = plannedBooks.find(el => el.title === selectedBook);
-    if (books.find(el => el.title === selectedBook)) return;
-    setBooks([...books, book]);
+    const selectedBook = plannedBooks.find(el => el._id === selectedBookId);
+    if (booksForRender.find(el => el._id === selectedBookId)) return;
+    setBooksForRender([...booksForRender, selectedBook]);
+    setBooks([...books, { book: selectedBookId }]);
   };
 
   const deleteBook = id => {
-    const updatedBooks = books.filter(el => el._id !== id);
-    setBooks(updatedBooks);
+    const updatedBooks = booksForRender.filter(el => el._id !== id);
+    setBooksForRender(updatedBooks);
+    setBooks(books.filter(el => el.book !== id));
+  };
+
+  const dispatch = useDispatch();
+
+  const addTrainingToState = () => {
+    if (booksForRender.length !== 0 && timeEnd) {
+      const training = {
+        books,
+        timeStart,
+        timeEnd,
+        avgReadPages,
+      };
+      dispatch(addUserTraining(training));
+      setSelectedBookId('');
+      setBooks([]);
+      setBooksForRender([]);
+      setTimeEnd(new Date().toISOString());
+    }
   };
 
   return (
@@ -76,15 +98,21 @@ const Workout = () => {
             Обрати книги з бібліотеки
           </option>
           {plannedBooks.map(el => (
-            <option key={el._id}>{el.title}</option>
+            <option data-id={el._id} key={el._id}>
+              {el.title}
+            </option>
           ))}
         </select>
         <button type="submit" className={style.button}>
           Додати
         </button>
       </form>
-      <TrainingBookTable books={books} deleteBook={deleteBook} />
-      <button type="submit" className={style.submit}>
+      <TrainingBookTable books={booksForRender} deleteBook={deleteBook} />
+      <button
+        type="submit"
+        className={style.submit}
+        onClick={addTrainingToState}
+      >
         Почати тренування
       </button>
     </div>
