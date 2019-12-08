@@ -48,7 +48,7 @@ const Workout = () => {
   });
 
   const dispatch = useDispatch();
-  // const token = useSelector(state => state.session.token);
+  const token = useSelector(state => state.session.token);
   // const haveTraining = useSelector(state => state.user.haveTraining);
 
   const plannedBooks = useSelector(state =>
@@ -102,7 +102,7 @@ const Workout = () => {
         avgReadPages,
       };
       dispatch(addUserTraining(training));
-      postTraining(training);
+      dispatch(postTraining(training, token));
       // setSelectedBookId('');
       // setBooks([]);
       // setBooksForRender([]);
