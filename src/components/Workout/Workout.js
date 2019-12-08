@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useState } from 'react';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
@@ -33,8 +34,13 @@ const Workout = () => {
   const handleSubmit = evt => {
     evt.preventDefault();
     const book = plannedBooks.find(el => el.title === selectedBook);
+    if (books.find(el => el.title === selectedBook)) return;
     setBooks([...books, book]);
-    setSelectedBook('');
+  };
+
+  const deleteBook = id => {
+    const updatedBooks = books.filter(el => el._id !== id);
+    setBooks(updatedBooks);
   };
 
   return (
@@ -70,14 +76,14 @@ const Workout = () => {
             Обрати книги з бібліотеки
           </option>
           {plannedBooks.map(el => (
-            <option key={el.id}>{el.title}</option>
+            <option key={el._id}>{el.title}</option>
           ))}
         </select>
         <button type="submit" className={style.button}>
           Додати
         </button>
       </form>
-      <TrainingBookTable />
+      <TrainingBookTable books={books} deleteBook={deleteBook} />
       <button type="submit" className={style.submit}>
         Почати тренування
       </button>
