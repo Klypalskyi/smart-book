@@ -1,11 +1,11 @@
 {
-    "files.autoSave": "onFocusChange",
-    "editor.formatOnSave": true,
-    "eslint.autoFixOnSave": true,
-    "eslint.alwaysShowStatus": true,
-    "workbench.colorCustomizations": {
-        "activityBar.background": "#3D2A12",
-        "titleBar.activeBackground": "#563A19",
-        "titleBar.activeForeground": "#FCF9F6"
-    }
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnSave": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#5c90ff",
+    "titleBar.activeBackground": "#fdead4",
+    "titleBar.activeForeground": "#22201e"
+  }
 }
