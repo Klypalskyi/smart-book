@@ -39,23 +39,38 @@ export const bookDelete = (token, id) => dispatch => {
     });
 };
 
-export const bookUpdate = (token, id) => dispatch => {
+export const bookUpdate = (token, id, data) => dispatch => {
   axios
-    .patch(`${process.env.REACT_APP_BASE_API_URL}/books`, {
+    .patch(`${process.env.REACT_APP_BASE_API_URL}/books/${id}`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then(res => {
-      dispatch(BookUpdate(res.data.books.map(book => book.id === id)));
-    })
-    .then(res => {
-      return [...res.data.books, res];
-    })
+    .then(
+      dispatch(
+        BookUpdate({
+          rating: data,
+        }),
+      ),
+    )
     .catch(err => {
       dispatch(BooksError(err));
     });
 };
+
+// axios
+//   .patch(`${process.env.REACT_APP_BASE_API_URL}/books`, {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   })
+//   .then(res => {
+//     dispatch(BookUpdate(res.data.books.map(book => book.id === id)));
+//   })
+//   .catch(err => {
+//     dispatch(BooksError(err));
+//   });
+// };
 
 export const postBook = (book, token) => dispatch => {
   axios
