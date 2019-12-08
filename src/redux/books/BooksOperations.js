@@ -3,7 +3,8 @@ import {
   BooksRequest,
   BooksSuccess,
   BooksError,
-  BooksDelete,
+  BookDelete,
+  BookUpdate,
   AddBook,
 } from './booksActions';
 
@@ -23,7 +24,7 @@ export const booksOperation = token => dispatch => {
     });
 };
 
-export const booksDelete = (token, id) => dispatch => {
+export const bookDelete = (token, id) => dispatch => {
   axios
     .delete(`${process.env.REACT_APP_BASE_API_URL}/books`, {
       headers: {
@@ -31,8 +32,27 @@ export const booksDelete = (token, id) => dispatch => {
       },
     })
     .then(res => {
-      dispatch(BooksDelete(res.data.books.filter(book => book.id !== id)));
+      dispatch(BookDelete(res.data.books.filter(book => book.id !== id)));
     })
+    .catch(err => {
+      dispatch(BooksError(err));
+    });
+};
+
+export const bookUpdate = (token, id, data) => dispatch => {
+  axios
+    .patch(`${process.env.REACT_APP_BASE_API_URL}/books/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(
+      dispatch(
+        BookUpdate({
+          rating: data,
+        }),
+      ),
+    )
     .catch(err => {
       dispatch(BooksError(err));
     });

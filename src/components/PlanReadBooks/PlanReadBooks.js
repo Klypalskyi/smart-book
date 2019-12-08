@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './PlanReadBooks.module.css';
@@ -9,7 +10,7 @@ const planReadBooks = ({ books }) => {
       {books ? (
         <div>
           <div className={styles.conteiner}>
-            <h1 className={styles.title}>Маю намір прочитати</h1>
+            <h1 className={styles.title}> Маю намір прочитати </h1>
             <ul className={styles.cardBook}>
               {books.map(book => (
                 <li className={styles.item} key={book._id}>
@@ -17,16 +18,13 @@ const planReadBooks = ({ books }) => {
                     <img src={img} alt="book-icon" className={styles.icon} />
                     <h2 className={styles.cardTitle}>{book.title}</h2>
                   </div>
-
                   <div className={styles.table}>
-                    <div className={styles.label}>Автор:</div>
+                    <div className={styles.label}>Автор: </div>
                     <div className={styles.quantity}>{book.author}</div>
-
-                    <div className={styles.label}>Рік:</div>
-                    <div className={styles.quantity}>{book.year}</div>
-
-                    <div className={styles.label}>Стор.:</div>
-                    <div className={styles.quantity}>{book.pagesCount}</div>
+                    <div className={styles.label}> Рік: </div>
+                    <div className={styles.quantity}> {book.year} </div>
+                    <div className={styles.label}> Стор.: </div>
+                    <div className={styles.quantity}> {book.pagesCount} </div>
                   </div>
                 </li>
               ))}
@@ -35,11 +33,11 @@ const planReadBooks = ({ books }) => {
           <div className={styles.tablet}>
             <div className={styles.wrapper}>
               <div className={styles.wrapper_text}>
-                <h2 className={styles.tittle__tablet}>Маю намір прочитати</h2>
-                <p className={styles.text__name_book}>Назва книги</p>
-                <p className={styles.text__avtor}>Автор</p>
-                <p className={styles.text__year}>Рік</p>
-                <p className={styles.text__page}>Стор.</p>
+                <h2 className={styles.tittle__tablet}> Маю намір прочитати </h2>
+                <p className={styles.text__name_book}> Назва книги </p>
+                <p className={styles.text__avtor}> Автор </p>
+                <p className={styles.text__year}> Рік </p>
+                <p className={styles.text__page}> Стор. </p>
               </div>
               <ul className={styles.read__book}>
                 {books.map(book => (
@@ -49,7 +47,6 @@ const planReadBooks = ({ books }) => {
                       alt="book-icon"
                       className={styles.icon__tablet}
                     />
-
                     <div className={styles.table_book}>
                       <div className={styles.flex}>
                         <div className={styles.name_book}>
@@ -58,8 +55,8 @@ const planReadBooks = ({ books }) => {
                         <div className={styles.avtor}>
                           <p className={styles.p_avtor}>{book.author}</p>
                         </div>
-                        <div className={styles.year}>{book.year}</div>
-                        <div className={styles.page}>{book.pagesCount}</div>
+                        <div className={styles.year}> {book.year} </div>
+                        <div className={styles.page}> {book.pagesCount} </div>
                       </div>
                     </div>
                   </li>
