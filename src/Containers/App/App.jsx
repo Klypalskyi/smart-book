@@ -8,7 +8,6 @@ import LibraryPage from '../../pages/LibraryPage/LibraryPage';
 import TrainingPage from '../../pages/TrainingPage/TrainingPage';
 import Header from '../../components/Header/Header';
 import ProtectedRoute from '../../components/ProtectedRoute/ProtectedRoute';
-
 import { refreshUser } from '../../services/API';
 
 function App() {
@@ -22,7 +21,6 @@ function App() {
     <>
       <CssBaseline />
       <Header />
-
       <Switch>
         <ProtectedRoute
           component={LibraryPage}
