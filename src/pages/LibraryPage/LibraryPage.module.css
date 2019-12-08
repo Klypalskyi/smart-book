@@ -9,12 +9,13 @@
 
 @media (min-width: 768px) {
   .libraryPage__wrapper {
-    width: 768px;
+    padding: 20px;
   }
 }
 
 @media (min-width: 1280px) {
   .libraryPage__wrapper {
-    width: 1280px;
+    padding: 80px;
+    padding-top: 30px;
   }
 }

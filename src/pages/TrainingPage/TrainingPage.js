@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, connect, useDispatch } from 'react-redux';
 
 import PropTypes from 'prop-types';
@@ -11,7 +11,14 @@ import Goal from '../../components/Goal/Goal';
 import Chart from '../../components/Chart/Chart';
 import { getTrainingFromServer } from '../../services/API';
 
+import CreateTraningGoal from '../../components/CreateTraningGoal/CreateTraningGoal';
+
 const TrainingPage = ({ modalCongratsOpen }) => {
+  const [goal, setGoal] = useState({
+    startTime: new Date(),
+    finishTime: new Date(),
+    countBooks: 0,
+  });
   const token = useSelector(state => state.session.token);
   const haveTraining = useSelector(state => state.user.haveTraining);
 
@@ -20,6 +27,10 @@ const TrainingPage = ({ modalCongratsOpen }) => {
   useEffect(() => {
     dispatch(getTrainingFromServer(token));
   }, []);
+
+  const handleChangeToGoal = field => {
+    setGoal({ ...goal, ...field });
+  };
 
   return (
     <div className={style.container}>
@@ -33,9 +44,9 @@ const TrainingPage = ({ modalCongratsOpen }) => {
         </div>
       ) : (
         <>
-          <Goal />
+          <CreateTraningGoal {...goal} />
           <div className={style.someContainer}>
-            <Workout />
+            <Workout handleChangeToGoal={handleChangeToGoal} />
             <Chart />
           </div>
         </>
