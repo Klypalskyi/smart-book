@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import style from './Workout.module.css';
 import TrainingBookTable from '../TrainingBooksTable/TrainingBooksTable';
 import { addUserTraining } from '../../redux/userTraining/userTrainingActions';
+import TrainingTableInfo from '../TrainingTableInfo/TrainingTableInfo';
+import { postTraining } from '../../services/API';
 
 const Workout = () => {
   const [selectedBookId, setSelectedBookId] = useState('');
@@ -18,6 +20,7 @@ const Workout = () => {
 
   const dispatch = useDispatch();
   // const token = useSelector(state => state.session.token);
+  const haveTraining = useSelector(state => state.user.haveTraining);
 
   const plannedBooks = useSelector(state =>
     state.books.filter(book => book.status === 'planned'),
@@ -66,6 +69,7 @@ const Workout = () => {
         avgReadPages,
       };
       dispatch(addUserTraining(training));
+      postTraining(training);
       // setSelectedBookId('');
       // setBooks([]);
       // setBooksForRender([]);
@@ -75,50 +79,56 @@ const Workout = () => {
 
   return (
     <div className={style.container}>
-      <div className={style.header}>Моє тренування</div>
-      <div className={style.pickers}>
-        <MuiPickersUtilsProvider
-          className={style.pickerOverlay}
-          utils={DateFnsUtils}
-        >
-          <DatePicker
-            value={timeStart}
-            onChange={handleTimeStart}
-            disablePast
-            disableFuture
-            format="dd/MM/yyyy"
-            InputProps={{ className: style.picker }}
-          />
-        </MuiPickersUtilsProvider>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <DatePicker
-            value={timeEnd}
-            onChange={handleTimeEnd}
-            disablePast
-            format="dd/MM/yyyy"
-            InputProps={{ className: style.picker }}
-          />
-        </MuiPickersUtilsProvider>
-      </div>
-      <form className={style.selectContainer} onSubmit={handleSubmit}>
-        <select className={style.select} onChange={addBook}>
-          <option disabled selected className={style.label}>
-            Обрати книги з бібліотеки
-          </option>
-          {plannedBooks.map(el => (
-            <option data-id={el._id} key={el._id}>
-              {el.title}
-            </option>
-          ))}
-        </select>
-        <button type="submit" className={style.button}>
-          Додати
-        </button>
-      </form>
-      <TrainingBookTable books={booksForRender} deleteBook={deleteBook} />
-      <button type="submit" className={style.submit} onClick={addTraining}>
-        Почати тренування
-      </button>
+      {haveTraining ? (
+        <TrainingTableInfo />
+      ) : (
+        <>
+          <div className={style.header}>Моє тренування</div>
+          <div className={style.pickers}>
+            <MuiPickersUtilsProvider
+              className={style.pickerOverlay}
+              utils={DateFnsUtils}
+            >
+              <DatePicker
+                value={timeStart}
+                onChange={handleTimeStart}
+                disablePast
+                disableFuture
+                format="dd/MM/yyyy"
+                InputProps={{ className: style.picker }}
+              />
+            </MuiPickersUtilsProvider>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <DatePicker
+                value={timeEnd}
+                onChange={handleTimeEnd}
+                disablePast
+                format="dd/MM/yyyy"
+                InputProps={{ className: style.picker }}
+              />
+            </MuiPickersUtilsProvider>
+          </div>
+          <form className={style.selectContainer} onSubmit={handleSubmit}>
+            <select className={style.select} onChange={addBook}>
+              <option disabled selected className={style.label}>
+                Обрати книги з бібліотеки
+              </option>
+              {plannedBooks.map(el => (
+                <option data-id={el._id} key={el._id}>
+                  {el.title}
+                </option>
+              ))}
+            </select>
+            <button type="submit" className={style.button}>
+              Додати
+            </button>
+          </form>
+          <TrainingBookTable books={booksForRender} deleteBook={deleteBook} />
+          <button type="submit" className={style.submit} onClick={addTraining}>
+            Почати тренування
+          </button>
+        </>
+      )}
     </div>
   );
 };
