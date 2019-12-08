@@ -23,7 +23,7 @@ export const booksOperation = token => dispatch => {
     });
 };
 
-export const booksDelete = (token, id) => dispatch => {
+export const bookDelete = (token, id) => dispatch => {
   axios
     .delete(`${process.env.REACT_APP_BASE_API_URL}/books`, {
       headers: {
@@ -48,7 +48,9 @@ export const bookUpdate = (token, id) => dispatch => {
     .then(res => {
       dispatch(BookUpdate(res.data.books.map(book => book.id === id)));
     })
-    .then()
+    .then(res => {
+      return [...res.data.books, res];
+    })
     .catch(err => {
       dispatch(BooksError(err));
     });

@@ -10,7 +10,6 @@ const booksReducer = (state = null, { type, payload }) => {
     case ActionBooks.BOOK_UPDATE: {
       return state.map(book => book.id === payload);
     }
-
     default:
       return state;
   }
