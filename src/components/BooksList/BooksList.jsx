@@ -30,7 +30,7 @@ const BooksList = () => {
           {!userHaveTraining && <NextStepButton />}
           {!!readBooks.length && <ReadBooks books={readBooks} />}
           {!!nowReadBooks.length && <NowReadBooks books={nowReadBooks} />}
-          {planedBooks.length && <PlanReadBooks books={planedBooks} />}
+          {!!planedBooks.length && <PlanReadBooks books={planedBooks} />}
         </>
       ) : (
         <StartingSteps />
