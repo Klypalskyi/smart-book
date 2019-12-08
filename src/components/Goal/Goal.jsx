@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import styles from './Goal.module.css';
 import moment from 'moment';
 
-const Goal = ({ isThisStatPage }) => {
+const Goal = () => {
   const training = useSelector(state => state.training);
   const start = moment('2019-12-08T13:56:30+02:00').dayOfYear();
   const finish = moment('2019-12-15T13:56:30+02:00').dayOfYear();
   const leftDays = finish - start;
-  console.log(leftDays);
+  // let isThisStatPage = !!(training != null && training.unreadCount);
+  let isThisStatPage = false;
+  // console.log(leftDays);
   return (
     <>
       <div
@@ -39,7 +41,7 @@ const Goal = ({ isThisStatPage }) => {
                 isThisStatPage ? styles.goalDigitsStat : styles.goalDigits
               }
             >
-              {training ? training.booksCount : '!'}
+              {training ? training.booksCount : '0'}
             </p>
             <p
               className={isThisStatPage ? styles.goalTextStat : styles.goalText}
@@ -94,12 +96,12 @@ const Goal = ({ isThisStatPage }) => {
     </>
   );
 };
-Goal.propTypes = {
-  isThisStatPage: PropTypes.bool,
-};
+// Goal.propTypes = {
+//   isThisStatPage: PropTypes.bool,
+// };
 
-Goal.defaultProps = {
-  isThisStatPage: true,
-};
+// Goal.defaultProps = {
+//   isThisStatPage: true,
+// };
 
 export default Goal;
