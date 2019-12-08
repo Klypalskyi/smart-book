@@ -1,9 +1,9 @@
 .libraryPage__wrapper {
   margin: 0 auto;
-  width: 320px;
+  width: 100%;
   height: 100%;
   background: #f5f7fa;
-  padding: 10px 10px;
+  padding: 10%;
   margin-top: 10px;
 }
 
