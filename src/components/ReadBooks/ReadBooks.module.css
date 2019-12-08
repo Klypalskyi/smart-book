@@ -52,11 +52,14 @@
   margin-bottom: 8px;
 }
 .table {
+  display: flex;
+  flex-wrap: wrap;
   padding-left: 14px;
   margin-top: 3px;
   margin-left: 27px;
 }
 .label {
+  margin-top: 7px;
   padding-bottom: 3px;
   width: 63px;
   height: 11px;
@@ -71,6 +74,7 @@
   color: #b4b7be;
 }
 .quantity {
+  margin-top: 7px;
   width: 109px;
   display: block;
   height: 11px;
@@ -259,9 +263,11 @@
   position: absolute;
 }
 .table_book {
+  display: flex;
   padding-top: 13px;
 }
 .name_book {
+  margin-top: 8px;
   padding-left: 55px;
   width: 186px;
   height: 31px;
@@ -276,8 +282,9 @@
   color: #242a37;
 }
 .avtor {
-  margin: 0;
-  width: 134px;
+  margin-top: 8px;
+
+  width: 148px;
   height: 31px;
   font-family: 'OpenSans';
   font-size: 13px;
@@ -290,6 +297,7 @@
   color: #242a37;
 }
 .year {
+  margin-top: 8px;
   width: 47px;
   height: 31px;
   font-family: 'OpenSans';
@@ -303,9 +311,10 @@
   color: #242a37;
 }
 .page {
+  margin-top: 8px;
   height: 31px;
   width: 61px;
-  padding-left: 20px;
+
   font-family: 'OpenSans';
   font-size: 13px;
   font-weight: normal;
@@ -335,6 +344,9 @@
   box-shadow: 1px 1.7px 3px 0 rgba(0, 0, 0, 0.15);
   background-color: #6d7a8d;
   cursor: pointer;
+}
+.rating {
+  margin-top: 6px;
 }
 
 .button__tablet_orange {
@@ -406,7 +418,7 @@
     margin-top: 10px;
   }
   .name_book {
-    width: 318px;
+    width: 322px;
   }
   .p_name_book {
     width: 208px;
@@ -416,16 +428,16 @@
     overflow: hidden;
   }
   .p_avtor {
-    width: 224px;
+    width: 228px;
   }
   .avtor {
     width: 224px;
   }
   .year {
-    width: 113px;
+    width: 121px;
   }
   .page {
-    width: 118px;
+    width: 120px;
   }
   .rating {
     width: 190px;

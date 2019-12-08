@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Rating from '@material-ui/lab/Rating';
+import { useDispatch } from 'react-redux';
 import styles from './ReadBooks.module.css';
+import { openModalSummary } from '../../redux/summaryModal/summaryModalActions';
 import img from './images/library.png';
 
 const ReadBooks = ({ books }) => {
   const [value, setValue] = useState(null);
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(openModalSummary());
+  };
+
   return (
     <>
       {books ? (
@@ -21,38 +29,34 @@ const ReadBooks = ({ books }) => {
                     <h2 className={styles.cardTitle}>{book.title}</h2>
                   </div>
 
-                  <table className={styles.table}>
-                    <tr>
-                      <td className={styles.label}>Автор:</td>
-                      <td className={styles.quantity}>{book.author}</td>
-                    </tr>
-                    <tr className={styles.tr}>
-                      <td className={styles.label}>Рік:</td>
-                      <td className={styles.quantity}>{book.year}</td>
-                    </tr>
-                    <tr>
-                      <td className={styles.label}>Стор.:</td>
-                      <td className={styles.quantity}>{book.pagesCount}</td>
-                    </tr>
-                    <tr>
-                      <td className={styles.label}>Рейтинг:</td>
-                      <td className={styles.quantity}>
-                        <Rating
-                          name="simple-controlled "
-                          size="small"
-                          value={value}
-                          onChange={newValue => {
-                            setValue(newValue);
-                          }}
-                        />
-                      </td>
-                    </tr>
-                  </table>
+                  <div className={styles.table}>
+                    <div className={styles.label}>Автор:</div>
+                    <div className={styles.quantity}>{book.author}</div>
+
+                    <div className={styles.label}>Рік:</div>
+                    <div className={styles.quantity}>{book.year}</div>
+
+                    <div className={styles.label}>Стор.:</div>
+                    <div className={styles.quantity}>{book.pagesCount}</div>
+
+                    <div className={styles.label}>Рейтинг:</div>
+                    <div className={styles.quantity}>
+                      <Rating
+                        name="simple-controlled "
+                        size="small"
+                        value={value}
+                        onChange={newValue => {
+                          setValue(newValue);
+                        }}
+                      />
+                    </div>
+                  </div>
                   <button
                     className={
                       book.comment ? styles.button__orange : styles.button__grey
                     }
                     type="button"
+                    onClick={handleClick}
                   >
                     Резюме
                   </button>
@@ -80,28 +84,26 @@ const ReadBooks = ({ books }) => {
                       className={styles.icon__tablet}
                     />
 
-                    <table className={styles.table_book}>
-                      <tr>
-                        <td className={styles.name_book}>
-                          <p className={styles.p_name_book}>{book.title}</p>
-                        </td>
-                        <td className={styles.avtor}>
-                          <p className={styles.p_avtor}>{book.author}</p>
-                        </td>
-                        <td className={styles.year}>{book.year}</td>
-                        <td className={styles.page}>{book.pagesCount}</td>
-                        <td className={styles.rating}>
-                          <Rating
-                            name="simple-controlled"
-                            size="small"
-                            value={value}
-                            onChange={newValue => {
-                              setValue(newValue);
-                            }}
-                          />
-                        </td>
-                      </tr>
-                    </table>
+                    <div className={styles.table_book}>
+                      <div className={styles.name_book}>
+                        <p className={styles.p_name_book}>{book.title}</p>
+                      </div>
+                      <div className={styles.avtor}>
+                        <p className={styles.p_avtor}>{book.author}</p>
+                      </div>
+                      <div className={styles.year}>{book.year}</div>
+                      <div className={styles.page}>{book.pagesCount}</div>
+                      <div className={styles.rating}>
+                        <Rating
+                          name="simple-controlled"
+                          size="small"
+                          value={value}
+                          onChange={newValue => {
+                            setValue(newValue);
+                          }}
+                        />
+                      </div>
+                    </div>
                     <button
                       className={
                         book.comment
@@ -109,6 +111,7 @@ const ReadBooks = ({ books }) => {
                           : styles.button__tablet_grey
                       }
                       type="button"
+                      onClick={handleClick}
                     >
                       Резюме
                     </button>

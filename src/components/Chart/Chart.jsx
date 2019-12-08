@@ -73,7 +73,7 @@ const finalCount = arrayOfCount.map(el => el.count);
 // const countArray = [];
 const generateData = (start, end, count, average) => {
   const data = [];
-  for (let i = start; i <= end; i++) {
+  for (let i = start; i <= end; it) {
     data.push({
       countAveragePage: average,
       countPagesEveryDay: count[i - 1],

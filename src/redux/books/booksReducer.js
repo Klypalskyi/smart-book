@@ -5,6 +5,10 @@ const booksReducer = (state = null, { type, payload }) => {
     case ActionBooks.BOOKS_SUCCESS:
     case ActionBooks.BOOKS_ERROR:
       return payload;
+    case ActionBooks.BOOKS_DELETE:
+      return state.filter(book => book.id !== payload);
+    case ActionBooks.ADD_BOOK:
+      return [...state, payload];
     default:
       return state;
   }

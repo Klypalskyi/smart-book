@@ -1,3 +1,7 @@
+.table {
+  margin-bottom: 40px;
+}
+
 .tableHeader {
   display: none;
 }
@@ -137,12 +141,7 @@
 }
 
 @media (min-width: 1280px) {
-  .table {
-    max-width: 862px;
-  }
-
   .bookList {
-    height: 200px;
     padding: 18px 0 0 0;
     border-bottom: 1px solid var(--pale-blue);
   }
@@ -151,5 +150,11 @@
     padding: 0;
     margin-bottom: 12px;
     border: none;
+  }
+
+  .bookTitle {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }
