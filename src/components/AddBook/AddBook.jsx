@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { useSelector } from 'react-redux';
-import { postBook } from '../../services/API';
+import { useSelector, useDispatch } from 'react-redux';
+import { postBook } from '../../redux/books/BooksOperations';
 import { getUserToken } from '../../redux/selectors/sessionSelectors';
 import styles from './AddBook.module.css';
 
 const AddBook = () => {
   const token = useSelector(state => getUserToken(state));
+  const dispatch = useDispatch();
   const [bookName, setbookName] = useState('');
   const [bookAuthor, setbookAuthor] = useState('');
   const [bookDate, setbookDate] = useState(Date.now());
@@ -40,7 +41,7 @@ const AddBook = () => {
       pagesCount: pagesAmount,
     };
     if (bookAuthor.trim().length) book.author = bookAuthor;
-    postBook(book, token);
+    dispatch(postBook(book, token));
 
     setbookName('');
     setbookAuthor('');
