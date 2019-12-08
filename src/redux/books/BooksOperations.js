@@ -58,20 +58,6 @@ export const bookUpdate = (token, id, data) => dispatch => {
     });
 };
 
-// axios
-//   .patch(`${process.env.REACT_APP_BASE_API_URL}/books`, {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   })
-//   .then(res => {
-//     dispatch(BookUpdate(res.data.books.map(book => book.id === id)));
-//   })
-//   .catch(err => {
-//     dispatch(BooksError(err));
-//   });
-// };
-
 export const postBook = (book, token) => dispatch => {
   axios
     .post(`${process.env.REACT_APP_BASE_API_URL}/books/create`, book, {
