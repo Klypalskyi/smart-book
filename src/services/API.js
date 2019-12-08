@@ -106,10 +106,17 @@ export const getTrainingFromServer = token => dispatch => {
     });
 };
 
-export const postTraining = training => {
+export const postTraining = (training, token) => dispatch => {
   axios
-    .post(`${process.env.REACT_APP_BASE_API_URL}/training`, training)
-    .then(res => console.log(res))
+    .post(`${process.env.REACT_APP_BASE_API_URL}/training`, training, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(res => {
+      dispatch(getTraining(res.data.training));
+      dispatch({ type: 'USER_HAVE_TRAINING' });
+    })
     .catch(err => {
       console.log(err);
     });
