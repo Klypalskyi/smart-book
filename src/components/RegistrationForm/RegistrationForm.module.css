@@ -17,6 +17,8 @@
 
 .label {
   position: relative;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .form h2 > span {
@@ -25,8 +27,8 @@
 
 .form input {
   width: 100%;
-  height: 40px;
-  margin-bottom: 16px;
+  /* height: 40px; */
+  /* margin-bottom: 16px; */
   padding-left: 9px;
   box-shadow: 0px -2px 2px 0 rgba(29, 29, 27, 0.1);
   border: solid 1px var(--pale-grey);
@@ -96,8 +98,8 @@
   /* display: block; */
   color: var(--orangey-red);
   font-weight: 600;
-  top: 105%;
-  right: 0;
+  top: 100%;
+  right: -145px;
   z-index: 1;
   border: 1px solid black;
   border-radius: 3px;
