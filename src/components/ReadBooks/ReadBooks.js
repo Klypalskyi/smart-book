@@ -25,10 +25,8 @@ const ReadBooks = ({ books }) => {
                 <li className={styles.item} key={book.id}>
                   <div className={styles.display}>
                     <img src={img} alt="book-icon" className={styles.icon} />
-
                     <h2 className={styles.cardTitle}>{book.title}</h2>
                   </div>
-
                   <div className={styles.table}>
                     <div className={styles.label}>Автор:</div>
                     <div className={styles.quantity}>{book.author}</div>

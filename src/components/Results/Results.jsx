@@ -47,8 +47,12 @@ const Results = () => {
         },
       })
       .then(res => {
-        setTrainingId(res.data.training.trainingId);
-        setPagesReadResult(res.data.training.pagesReadResult);
+        // якщо у нового користувача немає тренування приходить null
+        if (res.data.training) {
+          // якщо є тренування сетимо тренування
+          setTrainingId(res.data.training.trainingId);
+          setPagesReadResult(res.data.training.pagesReadResult);
+        }
       });
   }, []);
 

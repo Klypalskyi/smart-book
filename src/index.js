@@ -37,10 +37,10 @@ const theme = createMuiTheme({
       default: '#f5f7fa',
     },
     action: {
-      active: 'rgba(255, 56, 50, 0.9)',
-      hover: 'rgba(0, 0, 0, 0.08)',
+      active: '#ff6b08',
+      hover: '#ff6b08',
       hoverOpacity: 0.08,
-      selected: 'var(--orangey-red)',
+      selected: '#ff6b08',
       disabled: 'rgba(0, 0, 0, 0.26)',
       disabledBackground: 'rgba(0, 0, 0, 0.12)',
     },
