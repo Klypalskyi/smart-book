@@ -6,6 +6,7 @@ export const ActionType = {
   REFRESH_USER_SUCCESS: 'REFRESH_USER_SUCCESS',
   REFRESH_USER_ERROR: 'REFRESH_USER_ERROR',
   LOGOUT: 'LOGOUT',
+  LOGOUT_ERROR: 'LOGOUT_ERROR',
   REGISTRATION_REQUEST: 'REGISTRATION_REQUEST',
   REGISTRATION_SUCCESS: 'REGISTRATION_SUCCESS',
   REGISTRATION_ERROR: 'REGISTRATION_ERROR',
@@ -42,6 +43,10 @@ export const refreshUserError = error => ({
 
 export const logOutSuccess = () => ({
   type: ActionType.LOGOUT,
+});
+
+export const logOutError = () => ({
+  type: ActionType.LOGOUT_ERROR,
 });
 
 export const setGoogleToken = googleToken => ({
