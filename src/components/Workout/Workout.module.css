@@ -127,6 +127,8 @@
 @media (min-width: 1280px) {
   .container {
     padding: 38px 40px 48px 40px;
-    width: 862px;
+    max-width: 862px;
+    flex-basis: 70%;
+    order: 1;
   }
 }
