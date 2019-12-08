@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { useSelector, connect } from 'react-redux';
+import { useSelector, connect, useDispatch } from 'react-redux';
+
 import PropTypes from 'prop-types';
 import style from './TrainingPage.module.css';
 import PanelOfTimers from '../../components/Timer/PanelOfTimers';
@@ -7,13 +8,15 @@ import Results from '../../components/Results/Results';
 import ModalCongrats from '../../components/ModalCongrats/ModalCongrats';
 import Workout from '../../components/Workout/Workout';
 import Goal from '../../components/Goal/Goal';
-import { getTraining } from '../../services/API';
+import { getTrainingFromServer } from '../../services/API';
 
 const TrainingPage = ({ modalCongratsOpen }) => {
   const token = useSelector(state => state.session.token);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    getTraining(token);
+    dispatch(getTrainingFromServer(token));
   }, []);
 
   return (

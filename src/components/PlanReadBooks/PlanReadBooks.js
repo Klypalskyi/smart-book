@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './PlanReadBooks.module.css';
@@ -12,27 +13,22 @@ const planReadBooks = ({ books }) => {
             <h1 className={styles.title}>Маю намір прочитати</h1>
             <ul className={styles.cardBook}>
               {books.map(book => (
-                <li className={styles.item} key={book.id}>
+                <li className={styles.item} key={book._id}>
                   <div className={styles.display}>
                     <img src={img} alt="book-icon" className={styles.icon} />
-
                     <h2 className={styles.cardTitle}>{book.title}</h2>
                   </div>
 
-                  <table className={styles.table}>
-                    <tr>
-                      <td className={styles.label}>Автор:</td>
-                      <td className={styles.quantity}>{book.author}</td>
-                    </tr>
-                    <tr className={styles.tr}>
-                      <td className={styles.label}>Рік:</td>
-                      <td className={styles.quantity}>{book.year}</td>
-                    </tr>
-                    <tr cla>
-                      <td className={styles.label}>Стор.:</td>
-                      <td className={styles.quantity}>{book.pagesCount}</td>
-                    </tr>
-                  </table>
+                  <div className={styles.table}>
+                    <div className={styles.label}>Автор:</div>
+                    <div className={styles.quantity}>{book.author}</div>
+
+                    <div className={styles.label}>Рік:</div>
+                    <div className={styles.quantity}>{book.year}</div>
+
+                    <div className={styles.label}>Стор.:</div>
+                    <div className={styles.quantity}>{book.pagesCount}</div>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -48,25 +44,25 @@ const planReadBooks = ({ books }) => {
               </div>
               <ul className={styles.read__book}>
                 {books.map(book => (
-                  <li className={styles.list_tablet} key={book.id}>
+                  <li className={styles.list_tablet} key={book._id}>
                     <img
                       src={img}
                       alt="book-icon"
                       className={styles.icon__tablet}
                     />
 
-                    <table className={styles.table_book}>
-                      <tr>
-                        <td className={styles.name_book}>
+                    <div className={styles.table_book}>
+                      <div className={styles.flex}>
+                        <div className={styles.name_book}>
                           <p className={styles.p_name_book}>{book.title}</p>
-                        </td>
-                        <td className={styles.avtor}>
+                        </div>
+                        <div className={styles.avtor}>
                           <p className={styles.p_avtor}>{book.author}</p>
-                        </td>
-                        <td className={styles.year}>{book.year}</td>
-                        <td className={styles.page}>{book.pagesCount}</td>
-                      </tr>
-                    </table>
+                        </div>
+                        <div className={styles.year}>{book.year}</div>
+                        <div className={styles.page}>{book.pagesCount}</div>
+                      </div>
+                    </div>
                   </li>
                 ))}
               </ul>
