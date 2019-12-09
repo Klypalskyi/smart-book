@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import makeStyles from '@material-ui/styles/makeStyles';
 import moment from 'moment';
 import Paper from '@material-ui/core/Paper';
 import {
@@ -9,6 +10,14 @@ import {
   SplineSeries,
 } from '@devexpress/dx-react-chart-material-ui';
 
+const useStyles = makeStyles(theme => ({
+  container: {
+    flexBasis: '100%',
+    [theme.breakpoints.up('lg')]: {
+      flexBasis: '70%',
+    },
+  },
+}));
 const pagesReadResult = [
   {
     _id: '5debb14b496b296044455570',
@@ -73,7 +82,7 @@ const finalCount = arrayOfCount.map(el => el.count);
 // const countArray = [];
 const generateData = (start, end, count, average) => {
   const data = [];
-  for (let i = start; i <= end; it) {
+  for (let i = start; i <= end; i++) {
     data.push({
       countAveragePage: average,
       countPagesEveryDay: count[i - 1],
@@ -86,6 +95,7 @@ const generateData = (start, end, count, average) => {
 
 const ChartComp = props => {
   // hooks
+  const classes = useStyles();
   const [average, setAverage] = useState(0);
   const [dateArray, setObject] = useState(pagesReadResult);
   const [date, setDate] = useState([]);
@@ -150,7 +160,7 @@ const ChartComp = props => {
   console.log('chart', chartData);
 
   return (
-    <Paper>
+    <Paper className={classes.container}>
       <Chart data={chartData}>
         <ArgumentAxis />
         <ValueAxis />

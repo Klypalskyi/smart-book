@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types's
 import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -38,7 +38,6 @@ function App() {
           redirectTo="/login"
         />
         <Route path="/" component={Auth} />
-
         <Route path="*">
           <div>create page for 404</div>
         </Route>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, connect, useDispatch } from 'react-redux';
 
 import PropTypes from 'prop-types';
@@ -8,10 +8,19 @@ import Results from '../../components/Results/Results';
 import ModalCongrats from '../../components/ModalCongrats/ModalCongrats';
 import Workout from '../../components/Workout/Workout';
 import Goal from '../../components/Goal/Goal';
+import Chart from '../../components/Chart/Chart';
 import { getTrainingFromServer } from '../../services/API';
 
+import CreateTraningGoal from '../../components/CreateTraningGoal/CreateTraningGoal';
+
 const TrainingPage = ({ modalCongratsOpen }) => {
+  const [goal, setGoal] = useState({
+    startTime: new Date(),
+    finishTime: new Date(),
+    countBooks: 0,
+  });
   const token = useSelector(state => state.session.token);
+  const haveTraining = useSelector(state => state.user.haveTraining);
 
   const dispatch = useDispatch();
 
@@ -19,15 +28,29 @@ const TrainingPage = ({ modalCongratsOpen }) => {
     dispatch(getTrainingFromServer(token));
   }, []);
 
+  const handleChangeToGoal = field => {
+    setGoal({ ...goal, ...field });
+  };
+
   return (
     <div className={style.container}>
-      <PanelOfTimers />
-      <div className={style.trainingContainer}>
-        {modalCongratsOpen && <ModalCongrats />}
-        <Workout />
-        <Goal />
-      </div>
-      <Results />
+      {modalCongratsOpen && <ModalCongrats />}
+      {haveTraining ? (
+        <div className={style.wrapper}>
+          <PanelOfTimers />
+          <Workout />
+          <Goal />
+          <Results />
+        </div>
+      ) : (
+        <>
+          <CreateTraningGoal {...goal} />
+          <div className={style.someContainer}>
+            <Workout handleChangeToGoal={handleChangeToGoal} />
+            <Chart />
+          </div>
+        </>
+      )}
     </div>
   );
 };

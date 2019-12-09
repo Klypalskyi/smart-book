@@ -2,10 +2,13 @@
   margin-top: 37px;
   background: #f5f7fa;
   margin: 0 auto;
-  width: 320px;
+  width: 100%;
+}
+.wrapper_mob {
+  display: flex;
 }
 .tittle {
-  margin-left: 24px;
+  margin-left: 7%;
   margin-top: 62px;
   width: 69px;
   height: 15px;
@@ -83,7 +86,7 @@
   margin-left: 24px;
   margin-bottom: 10px;
   background-color: white;
-  width: 270px;
+  width: 100%;
   height: 135px;
   box-shadow: 1px 1.7px 1px 0 grey;
 }
@@ -103,7 +106,7 @@
   width: 205px;
   height: 30px;
   font-family: 'OpenSans';
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -122,11 +125,11 @@
   margin-left: 27px;
 }
 .label {
-  margin-top: 6px;
-  width: 94px;
+  margin-top: 10px;
+  width: 63px;
   height: 11px;
   font-family: 'OpenSans';
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -136,10 +139,24 @@
   color: grey;
 }
 .quantity {
-  margin-top: 5px;
+  width: 109px;
+  margin-top: 10px;
   height: 11px;
   font-family: 'OpenSans';
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: left;
+}
+.quantity_year {
+  width: 82px;
+  margin-top: 10px;
+  height: 11px;
+  font-family: 'OpenSans';
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;

@@ -13,8 +13,6 @@ import withConnectByGoogle from '../../hoc/WithConnectByGoogle';
 
 const useStyles = makeStyles(theme => ({
   emailInput: {
-    borderBottomColor: theme.palette.action.selected,
-    borderColor: theme.palette.action.selected,
     '& label.Mui-focused': {
       color: 'var(--orangey-red)',
     },

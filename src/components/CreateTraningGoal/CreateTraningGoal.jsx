@@ -1,18 +1,17 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import styles from './Goal.module.css';
+// import PropTypes from 'prop-types';
 import moment from 'moment';
+import styles from './Goal.module.css';
 
-const Goal = () => {
+const CreateTraningGoal = ({ startTime, finishTime, countBooks }) => {
   const training = useSelector(state => state.training);
-  const start = moment('2019-12-08T13:56:30+02:00').dayOfYear();
-  const finish = moment('2019-12-15T13:56:30+02:00').dayOfYear();
+  const start = moment(startTime).dayOfYear();
+  const finish = moment(finishTime).dayOfYear();
   const leftDays = finish - start;
   // let isThisStatPage = !!(training != null && training.unreadCount);
-  let isThisStatPage = !!(training && training.unreadCount);
-  console.log(isThisStatPage);
-  // console.log(leftDays);
+  const isThisStatPage = false;
   return (
     <>
       <div
@@ -42,7 +41,7 @@ const Goal = () => {
                 isThisStatPage ? styles.goalDigitsStat : styles.goalDigits
               }
             >
-              {training ? training.booksCount : '0'}
+              {countBooks && countBooks}
             </p>
             <p
               className={isThisStatPage ? styles.goalTextStat : styles.goalText}
@@ -105,4 +104,4 @@ const Goal = () => {
 //   isThisStatPage: true,
 // };
 
-export default Goal;
+export default CreateTraningGoal;

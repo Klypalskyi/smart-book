@@ -66,6 +66,17 @@
   padding: 0 10px;
   margin-bottom: 20px;
   text-align: center;
+
+  /* resolve from stack overflow */
+  -moz-appearance: textfield; /* Firefox */ /* remove arrows in input[type="number"] */
+}
+
+/* resolve from stack overflow */
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 .picker {
@@ -162,7 +173,8 @@
 .table_pages_value {
   flex-basis: 45%;
   text-align: right;
-  margin: 0;
+  margin: 0 5px 0 0;
+  overflow: hidden;
 }
 .table_pages_text {
   flex-basis: 45%;
@@ -216,6 +228,8 @@
 @media (min-width: 1280px) {
   .container {
     max-width: 300px;
+    flex-basis: 30%;
+    order: 4;
   }
 
   .inner_container {

@@ -16,6 +16,7 @@ import {
   registrationSuccess,
   registrationError,
 } from '../redux/registration/registrationActions';
+// import { addUserTraining } from '../redux/userTraining/userTrainingActions';
 
 import {
   getTraining,
@@ -109,5 +110,21 @@ export const getTrainingFromServer = token => dispatch => {
     })
     .catch(err => {
       dispatch(trainingError(err));
+    });
+};
+
+export const postTraining = (training, token) => dispatch => {
+  axios
+    .post(`${process.env.REACT_APP_BASE_API_URL}/training`, training, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(res => {
+      dispatch(getTraining(res.data.training));
+      dispatch({ type: 'USER_HAVE_TRAINING' });
+    })
+    .catch(err => {
+      console.log(err);
     });
 };
