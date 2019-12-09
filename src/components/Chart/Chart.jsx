@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Component } from 'react';
+import { useSelector, connect } from 'react-redux';
 import moment from 'moment';
 import Paper from '@material-ui/core/Paper';
 import {
@@ -8,72 +9,56 @@ import {
   LineSeries,
   SplineSeries,
 } from '@devexpress/dx-react-chart-material-ui';
+import {
+  getPagesReadResult,
+  getTrainingTimeEnd,
+  getTrainingTimeStart,
+  getAllPagesCount,
+} from '../../redux/selectors/trainingSelectors';
 
-const pagesReadResult = [
-  {
-    _id: '5debb14b496b296044455570',
-    date: '2019-12-01T13:15:00.000Z',
-    count: 15,
-  },
-  {
-    _id: '5deb8534b15b06277af0b461',
-    date: '2019-12-02T20:38:00.000Z',
-    count: 123,
-  },
-  {
-    _id: '5debaa6d5defc6604353a8fa',
-    date: '2019-12-04T14:26:00.000Z',
-    count: 88,
-  },
-  {
-    _id: '5deba9cd5defc6604353a8f9',
-    date: '2019-12-06T12:16:00.000Z',
-    count: 11,
-  },
-  {
-    _id: '5debaeac5defc6604353a8fd',
-    date: '2019-12-06T10:12:00.000Z',
-    count: 121,
-  },
-  {
-    _id: '5debac1f5defc6604353a8fc',
-    date: '2019-12-07T13:38:45.473Z',
-    count: 7,
-  },
-  {
-    _id: '5deba30ab15b06277af0b462',
-    date: '2019-12-07T14:32:14.844Z',
-    count: 11,
-  },
-  {
-    _id: '5debab615defc6604353a8fb',
-    date: '2019-12-07T13:38:38.134Z',
-    count: 213,
-  },
-  {
-    _id: '5deb9e3cdd9d032772bf52a1',
-    date: '2019-12-07T12:35:44.844Z',
-    count: 32,
-  },
-];
+const createArrayOfDate = array => {
+  const onlyDate = [];
+  const onlyNormalDate = [];
 
-const obj = {};
+  array.forEach(train => {
+    const day = moment(train.date).dayOfYear(); // day of year
 
-pagesReadResult.forEach(el => {
-  const formatedDate = moment(el.date).format('YYYY/MM/DD');
+    if (!onlyDate.includes(day)) {
+      onlyDate.push(day); // push day of year
 
-  obj[formatedDate] = {
-    count: obj[formatedDate] ? obj[formatedDate].count : 0 + el.count,
-  };
-});
+      const format = moment().dayOfYear(day)._d;
+      onlyNormalDate.push(moment(format).format('YYYY/MM/DD')); // push normal date to another array
+    }
+  });
+  return onlyNormalDate;
+};
 
-const arrayOfCount = Object.values(obj);
-const finalCount = arrayOfCount.map(el => el.count);
+const createArrayOfCount = array => {
+  const obj = {};
 
-// const countArray = [];
+  array.forEach(el => {
+    const formatedDate = moment(el.date).format('YYYY/MM/DD');
+    obj[formatedDate] = {
+      count: obj[formatedDate] ? obj[formatedDate].count : 0 + el.count,
+    };
+  });
+
+  const arrayOfCount = Object.values(obj).map(el => el.count);
+  return arrayOfCount;
+};
+
+const findDifference = (start, end, arrayOfDate) => {
+  const startOfTraining = moment(start).dayOfYear();
+  const endOfTraining = moment(end).dayOfYear();
+  const difference = endOfTraining - startOfTraining;
+
+  const differenceWithDeadline = difference + (arrayOfDate.length - difference);
+  return differenceWithDeadline;
+};
+
 const generateData = (start, end, count, average) => {
   const data = [];
-  for (let i = start; i <= end; it) {
+  for (let i = start; i <= end; i++) {
     data.push({
       countAveragePage: average,
       countPagesEveryDay: count[i - 1],
@@ -84,90 +69,120 @@ const generateData = (start, end, count, average) => {
   return data;
 };
 
-const ChartComp = props => {
-  // hooks
-  const [average, setAverage] = useState(0);
-  const [dateArray, setObject] = useState(pagesReadResult);
-  const [date, setDate] = useState([]);
-  const [allPages, setAllPages] = useState(3186);
-  // end of hooks
+class ChartComp extends Component {
+  state = {
+    training: [],
+    timeEnd: 0,
+    timeStart: 0,
+    allPagesCount: 0,
+    arrayOfDate: [],
+    arrayOfCount: [],
+  };
 
-  const timeStart = 1575417600000;
-  const timeEnd = '2019-12-07T00:00:00.000Z';
-  const allPagesCount = 1593;
+  componentDidMount() {
+    // const trainingStart = useSelector(state => state.training);
+    console.log('this staeteetettete', this.state.training);
+    this.setState({
+      training: this.props.training,
+    });
+  }
 
-  const startOfTranning = moment(timeStart).dayOfYear();
-  const endOfTranning = moment(timeEnd).dayOfYear();
-  const difference = endOfTranning - startOfTranning;
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.training !== this.props.training) {
+      console.log('jfdjnfnkjsnjkdfjnfdjn', prevProps.training);
+      this.setState({
+        training: this.props.training,
+      });
 
-  const averageCountPage = allPagesCount / difference;
-
-  const onlyDate = [];
-  const onlyNormalDate = [];
-
-  dateArray.forEach(train => {
-    const day = moment(train.date).dayOfYear(); // day of year
-
-    if (!onlyDate.includes(day)) {
-      onlyDate.push(day); // push day of year
-
-      const format = moment().dayOfYear(day)._d;
-      onlyNormalDate.push(moment(format).format('YYYY/MM/DD')); // push normal date to another array
+      // console.log(createArrayOfDate(this.state.training.pagesReadResult));
     }
-  });
 
-  dateArray.forEach(train => {
-    const day = moment(train.date).dayOfYear(); // day of year
+    // this.setState(
+    //   {
+    //     arrayOfDate: createArrayOfDate(this.state.training.pagesReadResult),
+    //   }
+  }
 
-    if (!onlyDate.includes(day)) {
-      onlyDate.push(day); // push day of year
+  // const [training, setTraining] = useState([]);
 
-      const format = moment().dayOfYear(day)._d;
-      onlyNormalDate.push(moment(format).format('YYYY/MM/DD')); // push normal date to another array
-    }
-  });
+  // const [pagesReadResult, setPagesReadResult] = useState([]);
+  // const [timeEnd, setTimeEnd] = useState(0);
+  // const [timeStart, setTimeStart] = useState(0);
+  // const [allPagesCount, setAllPagesCount] = useState(0);
+  // const [arrayOfDate, setArrayOfDate] = useState(0);
+  // const [arrayOfCount, setArrayOfCount] = useState(0);
 
-  const differenceWithDeadline =
-    difference + (onlyNormalDate.length - difference);
+  // const trainingStart = useSelector(state => state.training);
 
-  const dataa = [
-    { argument: 1, value: 10 },
-    { argument: 2, value: 1000 },
-    { argument: 3, value: 30 },
-  ];
+  // useEffect(() => {
+  //   if (trainingStart) {
+  //     setTraining(trainingStart);
+  //   }
+  // }, [trainingStart]);
 
-  useEffect(() => {
-    setDate(pagesReadResult);
-  }, []);
+  // // setTimeEnd(training.timeEnd);
+  // //     setTimeStart(training.timeStart);
+  // //     setAllPagesCount(training.allPagesCount);
 
-  const chartData = generateData(
-    1,
-    differenceWithDeadline,
-    finalCount,
-    averageCountPage,
-  );
+  // useEffect(() => {
+  //   if (training) {
+  //     setPagesReadResult(training.pagesReadResult);
+  //   }
+  // }, [training]);
 
-  console.log('chart', chartData);
+  // // create an array of date
+  // useEffect(() => {
+  //   if (pagesReadResult) {
+  //     setArrayOfDate(createArrayOfDate(pagesReadResult));
+  //     console.log('yergfuinhuirnh', arrayOfDate);
+  //   }
+  // }, [pagesReadResult]);
 
-  return (
-    <Paper>
-      <Chart data={chartData}>
-        <ArgumentAxis />
-        <ValueAxis />
+  // // create an array of count
+  // useEffect(() => {
+  //   if (arrayOfDate) {
+  //     setArrayOfCount(createArrayOfCount(pagesReadResult));
+  //     console.log(arrayOfCount);
+  //   }
+  // }, [arrayOfDate]);
 
-        <LineSeries
-          name="line"
-          valueField="countAveragePage"
-          argumentField="argument"
-        />
-        <SplineSeries
-          name="spline"
-          valueField="countPagesEveryDay"
-          argumentField="argument"
-        />
-      </Chart>
-    </Paper>
-  );
-};
+  // const chartData = generateData(
+  //   1,
+  //   differenceWithDeadline,
+  //   finalCount,
+  //   averageCountPage,
+  // );
+  render() {
+    const dataa = [
+      { argument: 1, countAveragePage: 10 },
+      { argument: 2, countAveragePage: 1000 },
+      { argument: 3, countAveragePage: 30 },
+    ];
 
-export default ChartComp;
+    return (
+      <Paper>
+        <Chart data={dataa}>
+          <ArgumentAxis />
+          <ValueAxis />
+
+          <LineSeries
+            name="line"
+            valueField="countAveragePage"
+            argumentField="argument"
+          />
+          <SplineSeries
+            name="spline"
+            valueField="countPagesEveryDay"
+            argumentField="argument"
+          />
+        </Chart>
+      </Paper>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  training: state.training,
+});
+
+export default connect(mapStateToProps)(ChartComp);

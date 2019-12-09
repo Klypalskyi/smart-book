@@ -20,15 +20,17 @@ const TrainingPage = ({ modalCongratsOpen }) => {
   }, []);
 
   return (
-    <div className={style.container}>
-      <PanelOfTimers />
-      <div className={style.trainingContainer}>
-        {modalCongratsOpen && <ModalCongrats />}
-        <Workout />
-        <Goal />
-      </div>
-      <Results />
-    </div>
+    <>
+      <div className={style.container}>
+        <PanelOfTimers />
+        <div className={style.trainingContainer}>
+          {' '}
+          {modalCongratsOpen && <ModalCongrats />} <Workout />
+          <Goal />
+        </div>{' '}
+        <Results />
+      </div>{' '}
+    </>
   );
 };
 

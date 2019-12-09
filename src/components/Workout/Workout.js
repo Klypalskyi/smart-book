@@ -45,7 +45,7 @@ const Workout = () => {
 
   return (
     <div className={style.container}>
-      <div className={style.header}>Моє тренування</div>
+      <div className={style.header}> Моє тренування </div>{' '}
       <div className={style.pickers}>
         <MuiPickersUtilsProvider
           className={style.pickerOverlay}
@@ -57,36 +57,40 @@ const Workout = () => {
             disablePast
             disableFuture
             format="dd/MM/yyyy"
-            InputProps={{ className: style.picker }}
-          />
-        </MuiPickersUtilsProvider>
+            InputProps={{
+              className: style.picker,
+            }}
+          />{' '}
+        </MuiPickersUtilsProvider>{' '}
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <DatePicker
             value={timeEnd}
             onChange={handleTimeEnd}
             disablePast
             format="dd/MM/yyyy"
-            InputProps={{ className: style.picker }}
-          />
-        </MuiPickersUtilsProvider>
-      </div>
+            InputProps={{
+              className: style.picker,
+            }}
+          />{' '}
+        </MuiPickersUtilsProvider>{' '}
+      </div>{' '}
       <form className={style.selectContainer} onSubmit={handleSubmit}>
         <select className={style.select} onChange={addBook}>
           <option disabled selected className={style.label}>
-            Обрати книги з бібліотеки
-          </option>
+            Обрати книги з бібліотеки{' '}
+          </option>{' '}
           {plannedBooks.map(el => (
-            <option key={el._id}>{el.title}</option>
-          ))}
-        </select>
+            <option key={el._id}> {el.title} </option>
+          ))}{' '}
+        </select>{' '}
         <button type="submit" className={style.button}>
-          Додати
-        </button>
-      </form>
-      <TrainingBookTable books={books} deleteBook={deleteBook} />
+          Додати{' '}
+        </button>{' '}
+      </form>{' '}
+      <TrainingBookTable books={books} deleteBook={deleteBook} />{' '}
       <button type="submit" className={style.submit}>
-        Почати тренування
-      </button>
+        Почати тренування{' '}
+      </button>{' '}
     </div>
   );
 };
