@@ -9,8 +9,9 @@ import ModalCongrats from '../../components/ModalCongrats/ModalCongrats';
 import Workout from '../../components/Workout/Workout';
 import Goal from '../../components/Goal/Goal';
 import { getTrainingFromServer } from '../../services/API';
+import Chart from '../../components/Chart/Chart';
 
-const TrainingPage = ({ modalCongratsOpen }) => {
+const TrainingPage = ({ modalCongratsOpen, training }) => {
   const token = useSelector(state => state.session.token);
 
   const dispatch = useDispatch();
@@ -30,16 +31,21 @@ const TrainingPage = ({ modalCongratsOpen }) => {
         </div>{' '}
         <Results />
       </div>{' '}
+      {training.trainingId && <Chart training={training} />}{' '}
     </>
   );
 };
 
 const mapStateToProps = state => ({
   modalCongratsOpen: state.componentController.modalCongratsOpen,
+  training: state.training,
 });
 
 TrainingPage.propTypes = {
   modalCongratsOpen: PropTypes.bool.isRequired,
+  training: PropTypes.exact({
+    trainingId: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default connect(mapStateToProps, null)(TrainingPage);
