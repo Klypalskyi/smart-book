@@ -8,6 +8,9 @@ import LibraryPage from '../../pages/LibraryPage/LibraryPage';
 import TrainingPage from '../../pages/TrainingPage/TrainingPage';
 import Header from '../../components/Header/Header';
 import ProtectedRoute from '../../components/ProtectedRoute/ProtectedRoute';
+
+import Loader from '../../components/Loader/LoaderContainer';
+
 import { refreshUser } from '../../services/API';
 
 function App() {
@@ -21,6 +24,8 @@ function App() {
     <>
       <CssBaseline />
       <Header />
+      <Loader />
+
       <Switch>
         <ProtectedRoute
           component={LibraryPage}

@@ -8,6 +8,7 @@ import {
   refreshUserSuccess,
   refreshUserError,
   logOutSuccess,
+  logOutError,
 } from '../redux/login/loginActions';
 
 import {
@@ -17,7 +18,11 @@ import {
 } from '../redux/registration/registrationActions';
 // import { addUserTraining } from '../redux/userTraining/userTrainingActions';
 
-import { getTraining } from '../redux/training/trainingActions';
+import {
+  getTraining,
+  trainingRequest,
+  trainingError,
+} from '../redux/training/trainingActions';
 
 import { getUserToken } from '../redux/selectors/sessionSelectors';
 
@@ -85,11 +90,13 @@ export const logOut = token => dispatch => {
       clearAuthToken();
     })
     .catch(err => {
-      console.log(err);
+      dispatch(logOutError(err));
     });
 };
 
 export const getTrainingFromServer = token => dispatch => {
+  dispatch(trainingRequest());
+
   axios
     .get(`${process.env.REACT_APP_BASE_API_URL}/training`, {
       headers: {
@@ -102,7 +109,7 @@ export const getTrainingFromServer = token => dispatch => {
       dispatch(getTraining(training));
     })
     .catch(err => {
-      console.log(err);
+      dispatch(trainingError(err));
     });
 };
 
