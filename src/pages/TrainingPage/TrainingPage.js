@@ -10,10 +10,11 @@ import Workout from '../../components/Workout/Workout';
 import Goal from '../../components/Goal/Goal';
 import Chart from '../../components/Chart/Chart';
 import { getTrainingFromServer } from '../../services/API';
+import Chart from '../../components/Chart/Chart';
 
 import CreateTraningGoal from '../../components/CreateTraningGoal/CreateTraningGoal';
 
-const TrainingPage = ({ modalCongratsOpen }) => {
+const TrainingPage = ({ modalCongratsOpen, training }) => {
   const [goal, setGoal] = useState({
     startTime: new Date(),
     finishTime: new Date(),
@@ -47,7 +48,7 @@ const TrainingPage = ({ modalCongratsOpen }) => {
           <CreateTraningGoal {...goal} />
           <div className={style.someContainer}>
             <Workout handleChangeToGoal={handleChangeToGoal} />
-            <Chart />
+            {training.trainingId && <Chart training={training} />}
           </div>
         </>
       )}
@@ -57,10 +58,14 @@ const TrainingPage = ({ modalCongratsOpen }) => {
 
 const mapStateToProps = state => ({
   modalCongratsOpen: state.componentController.modalCongratsOpen,
+  training: state.training,
 });
 
 TrainingPage.propTypes = {
   modalCongratsOpen: PropTypes.bool.isRequired,
+  training: PropTypes.exact({
+    trainingId: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default connect(mapStateToProps, null)(TrainingPage);
