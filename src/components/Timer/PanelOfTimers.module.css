@@ -12,6 +12,8 @@
 
 @media (min-width: 1280px) {
   .panel {
-    width: 645px;
+    max-width: 645px;
+    flex-basis: 70%;
+    order: 0;
   }
 }

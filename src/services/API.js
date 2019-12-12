@@ -8,6 +8,7 @@ import {
   refreshUserSuccess,
   refreshUserError,
   logOutSuccess,
+  logOutError,
 } from '../redux/login/loginActions';
 
 import {
@@ -15,8 +16,13 @@ import {
   registrationSuccess,
   registrationError,
 } from '../redux/registration/registrationActions';
+// import { addUserTraining } from '../redux/userTraining/userTrainingActions';
 
-import { getTraining } from '../redux/training/trainingActions';
+import {
+  getTraining,
+  trainingRequest,
+  trainingError,
+} from '../redux/training/trainingActions';
 
 import { getUserToken } from '../redux/selectors/sessionSelectors';
 
@@ -84,11 +90,13 @@ export const logOut = token => dispatch => {
       clearAuthToken();
     })
     .catch(err => {
-      console.log(err);
+      dispatch(logOutError(err));
     });
 };
 
 export const getTrainingFromServer = token => dispatch => {
+  dispatch(trainingRequest());
+
   axios
     .get(`${process.env.REACT_APP_BASE_API_URL}/training`, {
       headers: {
@@ -99,6 +107,22 @@ export const getTrainingFromServer = token => dispatch => {
     .then(data => data.training)
     .then(training => {
       dispatch(getTraining(training));
+    })
+    .catch(err => {
+      dispatch(trainingError(err));
+    });
+};
+
+export const postTraining = (training, token) => dispatch => {
+  axios
+    .post(`${process.env.REACT_APP_BASE_API_URL}/training`, training, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(res => {
+      dispatch(getTraining(res.data.training));
+      dispatch({ type: 'USER_HAVE_TRAINING' });
     })
     .catch(err => {
       console.log(err);

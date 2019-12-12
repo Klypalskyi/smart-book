@@ -23,6 +23,8 @@ const authenticated = (state = false, { type }) => {
       return true;
     case ActionType.LOGOUT:
       return false;
+    case 'USER_HAVE_TRAINING':
+      return { ...state, haveTraining: true };
     default:
       return state;
   }
@@ -47,6 +49,7 @@ const error = (state = null, { type, payload }) => {
   switch (type) {
     case ActionType.LOGIN_ERROR:
     case ActionType.REFRESH_USER_ERROR:
+    case ActionType.LOGOUT_ERROR:
       return payload;
     case ActionType.REGISTRATION_ERROR:
       return payload.error;

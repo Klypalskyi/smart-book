@@ -2,12 +2,11 @@
   background: #f5f7fa;
 }
 .title {
-  margin: 0 auto;
   width: 275px;
   height: 60px;
   padding-top: 20px;
-  padding-bottom: 16px;
-  padding-left: 10px;
+  padding-bottom: 14px;
+  padding-left: 7%;
   font-family: Montserrat;
   font-size: 19px;
   font-weight: 600;
@@ -18,18 +17,21 @@
 }
 .cardBook {
   list-style-type: none;
-  width: 325px;
+  width: 100%;
   margin: 0 auto;
   margin-left: 29px;
 }
 .item {
   margin-bottom: 10px;
   background-color: white;
-  width: 270px;
+  width: 100%;
   height: 200px;
   box-shadow: 1px 1.7px 1px 0 grey;
 }
 .display {
+  display: flex;
+}
+.wrapper_mob {
   display: flex;
 }
 .icon {
@@ -41,7 +43,7 @@
   width: 205px;
   height: 30px;
   font-family: OpenSans;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -59,12 +61,12 @@
   margin-left: 27px;
 }
 .label {
-  margin-top: 7px;
+  margin-top: 10px;
   padding-bottom: 3px;
   width: 63px;
   height: 11px;
-  font-family: OpenSans;
-  font-size: 13px;
+  font-family: 'OpenSans';
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -74,12 +76,26 @@
   color: #b4b7be;
 }
 .quantity {
-  margin-top: 7px;
+  margin-top: 10px;
   width: 109px;
   display: block;
   height: 11px;
-  font-family: OpenSans;
-  font-size: 13px;
+  font-family: 'OpenSans';
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0.39px;
+  text-align: left;
+}
+.quantity_year {
+  margin-top: 10px;
+  width: 82px;
+  display: block;
+  height: 11px;
+  font-family: 'OpenSans';
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -90,7 +106,7 @@
 .button__grey {
   width: 130px;
   height: 39px;
-  font-family: Montserrat;
+  font-family: 'Montserrat';
   font-size: 13px;
   font-weight: 500;
   font-stretch: normal;
@@ -101,7 +117,7 @@
   color: white;
   border: none;
   margin-left: 73px;
-  margin-top: 11px;
+  margin-top: 18px;
   box-shadow: 1px 1.7px 3px 0 rgba(0, 0, 0, 0.15);
   background-color: #6d7a8d;
   cursor: pointer;

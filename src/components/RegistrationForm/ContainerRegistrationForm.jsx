@@ -29,7 +29,7 @@ const ContainerRegistrationForm = props => {
         email: formik.values.email,
         password: formik.values.password,
       };
-      
+
       dispatch(registration(userRequest));
     },
   });

@@ -1,12 +1,15 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+// import PropTypes from 'prop-types';
+// import axios from 'axios';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DateTimePicker } from '@material-ui/pickers';
 
-// import { addResult } from '../../redux/results/resultsActions';
+import { postResultsOnServer } from '../../redux/results/resultsActions';
+import { getTrainingFromServer } from '../../services/API';
 
 import styles from './Results.module.css';
 
@@ -38,23 +41,36 @@ const Results = () => {
   const [pagesReadResult, setPagesReadResult] = useState([]);
 
   const token = useSelector(state => state.session.token);
+  const training = useSelector(state => state.training);
+  const dispatch = useDispatch();
+  // const pagesReadResult = useSelector(state => state.training.pagesReadResult);
 
   useEffect(() => {
-    axios
-      .get(`/training`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then(res => {
-        // якщо у нового користувача немає тренування приходить null
-        if (res.data.training) {
-          // якщо є тренування сетимо тренування
-          setTrainingId(res.data.training.trainingId);
-          setPagesReadResult(res.data.training.pagesReadResult);
-        }
-      });
-  }, []);
+    if (training) {
+      const {
+        pagesReadResult: initPageReadResult,
+        trainingId: initTrainingId,
+      } = training;
+      setTrainingId(initTrainingId);
+      if (initPageReadResult.length !== pagesReadResult.length) {
+        const lastTenPagesReadResult = [...initPageReadResult].sort((a, b) =>
+          a.date > b.date ? -1 : 1,
+        );
+        lastTenPagesReadResult.length = 10;
+        setPagesReadResult(
+          lastTenPagesReadResult,
+          // initPageReadResult.sort((a, b) => (a.date > b.date ? -1 : 1)),
+        );
+      }
+    }
+  }, [training]);
+
+  // useEffect(() => {
+  //   if (training.pagesReadResult > pagesReadResult) {
+  //     console.log(pagesReadResult);
+  //     setPagesReadResult(training.pagesReadResult);
+  //   }
+  // }, [training]);
 
   const handleDateInput = date => {
     setSelectedDate(date);
@@ -67,8 +83,13 @@ const Results = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
+    if (!trainingId) {
+      console.log('Please, create workout!!!');
+      return;
+    }
+
     if (selectedPages.length === 0 || Number(selectedPages) <= 0) {
-      // error handler
+      console.log('Please, insert pages!!!');
     } else {
       // set pages result
       const addedResult = {
@@ -76,12 +97,12 @@ const Results = () => {
         count: Number(selectedPages), // count	number
       };
 
-      // add to backend
-      axios.post(`/training/time/${trainingId}`, addedResult, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      console.log('trainingId: ', trainingId);
+      console.log('addedResult: ', addedResult);
+      console.log('token: ', token);
+
+      dispatch(postResultsOnServer(token, trainingId, addedResult));
+      dispatch(getTrainingFromServer(token));
 
       // clear inputs
       setSelectedDate(new Date().toISOString());
@@ -95,12 +116,10 @@ const Results = () => {
         <h3 className={styles.title}>РЕЗУЛЬТАТИ</h3>
 
         <form className={styles.form} onSubmit={handleSubmit}>
-          <label className={styles.label} forHtml="resultDatePicker">
+          <label className={styles.label}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <p className={styles.input_title}>Дата</p>
               <DateTimePicker
-                id="resultDatePicker"
-                name="resultDatePicker"
                 value={selectedDate}
                 onChange={handleDateInput}
                 showTodayButton
@@ -109,7 +128,6 @@ const Results = () => {
                 format="dd/MM/yyyy"
                 InputProps={{
                   className: styles.picker,
-                  id: 'resultDatePicker',
                 }}
               />
             </MuiPickersUtilsProvider>
@@ -137,20 +155,9 @@ const Results = () => {
           </h3>
           <table className={styles.table}>
             <tbody>
-              {/* {testResults.length > 0 &&
-                testResults.map(res => (
-                  <tr className={styles.table_row} key={res.id}>
-                    <td className={styles.table_date}>{res.date}</td>
-                    <td className={styles.table_time}>{res.time}</td>
-                    <td className={styles.table_pages}>
-                      <p className={styles.table_pages_value}>{res.pages}</p>
-                      <p className={styles.table_pages_text}>стор.</p>
-                    </td>
-                  </tr>
-                ))} */}
-              {pagesReadResult.length > 0 &&
+              {pagesReadResult &&
                 pagesReadResult.map(res => (
-                  <tr className={styles.table_row} key={res.id}>
+                  <tr className={styles.table_row} key={res._id}>
                     <td className={styles.table_date}>
                       {formatDate(res.date)}
                     </td>
@@ -170,5 +177,11 @@ const Results = () => {
     </div>
   );
 };
+
+// Results.propTypes = {
+//   token: PropTypes.string.isRequired,
+//   training: PropTypes.string.isRequired,
+//   dispatch: PropTypes.string.isRequired,
+// };
 
 export default Results;
