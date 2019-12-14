@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useSelector, connect, useDispatch } from 'react-redux';
-
 import PropTypes from 'prop-types';
 import style from './TrainingPage.module.css';
 import PanelOfTimers from '../../components/Timer/PanelOfTimers';
@@ -10,6 +9,7 @@ import Workout from '../../components/Workout/Workout';
 import Goal from '../../components/Goal/Goal';
 import Chart from '../../components/Chart/Chart';
 import { getTrainingFromServer } from '../../services/API';
+import WorkoutInfo from '../../components/WorkoutInfo/WorkoutInfo';
 
 const TrainingPage = ({ modalCongratsOpen }) => {
   const token = useSelector(state => state.session.token);
@@ -27,15 +27,16 @@ const TrainingPage = ({ modalCongratsOpen }) => {
       {haveTraining ? (
         <div className={style.wrapper}>
           <PanelOfTimers />
-          <Workout />
           <Goal />
+          <WorkoutInfo />
           <Results />
+          <Chart />
         </div>
       ) : (
         <>
-          <Goal />
           <div className={style.someContainer}>
             <Workout />
+            <Goal style={{ order: 2 }} />
             <Chart />
           </div>
         </>

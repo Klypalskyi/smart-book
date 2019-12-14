@@ -9,15 +9,18 @@ import {
   LineSeries,
   SplineSeries,
 } from '@devexpress/dx-react-chart-material-ui';
+import style from './Chart.module.css';
 
-const useStyles = makeStyles(theme => ({
-  container: {
-    flexBasis: '100%',
-    [theme.breakpoints.up('lg')]: {
-      flexBasis: '70%',
-    },
-  },
-}));
+// const useStyles = makeStyles(theme => ({
+//   container: {
+//     flexBasis: '100%',
+//     order: 3,
+//     marginTop: '80px',
+//     [theme.breakpoints.up('lg')]: {
+//       flexBasis: '70%',
+//     },
+//   },
+// }));
 const pagesReadResult = [
   {
     _id: '5debb14b496b296044455570',
@@ -95,7 +98,7 @@ const generateData = (start, end, count, average) => {
 
 const ChartComp = props => {
   // hooks
-  const classes = useStyles();
+  // const classes = useStyles();
   const [average, setAverage] = useState(0);
   const [dateArray, setObject] = useState(pagesReadResult);
   const [date, setDate] = useState([]);
@@ -160,7 +163,7 @@ const ChartComp = props => {
   console.log('chart', chartData);
 
   return (
-    <Paper className={classes.container}>
+    <Paper className={style.container}>
       <Chart data={chartData}>
         <ArgumentAxis />
         <ValueAxis />

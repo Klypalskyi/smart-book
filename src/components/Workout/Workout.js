@@ -9,8 +9,8 @@ import Select from '@material-ui/core/Select';
 import style from './Workout.module.css';
 import TrainingBookTable from '../TrainingBooksTable/TrainingBooksTable';
 import { addUserTraining } from '../../redux/userTraining/userTrainingActions';
-// import TrainingTableInfo from '../TrainingTableInfo/TrainingTableInfo';
 import { postTraining } from '../../services/API';
+import TableItemCreate from '../TrainingBooksTable/TableItemCreate/TableItemCreate';
 
 const useStyles = makeStyles(theme => ({
   selectEmpty: {
@@ -21,7 +21,6 @@ const useStyles = makeStyles(theme => ({
     '.MuiSelect-selectMenu': {
       paddingLeft: 10,
     },
-    // marginTop: theme.spacing(2),
     '&$:focus': {
       backgroundColor: '#fff',
     },
@@ -49,7 +48,6 @@ const Workout = () => {
 
   const dispatch = useDispatch();
   const token = useSelector(state => state.session.token);
-  // const haveTraining = useSelector(state => state.user.haveTraining);
 
   const plannedBooks = useSelector(state =>
     state.books.filter(book => book.status === 'planned'),
@@ -62,10 +60,6 @@ const Workout = () => {
   const handleTimeEnd = date => {
     setTimeEnd(date.toISOString());
   };
-
-  // const addBook = evt => {
-  //   setSelectedBookId(evt.target.options[evt.target.selectedIndex].dataset.id);
-  // };
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -103,10 +97,6 @@ const Workout = () => {
       };
       dispatch(addUserTraining(training));
       dispatch(postTraining(training, token));
-      // setSelectedBookId('');
-      // setBooks([]);
-      // setBooksForRender([]);
-      // setTimeEnd(new Date().toISOString());
     }
   };
 
@@ -117,10 +107,6 @@ const Workout = () => {
 
   return (
     <div className={style.container}>
-      {/* {haveTraining ? (
-        <TrainingTableInfo />
-      ) : (
-        <> */}
       <div className={style.pickers}>
         <MuiPickersUtilsProvider
           className={style.pickerOverlay}
@@ -168,12 +154,25 @@ const Workout = () => {
           Додати
         </button>
       </div>
-      <TrainingBookTable books={booksForRender} deleteBook={deleteBook} />
-      <button type="submit" className={style.submit} onClick={addTraining}>
-        Почати тренування
-      </button>
-      {/* </>
-      )} */}
+      <TrainingBookTable>
+        {booksForRender.length > 0 &&
+          booksForRender.map(el => (
+            <TableItemCreate
+              key={el._id}
+              id={el._id}
+              title={el.title}
+              author={el.author}
+              year={el.year}
+              pagesCount={el.pagesCount}
+              deleteBook={deleteBook}
+            />
+          ))}
+      </TrainingBookTable>
+      <div className={style.submitOverlay}>
+        <button type="submit" className={style.submit} onClick={addTraining}>
+          Почати тренування
+        </button>
+      </div>
     </div>
   );
 };
