@@ -7,6 +7,7 @@ import booksReducer from './redux/books/booksReducer';
 import componentController from './redux/componentController/componentControllerReducer';
 import trainingReducer from './redux/training/trainingReducer';
 import { summaryModalReducer } from './redux/summaryModal/summaryModalReducer';
+import loaderReducers from './redux/loader/loaderReducers';
 import { userTrainingReducer } from './redux/userTraining/userTrainingReducer';
 
 const sessionPersistConfig = {
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   componentController,
   training: trainingReducer,
   isSummaryModalOpen: summaryModalReducer,
+  loader: loaderReducers,
   userTraining: userTrainingReducer,
 });
 

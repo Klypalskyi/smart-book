@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, connect, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import style from './TrainingPage.module.css';
@@ -10,8 +10,14 @@ import Goal from '../../components/Goal/Goal';
 import Chart from '../../components/Chart/Chart';
 import { getTrainingFromServer } from '../../services/API';
 import WorkoutInfo from '../../components/WorkoutInfo/WorkoutInfo';
+import CreateTraningGoal from '../../components/CreateTraningGoal/CreateTraningGoal';
 
-const TrainingPage = ({ modalCongratsOpen }) => {
+const TrainingPage = ({ modalCongratsOpen, training }) => {
+  const [goal, setGoal] = useState({
+    startTime: new Date(),
+    finishTime: new Date(),
+    countBooks: 0,
+  });
   const token = useSelector(state => state.session.token);
   const haveTraining = useSelector(state => state.user.haveTraining);
 
@@ -20,6 +26,10 @@ const TrainingPage = ({ modalCongratsOpen }) => {
   useEffect(() => {
     dispatch(getTrainingFromServer(token));
   }, []);
+
+  const handleChangeToGoal = field => {
+    setGoal({ ...goal, ...field });
+  };
 
   return (
     <div className={style.container}>
@@ -30,16 +40,14 @@ const TrainingPage = ({ modalCongratsOpen }) => {
           <Goal />
           <WorkoutInfo />
           <Results />
-          <Chart />
+          <Chart training={training} />
         </div>
       ) : (
-        <>
-          <div className={style.someContainer}>
-            <Workout />
-            <Goal style={{ order: 2 }} />
-            <Chart />
-          </div>
-        </>
+        <div className={style.someContainer}>
+          <Workout handleChangeToGoal={handleChangeToGoal} />
+          <CreateTraningGoal style={{ order: 2 }} {...goal} />
+          {training.trainingId && <Chart training={training} />}
+        </div>
       )}
     </div>
   );
@@ -47,10 +55,14 @@ const TrainingPage = ({ modalCongratsOpen }) => {
 
 const mapStateToProps = state => ({
   modalCongratsOpen: state.componentController.modalCongratsOpen,
+  training: state.training,
 });
 
 TrainingPage.propTypes = {
   modalCongratsOpen: PropTypes.bool.isRequired,
+  training: PropTypes.exact({
+    trainingId: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default connect(mapStateToProps, null)(TrainingPage);

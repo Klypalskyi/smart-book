@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types's
 import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,6 +8,9 @@ import LibraryPage from '../../pages/LibraryPage/LibraryPage';
 import TrainingPage from '../../pages/TrainingPage/TrainingPage';
 import Header from '../../components/Header/Header';
 import ProtectedRoute from '../../components/ProtectedRoute/ProtectedRoute';
+
+import Loader from '../../components/Loader/LoaderContainer';
+
 import { refreshUser } from '../../services/API';
 
 function App() {
@@ -21,6 +24,8 @@ function App() {
     <>
       <CssBaseline />
       <Header />
+      <Loader />
+
       <Switch>
         <ProtectedRoute
           component={LibraryPage}

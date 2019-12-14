@@ -49,6 +49,7 @@ const error = (state = null, { type, payload }) => {
   switch (type) {
     case ActionType.LOGIN_ERROR:
     case ActionType.REFRESH_USER_ERROR:
+    case ActionType.LOGOUT_ERROR:
       return payload;
     case ActionType.REGISTRATION_ERROR:
       return payload.error;

@@ -17,7 +17,7 @@ const Timer = ({ days, hours, minutes, seconds, completed }) => {
     return <Completionist />;
   }
   return (
-    <div className={css.container}>
+    <div>
       <div className={css.timerPanel}>
         <p>
           <span className={css.value}>{days}</span>
@@ -45,10 +45,10 @@ const Timer = ({ days, hours, minutes, seconds, completed }) => {
 
 const Counter = ({ finishDate, title }) => {
   return (
-    <>
+    <div className={css.container}>
       <h2 className={css.title}>{title}</h2>
       <Countdown date={changeDateFormatToMs(finishDate)} renderer={Timer} />
-    </>
+    </div>
   );
 };
 

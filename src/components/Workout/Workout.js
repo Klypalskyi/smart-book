@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
@@ -33,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Workout = () => {
+const Workout = ({ handleChangeToGoal }) => {
   const classes = useStyles();
   const [selectedBookId, setSelectedBookId] = useState('');
   const [books, setBooks] = useState([]);
@@ -55,10 +56,12 @@ const Workout = () => {
 
   const handleTimeStart = date => {
     setTimeStart(date.toISOString());
+    handleChangeToGoal({ startTime: date.toISOString() });
   };
 
   const handleTimeEnd = date => {
     setTimeEnd(date.toISOString());
+    handleChangeToGoal({ finishTime: date.toISOString() });
   };
 
   const handleSubmit = evt => {
@@ -67,6 +70,7 @@ const Workout = () => {
     if (booksForRender.find(el => el._id === selectedBookId)) return;
     setBooksForRender([...booksForRender, getSelectedBook]);
     setBooks([...books, { book: selectedBookId }]);
+
     setSelectedBook({
       _id: null,
       title: '',
@@ -77,6 +81,7 @@ const Workout = () => {
     const updatedBooks = booksForRender.filter(el => el._id !== id);
     setBooksForRender(updatedBooks);
     setBooks(books.filter(el => el.book !== id));
+    handleChangeToGoal({ countBooks: booksForRender.lenght });
   };
 
   useEffect(() => {
@@ -85,6 +90,7 @@ const Workout = () => {
       0,
     );
     setAvgReadPages(allPages);
+    handleChangeToGoal({ countBooks: booksForRender.lenght });
   }, [booksForRender]);
 
   const addTraining = () => {

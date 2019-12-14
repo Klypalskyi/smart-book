@@ -25,15 +25,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 65%;
   width: 200px;
   position: relative;
-  margin-right: 20px;
 }
 
 .icon {
   fill: #a6abb9;
   outline: none;
+  margin-right: -30px;
+  margin-left: 0px;
+}
+
+.btnIcon {
+  margin-right: -30px;
+  margin-left: 0px;
 }
 
 .bookName {
@@ -56,13 +61,14 @@
   font-family: Montserrat;
   font-size: 14px;
   line-height: 1.23;
-  letter-spacing: 0.39px;
   color: var(--dark);
   border: none;
   background-color: transparent;
   border-bottom: 1px solid;
+  cursor: pointer;
+  margin-left: 7px;
 }
-.nav::after {
+.buttonExit::after {
   content: '';
   clear: both;
   display: block;
@@ -72,6 +78,9 @@
   width: 1px;
   height: 35px;
   background-color: #e0e5eb;
+}
+.bookPars {
+  margin-left: 15px;
 }
 
 @media screen and (min-width: 768px) {
@@ -101,11 +110,11 @@
   .bookNameLetter {
     margin-right: 9px;
   }
-  .nav::after {
+  .buttonExit::after {
     left: 88%;
   }
   .buttonExit {
-    margin-left: 33px;
+    margin-left: 14px;
   }
 }
 
@@ -118,7 +127,11 @@
   .nav {
     width: 57%;
   }
-  .nav::after {
+  .buttonExit::after {
     left: 90%;
+  }
+
+  .buttonExit {
+    margin-left: 33px;
   }
 }

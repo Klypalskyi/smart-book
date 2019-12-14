@@ -1,16 +1,20 @@
-.container {
+/* your css code */
+
+.ChartWrapper {
+  height: 500px !important;
   width: 300px;
   order: 4;
 }
 
 @media (min-width: 768px) {
-  .container {
+  .ChartWrapper {
+    height: 300px !important;
     width: 748px;
   }
 }
 
 @media (min-width: 1280px) {
-  .container {
+  .ChartWrapper {
     margin-top: 80px;
     flex-basis: 70%;
     order: 3;

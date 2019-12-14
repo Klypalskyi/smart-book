@@ -1,186 +1,119 @@
-import React, { useEffect, useState } from 'react';
-import makeStyles from '@material-ui/styles/makeStyles';
-import moment from 'moment';
-import Paper from '@material-ui/core/Paper';
+import * as React from 'react';
+import { Line } from 'react-chartjs-2';
 import {
-  ArgumentAxis,
-  ValueAxis,
-  Chart,
-  LineSeries,
-  SplineSeries,
-} from '@devexpress/dx-react-chart-material-ui';
-import style from './Chart.module.css';
+  createArrayOfDate,
+  createArrayOfCount,
+  makeAverage,
+  findDifference,
+} from './helpersFn';
+import styles from './Chart.module.css';
 
-// const useStyles = makeStyles(theme => ({
-//   container: {
-//     flexBasis: '100%',
-//     order: 3,
-//     marginTop: '80px',
-//     [theme.breakpoints.up('lg')]: {
-//       flexBasis: '70%',
-//     },
-//   },
-// }));
-const pagesReadResult = [
-  {
-    _id: '5debb14b496b296044455570',
-    date: '2019-12-01T13:15:00.000Z',
-    count: 15,
-  },
-  {
-    _id: '5deb8534b15b06277af0b461',
-    date: '2019-12-02T20:38:00.000Z',
-    count: 123,
-  },
-  {
-    _id: '5debaa6d5defc6604353a8fa',
-    date: '2019-12-04T14:26:00.000Z',
-    count: 88,
-  },
-  {
-    _id: '5deba9cd5defc6604353a8f9',
-    date: '2019-12-06T12:16:00.000Z',
-    count: 11,
-  },
-  {
-    _id: '5debaeac5defc6604353a8fd',
-    date: '2019-12-06T10:12:00.000Z',
-    count: 121,
-  },
-  {
-    _id: '5debac1f5defc6604353a8fc',
-    date: '2019-12-07T13:38:45.473Z',
-    count: 7,
-  },
-  {
-    _id: '5deba30ab15b06277af0b462',
-    date: '2019-12-07T14:32:14.844Z',
-    count: 11,
-  },
-  {
-    _id: '5debab615defc6604353a8fb',
-    date: '2019-12-07T13:38:38.134Z',
-    count: 213,
-  },
-  {
-    _id: '5deb9e3cdd9d032772bf52a1',
-    date: '2019-12-07T12:35:44.844Z',
-    count: 32,
-  },
-];
+const Chart = ({ training }) => {
+  const { pagesReadResult, timeStart, timeEnd, allPagesCount } = training;
 
-const obj = {};
+  const arrayOfDate = createArrayOfDate(pagesReadResult);
+  const difference = findDifference(timeStart, timeEnd, arrayOfDate);
+  const arrayOfCount = createArrayOfCount(arrayOfDate, pagesReadResult);
+  const averageCountPage = (allPagesCount / difference).toFixed(0);
+  const { length } = arrayOfCount;
+  const aim = makeAverage(averageCountPage, length);
 
-pagesReadResult.forEach(el => {
-  const formatedDate = moment(el.date).format('YYYY/MM/DD');
-
-  obj[formatedDate] = {
-    count: obj[formatedDate] ? obj[formatedDate].count : 0 + el.count,
+  const data = {
+    labels: arrayOfDate,
+    datasets: [
+      {
+        label: 'Факт',
+        data: arrayOfCount,
+        borderColor: '#d97833',
+        backgroundColor: '#d97833',
+        fill: false,
+      },
+      {
+        label: 'План',
+        data: aim,
+        borderColor: '#091e3f',
+        backgroundColor: '#091e3f',
+        fill: false,
+      },
+    ],
   };
-});
-
-const arrayOfCount = Object.values(obj);
-const finalCount = arrayOfCount.map(el => el.count);
-
-// const countArray = [];
-const generateData = (start, end, count, average) => {
-  const data = [];
-  for (let i = start; i <= end; i++) {
-    data.push({
-      countAveragePage: average,
-      countPagesEveryDay: count[i - 1],
-      argument: i,
-    });
-  }
-
-  return data;
-};
-
-const ChartComp = props => {
-  // hooks
-  // const classes = useStyles();
-  const [average, setAverage] = useState(0);
-  const [dateArray, setObject] = useState(pagesReadResult);
-  const [date, setDate] = useState([]);
-  const [allPages, setAllPages] = useState(3186);
-  // end of hooks
-
-  const timeStart = 1575417600000;
-  const timeEnd = '2019-12-07T00:00:00.000Z';
-  const allPagesCount = 1593;
-
-  const startOfTranning = moment(timeStart).dayOfYear();
-  const endOfTranning = moment(timeEnd).dayOfYear();
-  const difference = endOfTranning - startOfTranning;
-
-  const averageCountPage = allPagesCount / difference;
-
-  const onlyDate = [];
-  const onlyNormalDate = [];
-
-  dateArray.forEach(train => {
-    const day = moment(train.date).dayOfYear(); // day of year
-
-    if (!onlyDate.includes(day)) {
-      onlyDate.push(day); // push day of year
-
-      const format = moment().dayOfYear(day)._d;
-      onlyNormalDate.push(moment(format).format('YYYY/MM/DD')); // push normal date to another array
-    }
-  });
-
-  dateArray.forEach(train => {
-    const day = moment(train.date).dayOfYear(); // day of year
-
-    if (!onlyDate.includes(day)) {
-      onlyDate.push(day); // push day of year
-
-      const format = moment().dayOfYear(day)._d;
-      onlyNormalDate.push(moment(format).format('YYYY/MM/DD')); // push normal date to another array
-    }
-  });
-
-  const differenceWithDeadline =
-    difference + (onlyNormalDate.length - difference);
-
-  const dataa = [
-    { argument: 1, value: 10 },
-    { argument: 2, value: 1000 },
-    { argument: 3, value: 30 },
-  ];
-
-  useEffect(() => {
-    setDate(pagesReadResult);
-  }, []);
-
-  const chartData = generateData(
-    1,
-    differenceWithDeadline,
-    finalCount,
-    averageCountPage,
-  );
-
-  console.log('chart', chartData);
 
   return (
-    <Paper className={style.container}>
-      <Chart data={chartData}>
-        <ArgumentAxis />
-        <ValueAxis />
-
-        <LineSeries
-          name="line"
-          valueField="countAveragePage"
-          argumentField="argument"
-        />
-        <SplineSeries
-          name="spline"
-          valueField="countPagesEveryDay"
-          argumentField="argument"
-        />
-      </Chart>
-    </Paper>
+    <div className={styles.ChartWrapper}>
+      <Line
+        data={data}
+        options={{
+          title: {
+            display: true,
+            position: 'top',
+            fontColor: '#091e3f',
+            fontStyle: 'normal',
+            padding: 20,
+            left: 0,
+            horizontalAlign: 'right',
+            text: `КІЛЬКІСТЬ СТОРІНОК / ДЕНЬ 56`,
+            fontSize: 12,
+          },
+          legend: {
+            position: 'right',
+            labels: {
+              fontSize: 12,
+              fontFamily: 'Montserrat',
+              fontColor: '#242a37',
+              boxWidth: 8,
+              padding: 10,
+              fullWidth: false,
+              usePointStyle: true,
+            },
+          },
+          layout: {
+            padding: {
+              left: 30,
+              right: 30,
+              top: 30,
+              bottom: 0,
+            },
+          },
+          scales: {
+            yAxes: [
+              {
+                scaleLabel: {
+                  display: true,
+                  position: 'left',
+                },
+                ticks: {
+                  display: true,
+                },
+                gridLines: {
+                  color: 'rgba(193, 196, 206, 0.4)',
+                },
+                display: true,
+              },
+            ],
+            xAxes: [
+              {
+                scaleLabel: {
+                  display: true,
+                  labelString: 'ЧАС',
+                  fontSize: 12,
+                  fontFamily: 'Montserrat',
+                  fontColor: '#242a37',
+                  fontStyle: 'bold',
+                },
+                ticks: {
+                  display: true,
+                  minRotation: 30,
+                },
+                gridLines: {
+                  color: 'rgba(193, 196, 206, 0.4)',
+                },
+              },
+            ],
+          },
+        }}
+      />
+    </div>
   );
 };
 
-export default ChartComp;
+export default Chart;
