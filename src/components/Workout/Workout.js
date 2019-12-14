@@ -113,6 +113,9 @@ const Workout = ({ handleChangeToGoal }) => {
 
   return (
     <div className={style.container}>
+      <div className={style.titleContainer}>
+        <p className={style.title}>Моє тренування</p>
+      </div>
       <div className={style.pickers}>
         <MuiPickersUtilsProvider
           className={style.pickerOverlay}

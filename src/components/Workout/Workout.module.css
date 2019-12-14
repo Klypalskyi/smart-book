@@ -1,5 +1,5 @@
 .container {
-  padding: 28px 10px;
+  padding: 28x 10px;
   margin: 0 auto;
   width: 320px;
 }
@@ -25,6 +25,7 @@
 }
 
 .picker {
+  position: relative;
   margin-bottom: 26px;
   width: 300px;
   height: 40px;
@@ -36,15 +37,21 @@
   font-size: 13px;
   line-height: 40px;
   font-family: 'Montserrat';
+  font-weight: 500;
   color: var(--black);
   padding: 0 10px;
   text-align: center;
   cursor: pointer;
 }
 
-.picker::before,
-.picker::after {
-  display: none;
+.picker::before {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  background: url(./calendar.png);
+  background-repeat: no-repeat;
+  width: 14px;
+  height: 16px;
 }
 
 .submitOverlay {
@@ -94,6 +101,21 @@
   cursor: pointer;
 }
 
+.titleContainer {
+  margin-bottom: 26px;
+  height: 60px;
+  background-color: var(--light-grey-blue);
+}
+
+.title {
+  font-family: 'Montserrat';
+  font-size: 19px;
+  line-height: 60px;
+  font-weight: 600;
+  color: var(--white);
+  text-align: center;
+}
+
 @media (min-width: 768px) {
   .container {
     padding: 30px 44px 48px 44px;
@@ -130,7 +152,7 @@
 
 @media (min-width: 1280px) {
   .container {
-    padding: 38px 40px 48px 40px;
+    padding: 34px 40px 48px 40px;
     width: 862px;
   }
 }
